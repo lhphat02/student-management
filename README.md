@@ -15,7 +15,7 @@ A website for managing student's information
 
 **Server:** Node, Next.js
 
-**Database:** MongoDB
+**Database:** MySQL
 ## 🛠 Deployment
 
 Before you try to deploy run
