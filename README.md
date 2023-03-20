@@ -4,19 +4,19 @@ A website for managing student's information
 
 
 
-## Developers
+## 🥸 Developers
 
 - Phat Luu
 
 
-## Tech Stack
+## 🛸 Tech Stack
 
 **Client:** React.js, TailwindCSS
 
 **Server:** Node, Next.js
 
 **Database:** MongoDB
-## Deployment
+## 🛠 Deployment
 
 Before you try to deploy run
 
