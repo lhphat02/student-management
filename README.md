@@ -7,7 +7,7 @@ A website for managing student's information
 ## 🥸 Developers
 
 - Phat Luu
-
+- Quan Nguyen
 
 ## 🛸 Tech Stack
 
