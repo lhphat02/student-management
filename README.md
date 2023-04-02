@@ -7,7 +7,8 @@ A website for managing student's information
 ## 🥸 Developers
 
 - Phat Luu
-
+- Quan Nguyen
+- Huy Ngo
 
 ## 🛸 Tech Stack
 
@@ -15,7 +16,7 @@ A website for managing student's information
 
 **Server:** Node, Next.js
 
-**Database:** MongoDB
+**Database:** MySQL
 ## 🛠 Deployment
 
 Before you try to deploy run
