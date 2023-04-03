@@ -1,6 +1,6 @@
 const StudentManage = () => {
     return (
-        <div>
+        <div className="bg-black-900">
           <p>Chờ mệt ỉa</p>
         </div>
     )
