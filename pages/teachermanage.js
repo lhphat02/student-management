@@ -7,7 +7,7 @@ const TeacherManage = () => {
         <div>
           <Button 
             btnName="Sign in"
-            classStyles={`mx-2 rounded-xl flex justify-center active:scale-110 duration-100`}
+            classStyles={`mx-2 rounded-xl flex justify-center item-center active:scale-110 duration-100`}
             handleClick={() => {
               router.push('/signin')
             }}

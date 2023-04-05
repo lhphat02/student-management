@@ -5,11 +5,24 @@ import router, {useRouter} from 'next/router';
 
 import assets from '../assets';
 
-const Sidebar = () => {
+const Sidebar = ({ children }) => {
   return (
     <div className='flex'>
-      <div className='fixed w-64 h-screen p-4 bg-slate-300 border-r-[1px] flex flex-col justify-between rounded-xl'>
+      <div className='fixed w-20 h-screen p-4 bg-slate-300 border-r-[1px] flex flex-col justify-between'>
         <div className='flex flex-col items-center'>
+
+        <Link href='/'>
+            <div className='bg-white text-white p-3 rounded-lg inline-block '>
+            <Image 
+                src={assets.vocational}
+                alt='logo'
+                width={40}
+                height={40}
+              />
+            </div>
+          </Link>
+
+          <span className='border-b-[1px] border-white w-full p-2'></span>
 
           <Link href='/'>
             <div className=' hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'>
@@ -20,7 +33,7 @@ const Sidebar = () => {
                 width={25}
                 height={25}
               />
-              <p className='text-md font-poppins mt-1 ml-3'>Dashboard</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Dashboard</p> */}
               </div>
             </div>
           </Link>
@@ -34,7 +47,7 @@ const Sidebar = () => {
                 width={25}
                 height={25}
                 />
-              <p className='text-md font-poppins mt-1 ml-3'>Teacher</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Teacher</p> */}
               </div>
             </div>
           </Link>
@@ -48,7 +61,7 @@ const Sidebar = () => {
                 width={25}
                 height={25}
                 />
-              <p className='text-md font-poppins mt-1 ml-3'>Student</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Student</p> */}
               </div>
             </div>
           </Link>
@@ -62,7 +75,7 @@ const Sidebar = () => {
                 width={25}
                 height={25}
                 />
-              <p className='text-md font-poppins mt-1 ml-3'>Subject</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Subject</p> */}
               </div>
             </div>
           </Link>
@@ -76,7 +89,7 @@ const Sidebar = () => {
                 width={25}
                 height={25}
                 />
-              <p className='text-md font-poppins mt-1 ml-3'>Class</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Class</p> */}
               </div>
             </div>
           </Link>
@@ -90,7 +103,7 @@ const Sidebar = () => {
                 width={25}
                 height={25}
                 />
-              <p className='text-md font-poppins mt-1 ml-3'>Report</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Report</p> */}
               </div>
             </div>
           </Link>
@@ -104,7 +117,7 @@ const Sidebar = () => {
                 width={25}
                 height={25}
                 />
-              <p className='text-md font-poppins mt-1 ml-3'>Grade</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Grade</p> */}
               </div>
             </div>
           </Link>
@@ -118,12 +131,29 @@ const Sidebar = () => {
                 width={25}
                 height={25}
                 />
-              <p className='text-md font-poppins mt-1 ml-3'>Rule</p>
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Rule</p> */}
+              </div>
+            </div>
+          </Link>
+
+          <span className='border-b-[1px] border-white w-full p-2'></span>
+
+          <Link href='/rules'>
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
+                src={assets.login}
+                alt='rule'
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Rule</p> */}
               </div>
             </div>
           </Link>
         </div>
       </div>
+      <main className='ml-20 w-full'>{children}</main>
     </div>
   );
 };

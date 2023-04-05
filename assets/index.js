@@ -11,6 +11,7 @@ import notification from './notification.png'
 import bookshelf from './bookshelf.png'
 import training from './training.png'
 import scales from './scales.png'
+import login from './log-in.png'
 
 export default {
     dashboard,
@@ -26,5 +27,6 @@ export default {
     bookshelf,
     training,
     scales,
-
+    login,
+    
 }
