@@ -6,7 +6,7 @@ import router from 'next/router'
 import Button from './Button';
 import assets from '../assets';
 
-const Topbar = () => {
+const Topbar = ({ NamePage}) => {
   return (
     <nav className='flex justify-between px-4 pt-5 bg-slate-100 pb-6 border-b-2 shadow-sm rounded-md'>
       <div className='flex justify-start flex-1'>
@@ -21,7 +21,7 @@ const Topbar = () => {
             <p className='text-2xl font-extrabold text-center font-rubik text-cyan-500 ml-1 mt-2'>
               UITao
             </p>
-            <p className='font-poppins font-medium text-xl ml-3 mt-3'>/ Dashboard</p>
+            <p className='font-poppins font-medium text-xl ml-3 mt-3'>/ {NamePage}</p>
           </div>
         </Link>
       </div>

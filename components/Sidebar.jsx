@@ -66,7 +66,7 @@ const Sidebar = ({ children }) => {
             </div>
           </Link>
 
-          <Link href='/subjects'>
+          <Link href='/subject'>
           <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
               <div className='flex flex-row'>
                <Image 

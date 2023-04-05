@@ -4,7 +4,8 @@ import { Modal } from 'flowbite-react'
 
 const Modal = () => {
   return (
-    <div><Modal
+    <div>
+    <Modal
     show={false}
     size="md"
     popup={true}
@@ -72,7 +73,8 @@ const Modal = () => {
         </div>
       </div>
     </Modal.Body>
-  </Modal></div>
+  </Modal>
+  </div>
   )
 }
 
