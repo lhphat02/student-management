@@ -4,12 +4,12 @@ import React from "react";
 
 import Topbar from "../components/Topbar";
 
-const StudentManagement = () => {
+const Report = () => {
     return(
         <div>
-            <Topbar NamePage='Student Management'/>
+            <Topbar NamePage='Report'/>
         </div>
     )
 }
 
-export default StudentManagement;
+export default Report;

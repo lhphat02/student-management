@@ -1,4 +1,4 @@
-const SettingPage = () => {
+const SignInPage = () => {
     return (
         <div>
           <p>Chờ mệt ỉa</p>
@@ -6,4 +6,4 @@ const SettingPage = () => {
     )
 }
 
-export default SettingPage
+export default SignInPage
