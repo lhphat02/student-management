@@ -1,55 +1,154 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { RxSketchLogo, RxDashboard, RxPerson } from 'react-icons/rx';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
-import { FiSettings } from 'react-icons/fi';
+import router, {useRouter} from 'next/router';
 
 import assets from '../assets';
 
 const Sidebar = ({ children }) => {
   return (
     <div className='flex'>
-      <div className='fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between'>
+      <div className='fixed w-20 h-screen p-4 bg-slate-300 border-r-[1px] flex flex-col justify-between'>
         <div className='flex flex-col items-center'>
+
+        <Link href='/'>
+            <div className='bg-white text-white p-3 rounded-lg inline-block '>
+            <Image 
+                src={assets.vocational}
+                alt='logo'
+                width={40}
+                height={40}
+              />
+            </div>
+          </Link>
+
+          <span className='border-b-[1px] border-white w-full p-2'></span>
+
           <Link href='/'>
-            <div className='bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'>
+            <div className=' hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
               <Image 
                 src={assets.dashboard}
                 alt='dashboard'
-                width={35}
-                height={35}
+                width={25}
+                height={25}
               />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Dashboard</p> */}
+              </div>
             </div>
           </Link>
+
           <Link href='/teachermanage'>
-            <div className='bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'>
-            <Image 
+            <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
                 src={assets.teacher}
                 alt='teacher'
-                width={35}
-                height={35}
-              />
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Teacher</p> */}
+              </div>
             </div>
           </Link>
+
           <Link href='/studentmanage'>
-            <div className='bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'>
-            <Image 
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
                 src={assets.cap}
                 alt='student'
-                width={35}
-                height={35}
-              />
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Student</p> */}
+              </div>
             </div>
           </Link>
-          <Link href='/settings'>
-            <div className='bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block'>
-            <Image 
-                src={assets.settings}
-                alt='settings'
-                width={35}
-                height={35}
-              />
+
+          <Link href='/subject'>
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
+                src={assets.bookshelf}
+                alt='subject'
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Subject</p> */}
+              </div>
+            </div>
+          </Link>
+
+          <Link href='/class'>
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
+                src={assets.training}
+                alt='class'
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Class</p> */}
+              </div>
+            </div>
+          </Link>
+
+          <Link href='/report'>
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
+                src={assets.file}
+                alt='report'
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Report</p> */}
+              </div>
+            </div>
+          </Link>
+
+          <Link href='/grade'>
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
+                src={assets.board}
+                alt='grade'
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Grade</p> */}
+              </div>
+            </div>
+          </Link>
+
+          <Link href='/rules'>
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
+                src={assets.scales}
+                alt='rule'
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Rule</p> */}
+              </div>
+            </div>
+          </Link>
+
+          <span className='border-b-[1px] border-white w-full p-2'></span>
+
+          <Link href='/rules'>
+          <div className=' hover:bg-gray-200 cursor-pointer my-3 p-3 rounded-lg inline-block'>
+              <div className='flex flex-row'>
+               <Image 
+                src={assets.login}
+                alt='rule'
+                width={25}
+                height={25}
+                />
+              {/* <p className='text-md font-poppins mt-1 ml-3'>Rule</p> */}
+              </div>
             </div>
           </Link>
         </div>
