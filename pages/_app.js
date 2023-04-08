@@ -1,10 +1,13 @@
 import '../styles/globals.css';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 
 export default function App({ Component, pageProps }) {
+  const routing = useRouter();
+
   return (
     <>
       <Head>
@@ -14,9 +17,13 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Sidebar>
+      {routing.pathname !== '/rules' ? (
+        <Sidebar>
+          <Component {...pageProps} />
+        </Sidebar>
+      ) : (
         <Component {...pageProps} />
-      </Sidebar>
+      )}
     </>
   );
 }

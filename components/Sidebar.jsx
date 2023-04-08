@@ -6,10 +6,8 @@ import router, { useRouter } from 'next/router';
 import assets from '../assets';
 
 const Sidebar = ({ children }) => {
-  const routing = useRouter();
-
   return (
-    <div className={`flex ${routing.pathname === '/rules' ? 'hidden' : null}`}>
+    <div className="flex">
       <div className="fixed w-20 h-screen p-4 bg-slate-300 border-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
           <Link href="/">
