@@ -9,6 +9,8 @@ A website for managing student's information
 - Phat Luu
 - Quan Nguyen
 - Huy Ngo
+- Anh Hoang
+- Phu Huong
 
 ## 🛸 Tech Stack
 
