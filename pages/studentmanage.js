@@ -127,7 +127,7 @@ const StudentManagement = () => {
           </Button>
         </div>
         {/* <MyTable */}
-        {/* <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center">
           <div className="w-4/5">
             <Table>
               
@@ -168,7 +168,7 @@ const StudentManagement = () => {
               </Table.Body>
             </Table>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
