@@ -1,59 +1,63 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import StudentmanageTable from "./studentmanagement/studentmanageTable";
-import Popup from "reactjs-popup";
+import React from 'react';
+import { useState, useEffect } from 'react';
+import StudentmanageTable from '../components/studentmanagement/studentmanageTable';
+import Popup from 'reactjs-popup';
 // import { ThemeProvider } from 'next-themes';
 
-
-import Topbar from "../components/Topbar";
+import Topbar from '../components/Topbar';
+import { Button, Label, Modal, Table, TextInput } from 'flowbite-react';
 
 const StudentManagement = () => {
+  const [hocsinh, setHocSinh] = useState([]);
+  const [toggleModal, setToggleModal] = useState(false);
+  const [formInput, setFormInput] = useState({
+    id: '',
+    name: '',
+    class: '',
+    GPA1: '',
+    GPA2: '',
+  });
 
-    const [hocsinh, setHocSinh] = useState([]);
+  // useEffect(()=>{
+  //   fetch('api/hello')
+  //   .then( async (res)=>{
+  //     let data = await res.json();
+  //     console.log(data)
+  //     setHocSinh(data)
+  //   })
+  //   console.log(hocsinh)
+  // }, [])
 
-    // useEffect(()=>{
-    //   fetch('api/hello')
-    //   .then( async (res)=>{
-    //     let data = await res.json();
-    //     console.log(data)
-    //     setHocSinh(data)
-    //   })
-    //   console.log(hocsinh)
-    // }, [])
-    
-    return(
-        <div>
-            <Topbar NamePage='Student Management'/>
-             <div className="relative">
-                <div className="relative top-[150px] ml-[10px] font-neon">
-                  <StudentmanageTable/>
-                </div>
-
-            </div>
-            
-         
-        </div>
-    )
-}
+  //   return (
+  //     <div>
+  //       <Topbar NamePage="Student Management" />
+  //       <div className="relative">
+  //         <div className="relative top-[150px] ml-[10px] font-neon">
+  //           <StudentmanageTable />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   const hs1 = {
     id: 1,
-    name: "Quan",
-    class: "10A4",
+    name: 'Quan',
+    class: '10A4',
     GPA1: 9,
     GPA2: 7,
   };
   const hs2 = {
     id: 2,
-    name: "Phat",
-    class: "10A4",
+    name: 'Phat',
+    class: '10A4',
     GPA1: 5,
     GPA2: 8,
   };
   const hs3 = {
     id: 3,
-    name: "Huy",
-    class: "10A4",
+    name: 'Huy',
+    class: '10A4',
     GPA1: 2,
     GPA2: 4,
   };
@@ -153,7 +157,6 @@ const StudentManagement = () => {
         <div className="w-full flex items-center justify-center">
           <div className="w-4/5">
             <Table>
-              
               <Table.Head>
                 <Table.HeadCell className="table-style">STT</Table.HeadCell>
                 <Table.HeadCell className="table-style">Họ Tên</Table.HeadCell>
@@ -165,9 +168,7 @@ const StudentManagement = () => {
                   TB Học Kỳ II
                 </Table.HeadCell>
               </Table.Head>
-              
 
-              
               <Table.Body className=" divide-y">
                 {students.map((student) => (
                   <Table.Row key={student.id} className="bg-white">
