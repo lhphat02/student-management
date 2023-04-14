@@ -6,7 +6,7 @@ const StudentManager = () => {
   const [hocsinh, setHocSinh] = useState([]);
 
   useEffect(() => {
-    fetch('api/hello').then(async (res) => {
+    fetch('api/db').then(async (res) => {
       let data = await res.json();
 
       console.log(data);

@@ -9,7 +9,7 @@ export default function StudentmanageTable() {
   const [studentData, setHSData] = useState([]);
 
   useEffect(() => {
-    fetch('api/hello').then(async (res) => {
+    fetch('api/db').then(async (res) => {
       let data = await res.json();
       data.map((item, index) => {
         item.index = index + 1;
