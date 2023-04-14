@@ -51,7 +51,7 @@ const Sidebar = ({ children }) => {
             </div>
           </Link>
 
-          <Link href="/studentmanage">
+          <Link href="/student-manager">
             <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image src={assets.cap} alt="student" width={25} height={25} />
