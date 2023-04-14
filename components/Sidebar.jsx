@@ -117,7 +117,7 @@ const Sidebar = ({ children }) => {
 
           <span className="border-b-[1px] border-white w-full p-2"></span>
 
-          <Link href="/rules">
+          <Link href="/loginpage">
             <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image src={assets.login} alt="rule" width={25} height={25} />

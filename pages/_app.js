@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {routing.pathname !== '/rules' ? (
+      {routing.pathname !== '/loginpage' ? (
         <Sidebar>
           <Component {...pageProps} />
         </Sidebar>

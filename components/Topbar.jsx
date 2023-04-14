@@ -1,10 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import router from 'next/router';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import router from "next/router";
 
-import Button from './Button';
-import assets from '../assets';
+import Button from "./Button";
+import assets from "../assets";
 
 const Topbar = ({ NamePage }) => {
   return (
@@ -23,17 +23,18 @@ const Topbar = ({ NamePage }) => {
         </Link>
       </div>
 
-      <div className="flex flex-row justify-center p-1 cursor-pointer item-center hover:bg-slate-200 rounded-xl">
-        <div>
+      <Link href="/profile">
+        <div className="flex flex-row justify-center p-1 cursor-pointer item-center hover:bg-slate-200 rounded-xl">
           <Image src={assets.user} alt="user" />
+
+          <div className="ml-4">
+            <p className="mt-1 text-lg font-medium font-poppins">
+              Welcome, Teacher
+            </p>
+            {/* <p className='font-mono font-medium'>Teacher</p> */}
+          </div>
         </div>
-        <div className="ml-4">
-          <p className="mt-1 text-lg font-medium font-poppins">
-            Welcome, Teacher
-          </p>
-          {/* <p className='font-mono font-medium'>Teacher</p> */}
-        </div>
-      </div>
+      </Link>
     </nav>
   );
 };

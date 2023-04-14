@@ -12,6 +12,8 @@ import bookshelf from './bookshelf.png'
 import training from './training.png'
 import scales from './scales.png'
 import login from './log-in.png'
+import yahoo from './tuna-yasuo.jpg'
+import ava from './Anos_DK_outfit.jpg'
 
 export default {
     dashboard,
@@ -28,5 +30,6 @@ export default {
     training,
     scales,
     login,
-    
+    yahoo,
+    ava,
 }
