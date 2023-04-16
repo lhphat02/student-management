@@ -18,6 +18,7 @@ const TeacherManage = () => {
             }}
           />
         </div> */}
+        <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Làm bảng cho cái trang này</p>
       </div>
     )
 }
