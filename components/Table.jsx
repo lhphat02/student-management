@@ -8,9 +8,9 @@ const Table = ({ tableInstance }) => {
   return (
     <table
       {...getTableProps()}
-      className="relative w-full bg-white rounded-lg border"
+      className="relative w-full bg-white border"
     >
-      <thead className=" border-2">
+      <thead className="border-2 bg-slate-100">
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (

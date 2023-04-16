@@ -18,7 +18,8 @@ const StudentManager = () => {
   return (
     <div>
       <Topbar NamePage="Student Management" />
-      <div className="flex justify-center items-center mt-20 px-20">
+      <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Danh sách học sinh</p>
+      <div className="flex justify-center items-center mt-10 px-20">
         <StudentmanageTable />
       </div>
     </div>

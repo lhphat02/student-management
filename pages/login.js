@@ -1,43 +1,53 @@
 import { Label, TextInput, Checkbox, Button, Modal } from "flowbite-react";
 import Image from "next/image";
+import router from "next/router";
 
 import assets from "@/assets";
 import { useState } from "react";
 import MyModal from "@/components/Modal";
 
 const LoginPage = () => {
-const [toggleModal, setToggleModal] = useState(false)
+  const [toggleModal, setToggleModal] = useState(false);
 
   return (
-    <div className="">
-    <div className="flex z-10 h-screen justify-center items-center">
-      <form className="flex flex-col gap-4 w-2/5">
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="email1" value="Your email" />
-        </div>
-        <TextInput
-          id="email1"
-          type="email"
-          placeholder="name@flowbite.com"
-          required={true}
-        />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="password1" value="Your password" />
-        </div>
-        <TextInput id="password1" type="password" required={true} />
-      </div>
-      <div className="flex items-center gap-2">
-        <Checkbox id="remember" />
-        <Label htmlFor="remember">Remember me</Label>
-      </div>
-      <Button type="submit">Submit</Button>
-    </form>
+    <div className="w-full">
+      <div className="flex h-screen justify-center items-center bg-slate-300">
+        <form className="flex z-10 flex-col gap-4 w-2/5 border p-10 rounded-3xl shadow-xl bg-white">
+          <div>
+            <p className="text-3xl font-poppins text-gray-600 font-bold flex justify-center">
+              Login Page
+            </p>
+            <div className="mb-2 block">
+              <Label htmlFor="email1" value="Your email" />
+            </div>
+            <TextInput
+              id="email1"
+              type="email"
+              placeholder="Email"
+              required={true}
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="password1" value="Your password" />
+            </div>
+            <TextInput id="password1" type="password" required={true} />
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox id="remember" />
+            <Label htmlFor="remember">Remember me</Label>
+          </div>
+          <Button
+            type="submit"
+            onClick={() => {
+              router.push("/");
+            }}
+          >
+            Submit
+          </Button>
+        </form>
 
-
-        <Button onClick={() => {setToggleModal(true)}}>Toggle modal</Button>
+        {/* <Button onClick={() => {setToggleModal(true)}}>Toggle modal</Button>
         <Modal show={toggleModal} onClose={() => {setToggleModal(false)}}>
           <Modal.Header>Terms of Service</Modal.Header>
           <Modal.Body>
@@ -62,8 +72,8 @@ const [toggleModal, setToggleModal] = useState(false)
               Decline
             </Button>
           </Modal.Footer>
-        </Modal>
-    </div>
+        </Modal> */}
+      </div>
     </div>
   );
 };
