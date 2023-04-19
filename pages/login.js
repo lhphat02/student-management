@@ -1,6 +1,7 @@
 import { Label, TextInput, Checkbox, Button, Modal } from "flowbite-react";
 import Image from "next/image";
 import router from "next/router";
+import Link from "next/link";
 
 import assets from "@/assets";
 import { useState } from "react";
@@ -33,9 +34,14 @@ const LoginPage = () => {
             </div>
             <TextInput id="password1" type="password" required={true} />
           </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="remember" />
-            <Label htmlFor="remember">Remember me</Label>
+          <div className="flex flex-row justify-between">
+            <div className="flex items-center gap-2">
+              <Checkbox id="remember" />
+              <Label htmlFor="remember">Remember me</Label>
+            </div>
+            <Link href="/forgotpassword">
+              <Label htmlFor="forgotpassword" className="hover:cursor-pointer">Forgot Password</Label>
+            </Link>
           </div>
           <Button
             type="submit"
