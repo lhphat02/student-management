@@ -59,7 +59,6 @@ const Sidebar = ({ children }) => {
               </div>
             </div>
           </Link>
-          
 
           <Link href="/subject">
             <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
