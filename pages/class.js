@@ -1,153 +1,31 @@
-import React from "react";
-// import { ThemeProvider } from 'next-themes';
-import { Table } from "flowbite-react";
+import Topbar from '@/components/Topbar';
+import ClassTable from '@/components/class/classTable';
+import React, { useEffect, useState } from 'react';
+import Popup from "reactjs-popup";
 
-
-import Topbar from "../components/Topbar";
 
 const Class = () => {
-    return(
-        <div>
-            <Topbar NamePage='Class'/>
-            <div>
-            <p className=" p-5 text-3xl font-poppins font-bold">Danh sách lớp</p>
-            {/* <MyTable */}
-            <Table>
-                {/* nametable="Danh sách học sinh" 
-                header={ */}
-                    <Table.Head>
-                        <Table.HeadCell className="whitespace-nowrap font-medium text-gray-900">
-                            Lớp:........... 
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium text-gray-900">
-                             
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium  text-gray-900">
-                           Sĩ số:..........
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium  text-gray-900">
-                            
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium  text-gray-900">
-                            
-                        </Table.HeadCell>
-                    </Table.Head>
-                    <Table.Head>
-                        <Table.HeadCell className="whitespace-nowrap font-medium text-gray-900">
-                            STT 
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium  text-gray-900">
-                           Họ Tên
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium  text-gray-900">
-                            Giới tính 
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium  text-gray-900">
-                            Năm sinh 
-                        </Table.HeadCell>
-                        <Table.HeadCell className="whitespace-nowrap font-medium text-gray-900">
-                            Địa chỉ 
-                        </Table.HeadCell>
-                    </Table.Head>
-                {/* } */}
-
-                {/* body={ */}
-                    <Table.Body className=" divide-y">    
-                    <Table.Row className="bg-white">
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                            1 
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                            Nguyễn Minh Quân
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                             Nam
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                              2002
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                             UIT
-                        </Table.Cell>
-                    </Table.Row>
-                    <Table.Row className="bg-white">
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                            2 
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                            
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                             
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                              
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                             
-                        </Table.Cell>
-                    </Table.Row>
-
-                    <Table.Row className="bg-white">
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                            3 
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                            
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                             
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                              
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                             
-                        </Table.Cell>
-                    </Table.Row>
-
-                    <Table.Row className="bg-white">
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                            4 
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                            
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                             
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                              
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                             
-                        </Table.Cell>
-                    </Table.Row>
-
-                    <Table.Row className="bg-white">
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                            5 
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                            
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                             
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y  text-gray-900">
-                              
-                        </Table.Cell>
-                        <Table.Cell className="whitespace-nowrap font-medium  border-y text-gray-900">
-                             
-                        </Table.Cell>
-                    </Table.Row>
-                </Table.Body>
-                {/* } */}
-            {/* /> */}
-            </Table>
-            </div>
+    const [lop, setlop] = useState([]);
+  
+    useEffect(() => {
+      fetch('api/dblop').then(async (res) => {
+        let data = await res.json();
+  
+        console.log(data);
+        setlop(data);
+      });
+      console.log(lop);
+    }, []);
+  
+    return (
+      <div>
+        <Topbar NamePage="Class" />
+        <div className="flex justify-center items-center mt-20 px-20">
+          <ClassTable />
         </div>
-    )
-}
-
-export default Class;
+      </div>
+    );
+  };
+  
+  export default Class;
+  

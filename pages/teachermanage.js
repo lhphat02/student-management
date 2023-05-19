@@ -1,14 +1,25 @@
-import React from "react"
+import Topbar from '@/components/Topbar';
+import TeachermanageTable from '@/components/teachermanagement/teachermanageTable';
+import React, { useEffect, useState } from 'react';
 
-import Topbar from "@/components/Topbar"
-import Button from "../components/Button"
-import Form from "@/components/Form"
+const TeacherManager = () => {
+  const [giaovien, setGiaoVien] = useState([]);
 
+  useEffect(() => {
+    fetch('api/dbgiaovien').then(async (res) => {
+      let data = await res.json();
 
-const TeacherManage = () => {
+      console.log(data);
+      setGiaoVien(data);
+    });
+    console.log(giaovien);
+  }, []);
     return (
       <div>
         <Topbar NamePage='Teacher Management'/>
+        <div className="flex justify-center items-center mt-20 px-20">
+        <TeachermanageTable />
+      </div>
         {/* <div className="flex justify-center item-center">
           <Button 
             btnName="Sign in"
@@ -23,4 +34,4 @@ const TeacherManage = () => {
     )
 }
 
-export default TeacherManage
+export default TeacherManager;
