@@ -1,7 +1,6 @@
 import Popup from 'reactjs-popup';
-import Edit from '../../assets/edit.png'
-import {TextSearchFilter} from '../../components/TextSearchFilter'
-export const studentmanageColumns = [
+
+export const teachermanageColumns = [
   { Header: 'ID', accessor: 'index' },
   { Header: 'Họ và Tên', accessor: 'HoTen' },
   { Header: 'Giới Tính', accessor: 'GioiTinh' },
@@ -12,7 +11,7 @@ export const studentmanageColumns = [
     Header: 'Update',
     //   Cell: ({ row }) => <Popup modal trigger={<button><img className="w-7 h-7 translate-x-4" src={Edit} alt="" /></button>}>
     //   {
-    //   close => <ActionStudentModal close={close} ID={row.original.ID} roomno={row.original.ROOM_NO} type={row.original.TYPE} inroom={row.original.IN_ROOM} price={row.original.PRICE}
+    //   close => <ActionRoomModal close={close} ID={row.original.ID} roomno={row.original.ROOM_NO} type={row.original.TYPE} inroom={row.original.IN_ROOM} price={row.original.PRICE}
     //   status={row.original.STATUS} desc={row.original.DESCRIPTION}/>}
     // </Popup>
   },

@@ -3,26 +3,26 @@ import { useTable } from 'react-table';
 import Table from '../Table';
 import Popup from 'reactjs-popup';
 import { useMemo, useEffect } from 'react';
-import { studentmanageColumns } from './studentmanageColumns';
+import { subjectsColumns } from './subjectsColumns';
 
-export default function StudentmanageTable() {
-  const [studentData, setHSData] = useState([]);
+export default function SubjectsTable() {
+  const [subjectsData, setMHData] = useState([]);
 
   useEffect(() => {
-    fetch('api/dbhocsinh').then(async (res) => {
+    fetch('api/dbmonhoc').then(async (res) => {
       let data = await res.json();
       data.map((item, index) => {
         item.index = index + 1;
       });
       console.log(data);
-      setHSData(data);
+      setMHData(data);
     });
 
-    console.log(studentData);
+    console.log(subjectsData);
   }, []);
 
-  const data = useMemo(() => studentData);
-  const columns = useMemo(() => studentmanageColumns);
+  const data = useMemo(() => subjectsData);
+  const columns = useMemo(() => subjectsColumns);
 
   const tableInstance = useTable({ data, columns });
 

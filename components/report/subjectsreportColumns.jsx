@@ -1,13 +1,13 @@
 import Popup from 'reactjs-popup';
 import Edit from '../../assets/edit.png'
 import {TextSearchFilter} from '../../components/TextSearchFilter'
-export const studentmanageColumns = [
+export const subjectsreportColumns = [
   { Header: 'ID', accessor: 'index' },
-  { Header: 'Họ và Tên', accessor: 'HoTen' },
-  { Header: 'Giới Tính', accessor: 'GioiTinh' },
-  { Header: 'Ngày Sinh', accessor: 'NgaySinh' },
-  { Header: 'Địa Chỉ', accessor: 'DiaChi' },
-  { Header: 'Email', accessor: 'Email' },
+  { Header: 'Học Kỳ', accessor: 'idHocKy' },
+  { Header: 'Số Lượng Đạt', accessor: 'Pass' },
+  { Header: 'Tỉ Lệ', accessor: 'Rate' },
+  { Header: 'Lớp', accessor: 'idLop' },
+
   {
     Header: 'Update',
     //   Cell: ({ row }) => <Popup modal trigger={<button><img className="w-7 h-7 translate-x-4" src={Edit} alt="" /></button>}>

@@ -1,12 +1,13 @@
 import Topbar from '@/components/Topbar';
 import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
 import React, { useEffect, useState } from 'react';
+import Popup from "reactjs-popup";
 
 const StudentManager = () => {
   const [hocsinh, setHocSinh] = useState([]);
 
   useEffect(() => {
-    fetch('api/db').then(async (res) => {
+    fetch('api/dbhocsinh').then(async (res) => {
       let data = await res.json();
 
       console.log(data);
