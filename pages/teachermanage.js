@@ -17,6 +17,7 @@ const TeacherManager = () => {
     return (
       <div>
         <Topbar NamePage='Teacher Management'/>
+        <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Danh sách giáo viên</p>
         <div className="flex justify-center items-center mt-20 px-20">
         <TeachermanageTable />
       </div>
@@ -29,7 +30,7 @@ const TeacherManager = () => {
             }}
           />
         </div> */}
-        <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Làm bảng cho cái trang này</p>
+
       </div>
     )
 }
