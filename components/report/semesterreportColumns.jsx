@@ -1,13 +1,12 @@
 import Popup from 'reactjs-popup';
 import Edit from '../../assets/edit.png'
 import {TextSearchFilter} from '../../components/TextSearchFilter'
-export const subjectsreportColumns = [
+export const semesterreportColumns = [
   { Header: 'ID', accessor: 'index' },
   { Header: 'Học Kỳ', accessor: 'idHocKy' },
   { Header: 'Số Lượng Đạt', accessor: 'Pass' },
   { Header: 'Tỉ Lệ', accessor: 'Rate' },
   { Header: 'Lớp', accessor: 'idLop' },
-  { Header: 'Môn học', accessor: 'idMH' },
 
   {
     Header: 'Update',

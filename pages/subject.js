@@ -18,15 +18,13 @@ const Subjects = () => {
     return(
         <div>
             <Topbar NamePage='Subjects'/>
-<<<<<<< HEAD
-            <div className="flex justify-center items-center mt-20 px-20">
+            <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Danh sách môn học </p>
+      <div className="flex justify-center items-center mt-10 px-20">
         <SubjectsTable />
       </div>
-=======
-            <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Làm bảng cho cái trang này</p>
->>>>>>> 73249078cb52adb54968f9d986e3e61a19270e44
-        </div>
-    )
+ </div>
+          
+    );
 }
 
 export default Subjects;
