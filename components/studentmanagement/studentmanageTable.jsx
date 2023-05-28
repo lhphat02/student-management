@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useTable } from 'react-table';
 import Table from '../Table';
 import Popup from 'reactjs-popup';
-import { useMemo, useEffect } from 'react';
 import { studentmanageColumns } from './studentmanageColumns';
 
 export default function StudentmanageTable() {
@@ -21,7 +20,12 @@ export default function StudentmanageTable() {
     console.log(studentData);
   }, []);
 
+  studentData.map(
+    (item) => (item.NgaySinh = new Date(item.NgaySinh).toLocaleDateString())
+  );
+
   const data = useMemo(() => studentData);
+
   const columns = useMemo(() => studentmanageColumns);
 
   const tableInstance = useTable({ data, columns });

@@ -1,45 +1,84 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 // import { ThemeProvider } from 'next-themes';
-import Image from "next/image";
+import Image from 'next/image';
 
-import assets from "@/assets";
-import Topbar from "../components/Topbar";
+import assets from '@/assets';
+import Topbar from '../components/Topbar';
 
 const Profile = () => {
+  const [studentData, setHSData] = useState([]);
+
+  useEffect(() => {
+    fetch('api/dbhocsinh').then(async (res) => {
+      let data = await res.json();
+      data.map((item, index) => {
+        item.index = index + 1;
+      });
+      console.log(data);
+      setHSData(data);
+    });
+
+    console.log(studentData);
+  }, []);
+
   return (
     <div className="">
       <Topbar NamePage="Profile" />
-      <p className=" p-5 mt-5 text-3xl font-poppins font-bold flex justify-center items-center">
-        Danh sách học sinh
-      </p>
-      <div className="w-3/4 flex justify-between px-52 ml-96 mt-40">
+      <div className="flex flex-col items-center justify-center w-full px-20 my-10 font-poppins">
         <div className="">
-          <Image
-            src={assets.yahoo}
-            width={160}
-            height={160}
-            className="rounded-full border-2 hover:cursor-pointer"
-          />
-          <p className="font-poppins font-medium text-lg ml-3 mt-10 bg-slate-200 text-center rounded-xl hover:cursor-pointer hover:bg-black hover:text-white">
-            Thay đổi ảnh
-          </p>
+          <Image src={assets.profile} width={150} height={150} />
         </div>
-        <div className="">
-          <p className="font-poppins font-medium text-xl my-3">
-            Name: Nguyễn Minh Quân
-          </p>
-          <p className="font-poppins font-medium text-xl my-3">
-            Giới tính: Nam
-          </p>
-          <p className="font-poppins font-medium text-xl my-3">
-            Ngày sinh: 25/07/2002
-          </p>
-          <p className="font-poppins font-medium text-xl my-3">
-            Địa chỉ: Khu phố 6, P.Linh Trung, Tp.Thủ Đức, Tp.Hồ Chí Minh.{" "}
-          </p>
-          <p className="font-poppins font-medium text-xl my-3">
-            Email: info@uit.edu.vn
-          </p>
+
+        <div className="w-full">
+          <h2 className="w-full p-3 mt-10 text-3xl font-bold border-b-2 border-gray-800">
+            Student Information
+          </h2>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Full Name: </p>
+            <p className="ml-10">{studentData[0].HoTen}</p>
+          </div>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Gender: </p>
+            <p className="ml-10">{studentData[0].GioiTinh}</p>
+          </div>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Address: </p>
+            <p className="ml-10">{studentData[0].DiaChi}</p>
+          </div>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Email: </p>
+            <p className="ml-10">{studentData[0].Email}</p>
+          </div>
+        </div>
+
+        <div className="w-full">
+          <h2 className="w-full p-3 mt-10 text-3xl font-bold border-b-2 border-gray-800">
+            Score
+          </h2>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Full Name: </p>
+            <p className="ml-10">{studentData[0].HoTen}</p>
+          </div>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Gender: </p>
+            <p className="ml-10">{studentData[0].GioiTinh}</p>
+          </div>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Address: </p>
+            <p className="ml-10">{studentData[0].DiaChi}</p>
+          </div>
+
+          <div className="flex flex-row justify-start w-full mt-5 text-xl ">
+            <p className="font-semibold ">Email: </p>
+            <p className="ml-10">{studentData[0].Email}</p>
+          </div>
         </div>
       </div>
     </div>

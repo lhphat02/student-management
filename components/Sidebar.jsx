@@ -11,7 +11,7 @@ const Sidebar = ({ children }) => {
       <div className="fixed w-20 h-screen p-4 bg-slate-300 border-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
           <Link href="/">
-            <div className="inline-block p-3 text-white bg-white rounded-lg ">
+            <div className="inline-block p-2 text-white bg-white rounded-lg ">
               <Image
                 src={assets.vocational}
                 alt="logo"
@@ -24,7 +24,7 @@ const Sidebar = ({ children }) => {
           <span className="border-b-[1px] border-white w-full p-2"></span>
 
           <Link href="/">
-            <div className="inline-block p-3 my-4 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image
                   src={assets.dashboard}
@@ -38,7 +38,7 @@ const Sidebar = ({ children }) => {
           </Link>
 
           <Link href="/teachermanage">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image
                   src={assets.teacher}
@@ -52,7 +52,7 @@ const Sidebar = ({ children }) => {
           </Link>
 
           <Link href="/student-manager">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image src={assets.cap} alt="student" width={25} height={25} />
                 {/* <p className='mt-1 ml-3 text-md font-poppins'>Student</p> */}
@@ -61,7 +61,7 @@ const Sidebar = ({ children }) => {
           </Link>
 
           <Link href="/subject">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image
                   src={assets.bookshelf}
@@ -75,7 +75,7 @@ const Sidebar = ({ children }) => {
           </Link>
 
           <Link href="/class">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image
                   src={assets.training}
@@ -89,7 +89,7 @@ const Sidebar = ({ children }) => {
           </Link>
 
           <Link href="/report">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image src={assets.file} alt="report" width={25} height={25} />
                 {/* <p className='mt-1 ml-3 text-md font-poppins'>Report</p> */}
@@ -98,7 +98,7 @@ const Sidebar = ({ children }) => {
           </Link>
 
           <Link href="/grade">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image src={assets.board} alt="grade" width={25} height={25} />
                 {/* <p className='mt-1 ml-3 text-md font-poppins'>Grade</p> */}
@@ -107,7 +107,7 @@ const Sidebar = ({ children }) => {
           </Link>
 
           <Link href="/rules">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image src={assets.scales} alt="rule" width={25} height={25} />
                 {/* <p className='mt-1 ml-3 text-md font-poppins'>Rule</p> */}
@@ -118,7 +118,7 @@ const Sidebar = ({ children }) => {
           <span className="border-b-[1px] border-white w-full p-2"></span>
 
           <Link href="/login">
-            <div className="inline-block p-3 my-3 rounded-lg cursor-pointer hover:bg-gray-200">
+            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
               <div className="flex flex-row">
                 <Image src={assets.login} alt="rule" width={25} height={25} />
                 {/* <p className='mt-1 ml-3 text-md font-poppins'>Rule</p> */}
