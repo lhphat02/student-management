@@ -11,6 +11,7 @@ import notification from './notification.png';
 import bookshelf from './bookshelf.png';
 import training from './training.png';
 import scales from './scales.png';
+import edit from './edit.png';
 import profile from './profile.png';
 import login from './log-in.png';
 import yahoo from './tuna-yasuo.jpg';
@@ -34,4 +35,5 @@ export default {
   yahoo,
   ava,
   profile,
+  edit,
 };

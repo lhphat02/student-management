@@ -1,6 +1,9 @@
 import Popup from 'reactjs-popup';
-import Edit from '../../assets/edit.png'
-import {TextSearchFilter} from '../../components/TextSearchFilter'
+import Edit from '../../assets/edit.png';
+import { TextSearchFilter } from '../../components/TextSearchFilter';
+import Image from 'next/image';
+import assets from '../../assets';
+
 export const studentmanageColumns = [
   { Header: 'ID', accessor: 'index' },
   { Header: 'Họ và Tên', accessor: 'HoTen' },
@@ -10,10 +13,10 @@ export const studentmanageColumns = [
   { Header: 'Email', accessor: 'Email' },
   {
     Header: 'Update',
-    //   Cell: ({ row }) => <Popup modal trigger={<button><img className="w-7 h-7 translate-x-4" src={Edit} alt="" /></button>}>
-    //   {
-    //   close => <ActionStudentModal close={close} ID={row.original.ID} roomno={row.original.ROOM_NO} type={row.original.TYPE} inroom={row.original.IN_ROOM} price={row.original.PRICE}
-    //   status={row.original.STATUS} desc={row.original.DESCRIPTION}/>}
-    // </Popup>
+    Cell: ({ row }) => (
+      <div className="flex justify-center">
+        <Image src={assets.edit} width={20} height={20} />
+      </div>
+    ),
   },
 ];

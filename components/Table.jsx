@@ -5,11 +5,10 @@ const Table = ({ tableInstance }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
 
+  console.log('data :', rows);
+
   return (
-    <table
-      {...getTableProps()}
-      className="relative w-full bg-white border"
-    >
+    <table {...getTableProps()} className="relative w-full bg-white border">
       <thead className="border-2 bg-slate-100">
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -27,6 +26,7 @@ const Table = ({ tableInstance }) => {
           </tr>
         ))}
       </thead>
+
       <tbody className="" {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
