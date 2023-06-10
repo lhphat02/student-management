@@ -29,7 +29,7 @@ const Profile = () => {
           <Image src={assets.profile} width={150} height={150} />
         </div>
 
-        {/* <div className="w-full">
+        <div className="w-full">
           <h2 className="w-full p-3 mt-10 text-3xl font-bold border-b-2 border-gray-800">
             Student Information
           </h2>
@@ -79,7 +79,7 @@ const Profile = () => {
             <p className="font-semibold ">Email: </p>
             <p className="ml-10">{studentData[0].Email}</p>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import Popup from 'reactjs-popup';
-import Edit from '../../assets/edit.png';
-import { TextSearchFilter } from '../../components/TextSearchFilter';
-import Image from 'next/image';
+
 import assets from '../../assets';
+import Image from 'next/image';
+import Input from '../Input';
+import StudentControllerModal from './Modals/StudentControllerModal';
 
 export const studentmanageColumns = [
   { Header: 'ID', accessor: 'index' },
@@ -11,12 +12,37 @@ export const studentmanageColumns = [
   { Header: 'Ngày Sinh', accessor: 'NgaySinh' },
   { Header: 'Địa Chỉ', accessor: 'DiaChi' },
   { Header: 'Email', accessor: 'Email' },
+  // {
+  //   Header: 'Update',
+  //   Cell: ({ row }) => (
+  //     <div className="flex justify-center">
+  //       <Image src={assets.edit} width={20} height={20} />
+  //     </div>
+  //   ),
+  // },
   {
     Header: 'Update',
     Cell: ({ row }) => (
-      <div className="flex justify-center">
-        <Image src={assets.edit} width={20} height={20} />
-      </div>
+      <Popup
+        modal
+        trigger={
+          <div>
+            <Image src={assets.edit} width={20} height={20} />
+          </div>
+        }
+      >
+        {(close) => (
+          <StudentControllerModal
+            close={close}
+            idHS={row.original.idHS}
+            HoTen={row.original.HoTen}
+            GioiTinh={row.original.GioiTinh}
+            NgaySinh={row.original.NgaySinh}
+            DiaChi={row.original.DiaChi}
+            Email={row.original.Email}
+          />
+        )}
+      </Popup>
     ),
   },
 ];

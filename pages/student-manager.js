@@ -10,7 +10,6 @@ import Topbar from '@/components/Topbar';
 import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
 
 const StudentManager = () => {
-  const [studenList, setStudenList] = useState([]);
   const [toggleModal, setToggleModal] = useState(false);
   const [studentData, setStudentData] = useState({
     HoTen: '',
@@ -41,33 +40,6 @@ const StudentManager = () => {
       console.error('Error:', error);
     }
   };
-
-  const updateStudent = async () => {
-    try {
-      const response = await axios.put('/api/updateStudent', {
-        HoTen: HoTen,
-        GioiTinh: GioiTinh,
-        NgaySinh: NgaySinh,
-        DiaChi: DiaChi,
-        Email: Email,
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  updateUser();
-
-  useEffect(() => {
-    fetch('api/dbhocsinh').then(async (res) => {
-      let data = await res.json();
-
-      console.log(data);
-      setStudenList(data);
-    });
-    console.log(studenList);
-  }, []);
 
   return (
     <div className="relative">

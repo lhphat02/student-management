@@ -1,20 +1,20 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useTable } from 'react-table';
+
 import Table from '../Table';
-import Popup from 'reactjs-popup';
 import { studentmanageColumns } from './studentmanageColumns';
 
 export default function StudentmanageTable() {
-  const [studentData, setHSData] = useState([]);
+  const [studentData, setStudentData] = useState([]);
 
   useEffect(() => {
-    fetch('api/dbhocsinh').then(async (res) => {
+    fetch('api/getStudent').then(async (res) => {
       let data = await res.json();
       data.map((item, index) => {
         item.index = index + 1;
       });
       console.log(data);
-      setHSData(data);
+      setStudentData(data);
     });
 
     console.log(studentData);
@@ -31,8 +31,4 @@ export default function StudentmanageTable() {
   const tableInstance = useTable({ data, columns });
 
   return <Table tableInstance={tableInstance} />;
-}
-
-{
-  /* <Modal data={row.original} updateData={setData} />  */
 }

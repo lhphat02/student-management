@@ -1,4 +1,5 @@
 import mysql from 'mysql2';
+
 export const DBconnection = mysql.createPool({
   host: 'localhost',
   port: '3306',
@@ -8,7 +9,8 @@ export const DBconnection = mysql.createPool({
 });
 
 export default function handler(req, res) {
-  DBconnection.query('SELECT * FROM hocsinh', (e, result) => {
+  DBconnection.query('SELECT * FROM namhoc', (e, result) => {
     res.send(result);
+    res.end();
   });
 }

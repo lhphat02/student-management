@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { createConnection } from 'mysql2/promise';
 
 export default async function addStudent(req, res) {
@@ -17,7 +16,7 @@ export default async function addStudent(req, res) {
       port: '3306',
       user: 'root',
       password: '',
-      database: 'student_management',
+      database: 'school_management',
     });
 
     // Insert the user into the "users" table
