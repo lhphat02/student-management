@@ -1,31 +1,32 @@
 import React from 'react'
-
+import assets from '../assets';
+import Image from 'next/image';
 import { Carousel } from 'flowbite-react'
 
 const MyCarousel = () => {
     return(
         <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
         <Carousel>
-          <img
-            src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-            alt="..."
-          />
-          <img
-            src="https://flowbite.com/docs/images/carousel/carousel-2.svg"
-            alt="..."
-          />
-          <img
-            src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-            alt="..."
-          />
-          <img
-            src="https://flowbite.com/docs/images/carousel/carousel-4.svg"
-            alt="..."
-          />
-          <img
-            src="https://flowbite.com/docs/images/carousel/carousel-5.svg"
-            alt="..."
-          />
+        <Image
+              src={assets.Carousel1}
+              alt="..."
+            />
+         <Image
+              src={assets.Carousel2}
+              alt="..."
+            />
+         <Image
+              src={assets.Carousel3}
+              alt="..."
+            />
+         <Image
+              src={assets.Carousel4}
+              alt="..."
+            />
+         <Image
+              src={assets.Carousel5}
+              alt="..."
+            />      
         </Carousel>
       </div>  
     )

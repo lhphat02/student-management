@@ -40,7 +40,6 @@ const StudentManager = () => {
       console.error('Error:', error);
     }
   };
-
   return (
     <div className="relative">
       <Topbar NamePage="Student Management" />
