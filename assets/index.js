@@ -16,6 +16,11 @@ import profile from './profile.png';
 import login from './log-in.png';
 import yahoo from './tuna-yasuo.jpg';
 import ava from './Anos_DK_outfit.jpg';
+import Carousel1 from './carousel1.jpg';
+import Carousel2 from './carousel2.jpg';
+import Carousel3 from './carousel3.jpg';
+import Carousel4 from './carousel4.jpg';
+import Carousel5 from './carousel5.jpg';
 
 export default {
   dashboard,
@@ -36,4 +41,9 @@ export default {
   ava,
   profile,
   edit,
+  Carousel1,
+  Carousel2,
+  Carousel3,
+  Carousel4,
+  Carousel5,
 };

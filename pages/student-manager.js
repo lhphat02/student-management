@@ -43,6 +43,10 @@ const StudentManager = () => {
   };
 
   const updateStudent = async () => {
+    const { HoTen, GioiTinh, NgaySinh, DiaChi, Email } = studentData;
+
+    if (!HoTen || !GioiTinh || !NgaySinh || !DiaChi || !Email) return;
+
     try {
       const response = await axios.put('/api/updateStudent', {
         HoTen: HoTen,

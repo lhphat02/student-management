@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createConnection } from 'mysql2/promise';
 
-export default async function addStudent(req, res) {
+export default async function updateStudent(req, res) {
   if (req.method !== 'PUT') {
     res.status(405).json({ message: 'Method Not Allowed' });
     return;
