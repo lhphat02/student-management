@@ -1,7 +1,7 @@
 import { React, useRef } from 'react';
 import { HiX } from 'react-icons/hi';
 
-const MyModal = ({ header, body, footer, handleClose, closeBtn }) => {
+const MyModal = ({ header, body, footer, handleClose, closeBtn, height }) => {
   const modalRef = useRef(null);
 
   const handleClickOutside = (event) => {
@@ -15,7 +15,7 @@ const MyModal = ({ header, body, footer, handleClose, closeBtn }) => {
       onClick={handleClickOutside}
       className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 "
     >
-      <div ref={modalRef} className="w-2/4 bg-white h-3/4 rounded-xl">
+      <div ref={modalRef} className={`w-2/4 bg-white ${height} rounded-xl`}>
         {closeBtn && (
           <div className="flex justify-end mt-2 mr-4">
             <div

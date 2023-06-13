@@ -1,9 +1,8 @@
 import Popup from 'reactjs-popup';
 
 export const yearColumn = [
-  { Header: 'ID', accessor: 'index' },
-  { Header: 'Start Year', accessor: 'NamBD' },
-  { Header: 'End Year', accessor: 'NamKT' },
+  { Header: 'ID', accessor: 'idNam' },
+  { Header: 'Start Year', accessor: 'Namhoc' },
   {
     Header: 'Update',
     //   Cell: ({ row }) => <Popup modal trigger={<button><img className="translate-x-4 w-7 h-7" src={Edit} alt="" /></button>}>

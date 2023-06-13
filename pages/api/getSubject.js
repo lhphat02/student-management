@@ -4,7 +4,7 @@ export const DBconnection = mysql.createPool({
   port: '3306',
   user: 'root',
   password: '',
-  database: 'student_management',
+  database: 'school_management',
 });
 
 export default function handler(req, res) {

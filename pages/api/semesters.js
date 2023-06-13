@@ -1,24 +1,24 @@
 import db from './db';
 
-// export default function handler(req, res) {
-//   if (req.method === 'GET') {
-//     try {
-//       // Retrieve the semester and year information
-//       const semesters = db.query('SELECT * FROM hocky');
+export default async function handler(req, res) {
+  if (req.method === 'GET') {
+    const { idNam } = req.query;
 
-//       res.status(200).json({ semesters });
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ message: 'Failed to retrieve semesters' });
-//     }
-//   } else {
-//     res.status(405).json({ message: 'Method Not Allowed' });
-//   }
-// }
+    if (!idNam) {
+      res.status(400).json({ message: 'Missing idNam parameter' });
+      return;
+    }
 
-export default function handler(req, res) {
-  db.query('SELECT * FROM hocky', (e, result) => {
-    res.send(result);
-    res.end();
-  });
+    try {
+      const semesters = await db
+        .promise()
+        .query('SELECT * FROM hocky WHERE idNam = ?', [idNam]);
+      res.status(200).json(semesters[0]);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error fetching semesters' });
+    }
+  } else {
+    res.status(405).json({ message: 'Method Not Allowed' });
+  }
 }

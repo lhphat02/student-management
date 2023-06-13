@@ -16,7 +16,7 @@ const Table = ({ tableInstance }) => {
               <th
                 {...column.getHeaderProps()}
                 className={classNames(
-                  'px-4 py-2 text-left text-sm font-medium text-gray-600 uppercase tracking-wider',
+                  'px-4 py-2 text-center text-sm font-medium text-gray-600 uppercase tracking-wider',
                   column.className
                 )}
               >
@@ -36,7 +36,7 @@ const Table = ({ tableInstance }) => {
                 <td
                   {...cell.getCellProps()}
                   className={classNames(
-                    'px-4 py-2 text-sm font-normal text-gray-900',
+                    'px-4 py-2 text-sm font-normal text-center   text-gray-900',
                     cell.column.className
                   )}
                 >

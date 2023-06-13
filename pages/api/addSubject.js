@@ -7,7 +7,7 @@ export default async function addSubject(req, res) {
   }
 
   // Extract user data from the request body
-  const { HoTen, GioiTinh, NgaySinh, DiaChi, Email } = req.body;
+  const { TenMH, MoTa, HeSo } = req.body;
 
   try {
     // Create a connection to the MySQL database
@@ -16,20 +16,20 @@ export default async function addSubject(req, res) {
       port: '3306',
       user: 'root',
       password: '',
-      database: 'student_management',
+      database: 'school_management',
     });
 
-    // Insert the user into the "users" table
+    // Insert the user into the "subject" table
     await connection.execute(
-      'INSERT INTO hocsinh (HoTen, GioiTinh, NgaySinh, DiaChi, Email) VALUES (?, ?, ?, ?, ?)',
-      [HoTen, GioiTinh, NgaySinh, DiaChi, Email]
+      'INSERT INTO monhoc (TenMH, MoTa, HeSo) VALUES (?, ?, ?)',
+      [TenMH, MoTa, HeSo]
     );
 
     // Close the database connection
     await connection.end();
 
-    res.status(200).json({ message: 'User added successfully' });
-    console.log('User added successfully');
+    res.status(200).json({ message: 'Subject added successfully' });
+    console.log('Subject added successfully');
   } catch (error) {
     res.status(500).json({ message: 'An error occurred' });
     console.log(error);

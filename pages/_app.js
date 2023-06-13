@@ -32,7 +32,9 @@ export default function App({ Component, pageProps }) {
       {routing.pathname === '/login' ||
       routing.pathname === '/forgotpassword' ||
       routing.pathname === '/resetpassword' ? (
-        <Component {...pageProps} />
+        <div className="flex items-center justify-center w-full min-h-screen px-20">
+          <Component {...pageProps} />
+        </div>
       ) : (
         <Sidebar>
           <Component {...pageProps} />

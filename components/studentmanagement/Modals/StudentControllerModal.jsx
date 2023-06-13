@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Popup from 'reactjs-popup';
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
 import { Button } from 'flowbite-react';
 import axios from 'axios';
+
+import Input from '@/components/Input';
+import MyModal from '@/components/Modal';
 
 const StudentControllerModal = ({
   close,

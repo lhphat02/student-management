@@ -4,6 +4,7 @@ import Image from 'next/image';
 import router, { useRouter } from 'next/router';
 
 import assets from '../assets';
+import { Tooltip } from 'flowbite-react';
 
 const Sidebar = ({ children }) => {
   return (
@@ -23,108 +24,146 @@ const Sidebar = ({ children }) => {
 
           <span className="border-b-[1px] border-white w-full p-2"></span>
 
-          <Link href="/">
-            <div className="inline-block p-3 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image
-                  src={assets.dashboard}
-                  alt="dashboard"
-                  width={25}
-                  height={25}
-                />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Dashboard</p> */}
+          <Tooltip content="Home" placement="right">
+            <Link href="/">
+              <div className="inline-block p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.dashboard}
+                    alt="dashboard"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Dashboard</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
-          <Link href="/teachermanage">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image
-                  src={assets.teacher}
-                  alt="teacher"
-                  width={25}
-                  height={25}
-                />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Teacher</p> */}
+          <Tooltip content="Teacher" placement="right">
+            <Link href="/teachermanage">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.teacher}
+                    alt="teacher"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Teacher</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
-          <Link href="/student-manager">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image src={assets.cap} alt="student" width={25} height={25} />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Student</p> */}
+          <Tooltip content="Student" placement="right" className="z-50 ">
+            <Link href="/student-manager">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.cap}
+                    alt="student"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Student</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
-          <Link href="/subject">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image
-                  src={assets.bookshelf}
-                  alt="subject"
-                  width={25}
-                  height={25}
-                />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Subject</p> */}
+          <Tooltip content="Subject" placement="right">
+            <Link href="/subject">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.bookshelf}
+                    alt="subject"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Subject</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
-          <Link href="/class">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image
-                  src={assets.training}
-                  alt="class"
-                  width={25}
-                  height={25}
-                />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Class</p> */}
+          <Tooltip content="Class" placement="right">
+            <Link href="/class">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.training}
+                    alt="class"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Class</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
-          <Link href="/report">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image src={assets.file} alt="report" width={25} height={25} />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Report</p> */}
+          <Tooltip content="Report" placement="right">
+            <Link href="/report">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.file}
+                    alt="report"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Report</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
-          <Link href="/grade">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image src={assets.board} alt="grade" width={25} height={25} />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Grade</p> */}
+          <Tooltip content="Grade" placement="right">
+            <Link href="/grade">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.board}
+                    alt="grade"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Grade</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
-          <Link href="/rules">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image src={assets.scales} alt="rule" width={25} height={25} />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Rule</p> */}
+          <Tooltip content="Rule" placement="right">
+            <Link href="/rules">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.scales}
+                    alt="rule"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Rule</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
 
           <span className="border-b-[1px] border-white w-full p-2"></span>
 
-          <Link href="/login">
-            <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-              <div className="flex flex-row">
-                <Image src={assets.login} alt="rule" width={25} height={25} />
-                {/* <p className='mt-1 ml-3 text-md font-poppins'>Rule</p> */}
+          <Tooltip content="Logout" placement="right">
+            <Link href="/login">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image src={assets.login} alt="rule" width={25} height={25} />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Rule</p> */}
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </Tooltip>
         </div>
       </div>
       <main className="w-full ml-20">{children}</main>

@@ -6,7 +6,7 @@ import Input from '../Input';
 import StudentControllerModal from './Modals/StudentControllerModal';
 
 export const studentmanageColumns = [
-  { Header: 'ID', accessor: 'index' },
+  { Header: 'MSHS', accessor: 'idHS' },
   { Header: 'Họ và Tên', accessor: 'HoTen' },
   { Header: 'Giới Tính', accessor: 'GioiTinh' },
   { Header: 'Ngày Sinh', accessor: 'NgaySinh' },

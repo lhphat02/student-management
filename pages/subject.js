@@ -1,30 +1,110 @@
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Button } from 'flowbite-react';
+
+import assets from '@/assets';
+import Input from '@/components/Input';
+import MyModal from '@/components/Modal';
 import Topbar from '@/components/Topbar';
 import SubjectsTable from '@/components/subjects/subjectsTable';
-import React, { useEffect, useState } from 'react';
 
 const Subjects = () => {
-  const [monhoc, setMonHoc] = useState([]);
+  const [subjectData, setSubjectData] = useState({
+    TenMH: '',
+    MoTa: '',
+    HeSo: '',
+  });
+  const [toggleModal, setToggleModal] = useState(false);
 
-  useEffect(() => {
-    fetch('api/dbmonhoc').then(async (res) => {
-      let data = await res.json();
+  console.log(subjectData);
 
-      console.log(data);
-      setMonHoc(data);
-    });
-    console.log(monhoc);
-  }, []);
+  const addNewSubject = async () => {
+    const { TenMH, MoTa, HeSo } = subjectData;
 
-    return(
-        <div>
-            <Topbar NamePage='Subjects'/>
-            <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Danh sách môn học </p>
-      <div className="flex justify-center items-center mt-10 px-20">
+    if (!TenMH || !MoTa || !HeSo) return;
+
+    try {
+      const response = await axios.post('/api/addSubject', {
+        TenMH: TenMH,
+        MoTa: MoTa,
+        HeSo: HeSo,
+      });
+      console.log(response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <div>
+      <Topbar NamePage="Subjects" />
+      <p className="p-5 mt-5 text-3xl font-bold font-poppins">
+        Danh sách môn học{' '}
+      </p>
+      <div className="flex justify-center w-full ">
+        <Image
+          className="hover:cursor-pointer"
+          src={assets.edit}
+          width={50}
+          height={50}
+          onClick={() => setToggleModal(true)}
+        />
+      </div>
+      {toggleModal ? (
+        <MyModal
+          className="absolute "
+          header={<p className="text-2xl font-bold">Add New Subject</p>}
+          body={
+            <div className="flex flex-col gap-5">
+              <Input
+                inputType="input"
+                placeholder="Tên môn học"
+                handleClick={(e) =>
+                  setSubjectData({ ...subjectData, TenMH: e.target.value })
+                }
+              />
+              <Input
+                inputType="input"
+                placeholder="Mô tả"
+                handleClick={(e) =>
+                  setSubjectData({ ...subjectData, MoTa: e.target.value })
+                }
+              />
+              <Input
+                inputType="number"
+                placeholder="Hệ số"
+                handleClick={(e) =>
+                  setSubjectData({ ...subjectData, HeSo: e.target.value })
+                }
+              />
+            </div>
+          }
+          footer={
+            <div className="flex justify-center w-full gap-10">
+              <Button pill={false} onClick={() => addNewSubject()}>
+                Submit
+              </Button>
+              <Button
+                pill={false}
+                color="gray"
+                outline
+                onClick={() => setToggleModal(false)}
+              >
+                Cancle
+              </Button>
+            </div>
+          }
+          handleClose={() => setToggleModal(false)}
+          closeBtn={false}
+        />
+      ) : null}
+      <div className="flex items-center justify-center px-20 mt-10">
         <SubjectsTable />
       </div>
- </div>
-          
-    );
-}
+    </div>
+  );
+};
 
 export default Subjects;

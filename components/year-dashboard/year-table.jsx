@@ -9,7 +9,7 @@ export default function YearTable() {
   const [yearData, setYearData] = useState([]);
 
   useEffect(() => {
-    fetch('api/db_year').then(async (res) => {
+    fetch('api/years').then(async (res) => {
       let data = await res.json();
       data.map((item, index) => {
         item.index = index + 1;

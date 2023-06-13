@@ -21,6 +21,10 @@ export default function TeachermanageTable() {
     console.log(teacherData);
   }, []);
 
+  teacherData.map(
+    (item) => (item.NgaySinh = new Date(item.NgaySinh).toLocaleDateString())
+  );
+
   const data = useMemo(() => teacherData);
   const columns = useMemo(() => teachermanageColumns);
 

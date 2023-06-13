@@ -1,15 +1,34 @@
 import Popup from 'reactjs-popup';
+import SubjectControllerModal from './Modals/SubjectControllerMoidal';
+import assets from '@/assets';
+import Image from 'next/image';
 
 export const subjectsColumns = [
-  { Header: 'ID', accessor: 'index' },
+  { Header: 'ID', accessor: 'idMH' },
   { Header: 'Tên Môn Học', accessor: 'TenMH' },
+  { Header: 'Mô Tả', accessor: 'MoTa' },
   { Header: 'Hệ Số', accessor: 'HeSo' },
   {
     Header: 'Update',
-    //   Cell: ({ row }) => <Popup modal trigger={<button><img className="w-7 h-7 translate-x-4" src={Edit} alt="" /></button>}>
-    //   {
-    //   close => <ActionRoomModal close={close} ID={row.original.ID} roomno={row.original.ROOM_NO} type={row.original.TYPE} inroom={row.original.IN_ROOM} price={row.original.PRICE}
-    //   status={row.original.STATUS} desc={row.original.DESCRIPTION}/>}
-    // </Popup>
+    Cell: ({ row }) => (
+      <Popup
+        modal
+        trigger={
+          <div>
+            <Image src={assets.edit} width={20} height={20} />
+          </div>
+        }
+      >
+        {(close) => (
+          <SubjectControllerModal
+            close={close}
+            idMH={row.original.idMH}
+            TenMH={row.original.TenMH}
+            MoTa={row.original.MoTa}
+            HeSo={row.original.HeSo}
+          />
+        )}
+      </Popup>
+    ),
   },
 ];

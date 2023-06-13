@@ -9,7 +9,7 @@ export default function SubjectsTable() {
   const [subjectsData, setMHData] = useState([]);
 
   useEffect(() => {
-    fetch('api/dbmonhoc').then(async (res) => {
+    fetch('api/getSubject').then(async (res) => {
       let data = await res.json();
       data.map((item, index) => {
         item.index = index + 1;
