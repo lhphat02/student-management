@@ -1,14 +1,8 @@
-import mysql from 'mysql2';
-export const DBconnection = mysql.createPool({
-  host: 'localhost',
-  port: '3306',
-  user: 'root',
-  password: '',
-  database: 'student_management',
-});
+import db from './db';
 
 export default function handler(req, res) {
-  DBconnection.query('SELECT * FROM lop', (e, result) => {
+  db.query('SELECT * FROM lop', (e, result) => {
     res.send(result);
+    res.end();
   });
 }
