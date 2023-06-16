@@ -120,7 +120,7 @@ const Sidebar = ({ children }) => {
             </Link>
           </Tooltip>
 
-          <Tooltip content="Grade" placement="right">
+          <Tooltip content="Score board" placement="right">
             <Link href="/grade">
               <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
                 <div className="flex flex-row">
@@ -136,8 +136,8 @@ const Sidebar = ({ children }) => {
             </Link>
           </Tooltip>
 
-          <Tooltip content="Rule" placement="right">
-            <Link href="/rules">
+          <Tooltip content="Progress" placement="right">
+            <Link href="/study-progress">
               <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
                 <div className="flex flex-row">
                   <Image

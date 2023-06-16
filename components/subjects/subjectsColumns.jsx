@@ -1,5 +1,5 @@
 import Popup from 'reactjs-popup';
-import SubjectControllerModal from './Modals/SubjectControllerMoidal';
+import SubjectControllerModal from './Modals/SubjectControllerModal';
 import assets from '@/assets';
 import Image from 'next/image';
 
@@ -14,7 +14,7 @@ export const subjectsColumns = [
       <Popup
         modal
         trigger={
-          <div>
+          <div className="flex justify-center w-full">
             <Image src={assets.edit} width={20} height={20} />
           </div>
         }

@@ -26,7 +26,7 @@ export const studentmanageColumns = [
       <Popup
         modal
         trigger={
-          <div>
+          <div className="flex justify-center w-full">
             <Image src={assets.edit} width={20} height={20} />
           </div>
         }

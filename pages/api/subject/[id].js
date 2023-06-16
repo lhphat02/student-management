@@ -5,14 +5,16 @@ export default function handler(req, res) {
   const { id } = req.query;
   switch (method) {
     case 'DELETE':
-      try {
-        // Delete the subject from the database
-        db.query('DELETE FROM monhoc WHERE idMH = ?', [id]);
-        res.status(200).json({ message: 'Subject deleted successfully' });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Failed to delete subject' });
-      }
+      db.query(
+        'DELETE FROM monhoc WHERE idMH = ?',
+        [id],
+        function (err, result) {
+          if (err) {
+            res.status(500).json({ message: 'Failed to delete subject' });
+          }
+          res.status(200).json({ message: 'Subject deleted successfully' });
+        }
+      );
       break;
     case 'PUT':
       try {

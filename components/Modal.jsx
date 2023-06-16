@@ -13,7 +13,7 @@ const MyModal = ({ header, body, footer, handleClose, closeBtn, height }) => {
   return (
     <div
       onClick={handleClickOutside}
-      className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-40 "
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 "
     >
       <div ref={modalRef} className={`w-2/4 bg-white ${height} rounded-xl`}>
         {closeBtn && (

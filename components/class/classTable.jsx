@@ -12,7 +12,6 @@ export default function classTable({ classes }) {
     classes.map((item, index) => {
       item.index = index + 1;
     });
-    console.log('table classes', classes);
     setLData(classes);
   });
 

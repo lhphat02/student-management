@@ -16,6 +16,7 @@ const Subjects = () => {
     HeSo: '',
   });
   const [toggleModal, setToggleModal] = useState(false);
+  const [subjectResultData, setSubjectResultData] = useState([]);
 
   console.log(subjectData);
 
@@ -36,6 +37,19 @@ const Subjects = () => {
       console.error('Error:', error);
     }
   };
+
+  useEffect(() => {
+    fetch('api/getSubjectResult').then(async (res) => {
+      let data = await res.json();
+      // data.map((item, index) => {
+      //   item.index = index + 1;
+      // });
+      console.log('danh sach diem: ', data);
+      setSubjectResultData(data);
+    });
+
+    console.log(subjectResultData);
+  }, []);
 
   return (
     <div>

@@ -41,7 +41,7 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
       window.location.reload();
       // Handle any further actions after deleting the subject
     } catch (error) {
-      console.error(error);
+      alert('Failed to delete subject');
       // Handle error cases
     }
   };

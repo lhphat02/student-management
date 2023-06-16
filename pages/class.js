@@ -1,32 +1,41 @@
+import React, { useEffect, useState } from 'react';
+import { Button, Tooltip } from 'flowbite-react';
+import { HiPlus } from 'react-icons/hi';
+import axios from 'axios';
+
 import Input from '@/components/Input';
 import MyModal from '@/components/Modal';
 import Topbar from '@/components/Topbar';
 import ClassTable from '@/components/class/classTable';
-import YearTable from '@/components/year-dashboard/year-table';
-import axios from 'axios';
-import { Button } from 'flowbite-react';
-import React, { useEffect, useState } from 'react';
 
 const Class = () => {
-  const [lop, setlop] = useState([]);
-  // let curr_year = new Date().getFullYear();
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedYearName, setSelectedYearName] = useState('');
+
   const [semesters, setSemesters] = useState([]);
   const [selectedSemester, setSelectedSemester] = useState('');
   const [selectedSemesterName, setSelectedSemesterName] = useState('');
+
   const [classGroups, setClassGroups] = useState([]);
   const [selectedClassGroup, setSelectedClassGroup] = useState('');
   const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+
   const [classes, setClasses] = useState([]);
-  const [toggleModal, setToggleModal] = useState(false);
   const [classData, setClassData] = useState({
     TenLop: '',
-    SiSo: '',
+    SiSo: null,
     idKhoiLop: '',
     idHocKy: '',
   });
+
+  const [yearData, setYearData] = useState({
+    Namhoc: '',
+  });
+
+  const [toggleModal, setToggleModal] = useState(false);
+  const [toggleYearModal, setToggleYearModal] = useState(false);
+  let curr_year = new Date().getFullYear();
 
   useEffect(() => {
     // Fetch the list of available years
@@ -92,10 +101,26 @@ const Class = () => {
     }
   }, [selectedYear, selectedSemester, selectedClassGroup]);
 
-  const addNewClass = async () => {
-    const { idLop, TenLop, SiSo, idKhoiLop, idNam, idHocKy } = classData;
+  const addNewYear = async () => {
+    const { Namhoc } = yearData;
 
-    if (!idLop || !TenLop || !SiSo || !idKhoiLop || !idNam || !idHocKy) {
+    if (!Namhoc) return;
+
+    try {
+      const response = await axios.post('/api/addYear', {
+        Namhoc: Namhoc,
+      });
+      console.log(response.data);
+      window.location.reload();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const addNewClass = async () => {
+    const { TenLop, SiSo, idKhoiLop, idHocKy } = classData;
+
+    if (!TenLop || !idKhoiLop || !idHocKy) {
       alert('Missing required information! Please try again.');
       return;
     }
@@ -114,30 +139,22 @@ const Class = () => {
     }
   };
 
-  console.log('years:', years);
-  console.log('semesters:', semesters);
-  console.log('classGroups:', classGroups);
+  // console.log('years:', years);
+  // console.log('semesters:', semesters);
+  // console.log('classGroups:', classGroups);
 
-  console.log('classData:', classData);
+  // console.log('classData:', classData);
+  // console.log('yearData:', yearData);
 
-  console.log('selectedYear', selectedYear);
-  console.log('selectedSemester', selectedSemester);
-  console.log('selectedClassGroup', selectedClassGroup);
+  // console.log('selectedYear', selectedYear);
+  // console.log('selectedSemester', selectedSemester);
+  // console.log('selectedClassGroup', selectedClassGroup);
 
   return (
-    <div>
+    <>
       <Topbar NamePage="Danh sách lớp học" />
       <div className="flex flex-col gap-10 px-20 pb-40 mt-10">
-        {/* <div className="flex justify-between">
-          <p className="text-3xl font-bold font-poppins">
-            Lịch sử quá trình học
-          </p>
-          <Button>Thêm lớp học kỳ mới </Button>
-        </div>
-        <div className="z-0">
-          <YearTable />
-        </div> */}
-
+        {/* Modal for adding new class */}
         {toggleModal ? (
           <MyModal
             className="absolute "
@@ -184,10 +201,47 @@ const Class = () => {
           />
         ) : null}
 
+        {/* Modal for adding new year */}
+        {toggleYearModal ? (
+          <MyModal
+            className="absolute "
+            header={<p className="text-2xl font-bold">Thêm năm học mới</p>}
+            body={
+              <Input
+                inputType="input"
+                placeholder="Năm học mới"
+                handleClick={(e) =>
+                  setYearData({ ...yearData, Namhoc: e.target.value })
+                }
+              />
+            }
+            footer={
+              <div className="flex justify-center w-full gap-10">
+                <Button pill={false} onClick={() => addNewYear()}>
+                  Submit
+                </Button>
+                <Button
+                  pill={false}
+                  color="gray"
+                  outline
+                  onClick={() => setToggleYearModal(false)}
+                >
+                  Cancle
+                </Button>
+              </div>
+            }
+            handleClose={() => setToggleYearModal(false)}
+            closeBtn={false}
+          />
+        ) : null}
+
+        {/* List of classes */}
         <p className="text-3xl font-bold font-poppins">Danh sách lớp</p>
         <div className="flex justify-between">
-          {/* Filter */}
-          <div className="flex w-4/5 gap-5">
+          {/* Filter of Year, Semester and ClassGroup */}
+          <div className="flex items-center w-4/5 gap-5">
+            <p className="text-lg font-semibold">Bộ lọc:</p>
+
             <select
               className="px-2 py-1 border-2 border-gray-300 rounded-md"
               value={selectedYear}
@@ -206,6 +260,20 @@ const Class = () => {
                 </option>
               ))}
             </select>
+
+            {/* Add new year button */}
+            {!selectedYear && (
+              <Tooltip content="Thêm năm học">
+                <Button
+                  size="xs"
+                  onClick={() => {
+                    setToggleYearModal(true);
+                  }}
+                >
+                  <HiPlus className="w-5 h-5" />
+                </Button>
+              </Tooltip>
+            )}
 
             {selectedYear && (
               <select
@@ -260,14 +328,17 @@ const Class = () => {
               </select>
             )}
           </div>
+
+          {/* Add new class button */}
           <Button onClick={() => setToggleModal(true)}>
             Thêm lớp học mới{' '}
           </Button>
         </div>
 
+        {/* List of filtered classes */}
         <ClassTable classes={classes} />
       </div>
-    </div>
+    </>
   );
 };
 
