@@ -12,6 +12,7 @@ export const studentmanageColumns = [
   { Header: 'Ngày Sinh', accessor: 'NgaySinh' },
   { Header: 'Địa Chỉ', accessor: 'DiaChi' },
   { Header: 'Email', accessor: 'Email' },
+  { Header: 'Lớp', accessor: 'TenLop' },
   // {
   //   Header: 'Update',
   //   Cell: ({ row }) => (

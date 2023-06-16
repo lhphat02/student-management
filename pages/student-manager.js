@@ -8,6 +8,7 @@ import Input from '@/components/Input';
 import MyModal from '@/components/Modal';
 import Topbar from '@/components/Topbar';
 import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
+import AddStudentToClass from '@/components/studentmanagement/addStudentToClass';
 
 const StudentManager = () => {
   const [toggleModal, setToggleModal] = useState(false);
@@ -115,12 +116,17 @@ const StudentManager = () => {
           closeBtn={false}
         />
       ) : null}
+      <div className="flex items-center justify-center px-20 mt-10">
+        <AddStudentToClass/>
+      </div>
       <p className="p-5 mt-5 text-3xl font-bold font-poppins">
         Danh sách học sinh
       </p>
+
       <div className="flex items-center justify-center px-20 mt-10">
         <StudentmanageTable />
       </div>
+ 
     </div>
   );
 };

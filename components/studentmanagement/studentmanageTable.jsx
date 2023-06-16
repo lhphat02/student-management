@@ -32,3 +32,5 @@ export default function StudentmanageTable() {
 
   return <Table tableInstance={tableInstance} />;
 }
+
+
