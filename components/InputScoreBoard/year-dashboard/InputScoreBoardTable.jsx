@@ -13,7 +13,7 @@ export default function InputScoreBoardTable({ result }) {
       item.index = index + 1;
     });
     setSubjectResultData(result);
-  });
+  }, [result]);
 
   const data = useMemo(() => subjectResultData);
 

@@ -9,11 +9,11 @@ const SubjectResultControllerModal = ({
   close,
   idHS,
   HoTen,
-  GioiTinh,
-  NgaySinh,
-  DiaChi,
-  Email,
+  idMH,
   idLop,
+  DiemHS1,
+  DiemHS2,
+  DiemTBMon,
 }) => {
   const [years, setYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState('');
@@ -31,22 +31,20 @@ const SubjectResultControllerModal = ({
   const [selectedClass, setSelectedClass] = useState('');
   const [selectedClassName, setSelectedClassName] = useState('');
 
-  const [curStudentData, setCurStudentData] = useState({
-    HoTen: HoTen,
-    GioiTinh: GioiTinh,
-    NgaySinh: NgaySinh,
-    DiaChi: DiaChi,
-    Email: Email,
-    idLop: idLop,
-  });
+  const [examTypes, setExamTypes] = useState([]);
+  const [selectedExamType, setSelectedExamType] = useState('');
+  const [selectedExamTypeName, setSelectedExamTypeName] = useState('');
 
-  const [newStudentData, setNewStudentData] = useState({
-    HoTen: HoTen,
-    GioiTinh: GioiTinh,
-    NgaySinh: NgaySinh,
-    DiaChi: DiaChi,
-    Email: Email,
+  const [subjects, setSubjects] = useState([]);
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubjectName, setSelectedSubjectName] = useState('');
+
+  const [newScoreData, setNewScoreData] = useState({
+    idHS: idHS,
     idLop: idLop,
+    Diem: '',
+    LHKT: '',
+    idMH: '',
   });
 
   useEffect(() => {
@@ -95,6 +93,19 @@ const SubjectResultControllerModal = ({
   }, [selectedYear]);
 
   useEffect(() => {
+    // Fetch the list of available exam types for the selected semester
+    const fetchExamTypes = async () => {
+      try {
+        const response = await axios.get(`/api/getExamType`);
+        setExamTypes(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchExamTypes();
+  }, []);
+
+  useEffect(() => {
     // Fetch the available classes within the selected class group
     const fetchClasses = async () => {
       setClasses([]);
@@ -113,106 +124,110 @@ const SubjectResultControllerModal = ({
     }
   }, [selectedYear, selectedSemester, selectedClassGroup]);
 
-  const handleEdit = async () => {
+  useEffect(() => {
+    // Fetch the available subjects within the selected class
+    const fetchSubjects = async () => {
+      setSubjects([]);
+
+      try {
+        const response = await axios.get(`/api/getSubject`);
+        setSubjects(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchSubjects();
+  }, []);
+
+  const addScore = async () => {
     try {
-      // Make an Axios request to edit the user data
-      const response = await axios.put(
-        `/api/student/${idHS}`,
-        newStudentData // Pass the new user data to the API
-      );
-
-      await axios.put(`/api/changeClass`, {
-        idHS: idHS,
-        idLop: curStudentData.idLop,
-        newIdLop: newStudentData.idLop,
-      });
-
+      const response = await axios.post('/api/scores', newScoreData);
       console.log(response.data);
-      window.location.reload();
-      // Handle the response as per your requirement
     } catch (error) {
       console.error(error);
     }
   };
 
-  // const handleDelete = async () => {
-  //   try {
-  //     await axios.delete(`/api/student/${idHS}`);
-  //     console.log('Student deleted successfully');
-  //     window.location.reload();
-  //     // Handle any further actions after deleting the student
-  //   } catch (error) {
-  //     console.error(error);
-  //     // Handle error cases
-  //   }
-  // };
-
-  const handleDelete = async () => {
-    try {
-      await axios.delete(`/api/deleteStudent?idHS=${idHS}&idLop=${idLop}`);
-      console.log('Student deleted successfully');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  console.log('curStudentData: ', curStudentData);
-  console.log('newStudentData: ', newStudentData);
-  console.log('idLop:', idLop);
-  console.log('idHS:', idHS);
+  console.log('newScoreData: ', newScoreData);
 
   return (
     <MyModal
       className="absolute "
       header={
-        <p className="text-2xl font-bold">
-          Update <span className="text-blue-600 ">{HoTen}</span> 's Information
-        </p>
+        <div className="text-2xl font-bold">
+          Nhập điểm học sinh <div className="text-blue-600 ">{HoTen}</div>
+        </div>
       }
       body={
         <>
+          <p className="py-3 text-lg font-semibold">Môn Học: </p>
+          <select
+            className="w-full h-10 border-2 border-gray-300 rounded-md"
+            value={selectedSubject}
+            onChange={(e) => {
+              setSelectedSubject(e.target.value);
+              setNewScoreData({
+                ...newScoreData,
+                idMH: e.target.value,
+              });
+              const selectedOptionData = subjects.find(
+                (option) => option.idMH === parseInt(e.target.value)
+              );
+              setSelectedSubjectName(selectedOptionData.TenMH);
+            }}
+          >
+            <option value="" disabled selected hidden>
+              Chọn môn học
+            </option>
+            {subjects.map((subject) => (
+              <option key={subject.idMH} value={subject.idMH}>
+                {subject.TenMH}
+              </option>
+            ))}
+          </select>
+          <p className="py-3 mt-2 text-lg font-semibold">
+            Loại hình kiểm tra:{' '}
+          </p>
+          <select
+            className="w-full h-10 border-2 border-gray-300 rounded-md"
+            value={selectedExamType}
+            onChange={(e) => {
+              setSelectedExamType(e.target.value);
+              setNewScoreData({
+                ...newScoreData,
+                LHKT: e.target.value,
+              });
+              setSelectedExamTypeName(
+                e.target.options[e.target.selectedIndex].text
+              );
+            }}
+          >
+            <option value="" disabled selected hidden>
+              Chọn loại kì thi
+            </option>
+            {examTypes.map((examType) => (
+              <option key={examType.idLHKT} value={examType.idLHKT}>
+                {examType.TenLHKT}
+              </option>
+            ))}
+          </select>
+          <p className="mt-5 text-lg font-semibold ">Nhập điểm số: </p>
           <Input
-            inputType="input"
-            placeholder="Full Name"
+            inputType="number"
+            placeholder="Điểm môn học"
             handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, HoTen: e.target.value })
-            }
-          />
-          <Input
-            inputType="select"
-            placeholder="Gender"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, GioiTinh: e.target.value })
-            }
-          />
-          <Input
-            inputType="date"
-            placeholder="Birthday"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, NgaySinh: e.target.value })
-            }
-          />
-          <Input
-            inputType="input"
-            placeholder="Address"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, DiaChi: e.target.value })
-            }
-          />
-          <Input
-            inputType="input"
-            title="Name"
-            placeholder="Email"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, Email: e.target.value })
+              setNewScoreData({
+                ...newScoreData,
+                Diem: e.target.value,
+              })
             }
           />
         </>
       }
       footer={
         <div className="flex justify-center w-full gap-10">
-          <Button pill={false} onClick={() => handleEdit()}>
-            Submit
+          <Button pill={false} onClick={() => addScore()}>
+            Confirm
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
             Cancle
@@ -221,12 +236,12 @@ const SubjectResultControllerModal = ({
       }
       handleClose={() => {
         close();
-        setNewStudentData({
-          HoTen: '',
-          GioiTinh: '',
-          NgaySinh: '',
-          DiaChi: '',
-          Email: '',
+        setNewScoreData({
+          idHS: '',
+          idMH: '',
+          idLop: '',
+          Diem: '',
+          LHKT: '',
         });
       }}
       closeBtn={false}

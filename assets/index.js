@@ -21,6 +21,7 @@ import Carousel2 from './carousel2.jpg';
 import Carousel3 from './carousel3.jpg';
 import Carousel4 from './carousel4.jpg';
 import Carousel5 from './carousel5.jpg';
+import finding from './finding.svg';
 
 export default {
   dashboard,
@@ -46,4 +47,5 @@ export default {
   Carousel3,
   Carousel4,
   Carousel5,
+  finding,
 };

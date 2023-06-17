@@ -26,7 +26,8 @@ export const InputScoreBoardCol = [
           <SubjectResultControllerModal
             close={close}
             idHS={row.original.idHS}
-            idMon={row.original.idMon}
+            HoTen={row.original.HoTen}
+            idMH={row.original.idMH}
             idLop={row.original.idLop}
             DiemHS1={row.original.DiemHS1}
             DiemHS2={row.original.DiemHS2}

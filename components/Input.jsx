@@ -9,6 +9,7 @@ const Input = ({ inputType, placeholder, handleClick }) => (
         placeholder={placeholder}
         onChange={handleClick}
         required
+        max={10}
       />
     ) : inputType === 'textarea' ? (
       <textarea

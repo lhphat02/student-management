@@ -9,13 +9,10 @@ export default async function handler(req, res) {
       return;
     }
 
-    console.log('idLop o api: ', idLop);
-    console.log('idMH o api: ', idMH);
-
     try {
       // Retrieve students from the given class and semester
       const studentsResult = await db.promise().query(
-        `SELECT hl.idHS, h.HoTen, l.TenLop, kqhm.DiemTBMon, ct1.Diem AS DiemHS1, ct2.Diem AS DiemHS2
+        `SELECT hl.idHS, h.HoTen, l.TenLop, kqhm.DiemTBMon, ct1.Diem AS DiemHS1, ct2.Diem AS DiemHS2, l.idLop, kqhm.idMH
         FROM hocsinh_lop hl
         JOIN hocsinh h ON hl.idHS = h.idHS
         JOIN lop l ON hl.idLop = l.idLop
@@ -35,8 +32,6 @@ export default async function handler(req, res) {
         const gpa = (DiemHS1 + DiemHS2 * 2) / 3;
         student.DiemTBMon = gpa.toFixed(2); // Round to 2 decimal places
       });
-
-      console.log('student list in subject result api: ', students);
 
       res.status(200).json(students);
     } catch (error) {

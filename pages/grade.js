@@ -9,6 +9,8 @@ import Topbar from '@/components/Topbar';
 import ClassTable from '@/components/class/classTable';
 import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
 import InputScoreBoardTable from '@/components/InputScoreBoard/year-dashboard/InputScoreBoardTable';
+import Image from 'next/image';
+import assets from '@/assets';
 
 const Class = () => {
   const [years, setYears] = useState([]);
@@ -33,8 +35,8 @@ const Class = () => {
 
   const [result, setResult] = useState([]);
 
-  const [toggleSearchUI, setToggleSearchUI] = useState(true);
-  const [toggleInputUI, setToggleInputUI] = useState(false);
+  const [toggleSearchUI, setToggleSearchUI] = useState(false);
+  const [toggleInputUI, setToggleInputUI] = useState(true);
   const [toggleFilterModal, setToggleFilterModal] = useState(false);
 
   const [classData, setClassData] = useState({
@@ -197,7 +199,9 @@ const Class = () => {
                       setSelectedYearName(selectedOptionData.Namhoc);
                     }}
                   >
-                    <option value="">Chọn năm học</option>
+                    <option value="" disabled selected hidden>
+                      Chọn năm học
+                    </option>
                     {years.map((year) => (
                       <option key={year.idNam} value={year.idNam}>
                         {year.Namhoc}
@@ -219,7 +223,9 @@ const Class = () => {
                       setSelectedSemesterName(selectedOptionData.HocKy);
                     }}
                   >
-                    <option value="">Chọn học kỳ</option>
+                    <option value="" disabled selected hidden>
+                      Chọn học kỳ
+                    </option>
                     {semesters.map((semester) => (
                       <option key={semester.idHocKy} value={semester.idHocKy}>
                         {semester.HocKy}
@@ -242,7 +248,9 @@ const Class = () => {
                       setSelectedClassGroupName(selectedOptionData.TenKhoiLop);
                     }}
                   >
-                    <option value="">Chọn khối lớp</option>
+                    <option value="" disabled selected hidden>
+                      Chọn khối lớp
+                    </option>
                     {classGroups.map((classGroup) => (
                       <option
                         key={classGroup.idKhoiLop}
@@ -264,12 +272,11 @@ const Class = () => {
                   onChange={(e) => {
                     setSelectedClass(e.target.value);
                     setIdLop(e.target.value);
-                    const selectedOptionData = classes.find(
-                      (option) => option.idLop === parseInt(e.target.value)
-                    );
                   }}
                 >
-                  <option value="">Chọn lớp học</option>
+                  <option value="" disabled selected hidden>
+                    Chọn lớp học
+                  </option>
                   {classes.map((classItem) => (
                     <option key={classItem.idLop} value={classItem.idLop}>
                       {classItem.TenLop}
@@ -289,7 +296,9 @@ const Class = () => {
                     setSelectedSubjectName(selectedOptionData.TenMH);
                   }}
                 >
-                  <option value="">Chọn môn học</option>
+                  <option value="" disabled selected hidden>
+                    Chọn môn học
+                  </option>
                   {subjects.map((subject) => (
                     <option key={subject.idMH} value={subject.idMH}>
                       {subject.TenMH}
@@ -317,7 +326,7 @@ const Class = () => {
         />
       ) : null}
 
-      <div className="pb-5 mx-20 my-5 border-b-2">
+      {/* <div className="pb-5 mx-20 my-5 border-b-2">
         <Button.Group>
           <Button
             color={`${toggleSearchUI ? 'info' : 'gray'}`}
@@ -344,7 +353,7 @@ const Class = () => {
             <p>Nhập điểm</p>
           </Button>
         </Button.Group>
-      </div>
+      </div> */}
 
       <div className="flex flex-col gap-10 px-20 pb-40 mt-10">
         {toggleSearchUI ? (
@@ -448,13 +457,31 @@ const Class = () => {
               <div className="flex items-center w-4/5 gap-5">
                 <Button onClick={() => setToggleFilterModal(true)}>
                   <HiSearch className="w-4 h-4 mr-3" />
-                  <p> Chọn lớp học</p>
+                  <p> Bộ lọc</p>
                 </Button>
               </div>
             </div>
 
             {/* List of filtered classes */}
-            {showTable ? <InputScoreBoardTable result={result} /> : null}
+            {showTable ? (
+              <InputScoreBoardTable result={result} />
+            ) : (
+              <>
+                <div className="flex flex-col items-center justify-center w-full text-center">
+                  <div className="flex items-center justify-center w-full">
+                    <Image
+                      src={assets.finding}
+                      alt="Finding"
+                      width={300}
+                      height={300}
+                    />
+                  </div>
+                  <p className="w-full mt-10 text-4xl font-bold text-blue-700">
+                    Xin hãy chọn lớp và môn học
+                  </p>
+                </div>
+              </>
+            )}
           </div>
         ) : null}
       </div>
