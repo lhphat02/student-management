@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
 import Table from '../Table';
-import Popup from 'reactjs-popup';
 import { useMemo, useEffect } from 'react';
 import { classColumns } from './classColumns';
 

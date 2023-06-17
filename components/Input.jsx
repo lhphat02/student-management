@@ -28,7 +28,7 @@ const Input = ({ inputType, placeholder, handleClick }) => (
       />
     ) : inputType === 'date' ? (
       <input
-        className="w-full px-4 py-3 mt-4 text-base bg-white border rounded-lg resize-none outline-0 ring-0 font-poppins "
+        className="w-full px-4 py-3 mt-4 text-base bg-white border border-black rounded-lg resize-none outline-0 ring-0 font-poppins "
         type="date"
         placeholder={placeholder}
         onChange={handleClick}
@@ -36,7 +36,7 @@ const Input = ({ inputType, placeholder, handleClick }) => (
       />
     ) : inputType === 'select' ? (
       <select
-        className="w-full px-4 py-3 mt-4 text-base bg-white border rounded-lg resize-none outline-0 ring-0 font-poppins "
+        className="w-full px-4 py-3 mt-4 text-base bg-white border border-black rounded-lg resize-none outline-0 ring-0 font-poppins "
         placeholder="Gender"
         required
         onChange={handleClick}
@@ -53,7 +53,7 @@ const Input = ({ inputType, placeholder, handleClick }) => (
       //   required
       // />
       <input
-        className="w-full px-4 py-3 mt-4 text-base bg-white border rounded-lg focus:outline-blue-600 font-poppins"
+        className="w-full px-4 py-3 mt-4 text-base bg-white border border-black rounded-lg focus:outline-blue-600 font-poppins"
         placeholder={placeholder}
         onChange={handleClick}
         required

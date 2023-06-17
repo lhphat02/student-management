@@ -4,7 +4,7 @@ import Image from 'next/image';
 import ClassControllerModal from './Modals/ClassControllerModal';
 
 export const classColumns = [
-  { Header: 'ID', accessor: 'idLop' },
+  { Header: 'ID', accessor: 'index' },
   { Header: 'Tên Lớp', accessor: 'TenLop' },
   { Header: 'Sĩ Số', accessor: 'SiSo' },
   {

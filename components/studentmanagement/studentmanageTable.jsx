@@ -4,21 +4,16 @@ import { useTable } from 'react-table';
 import Table from '../Table';
 import { studentmanageColumns } from './studentmanageColumns';
 
-export default function StudentmanageTable() {
+export default function StudentmanageTable({ students }) {
   const [studentData, setStudentData] = useState([]);
 
   useEffect(() => {
-    fetch('api/getStudent').then(async (res) => {
-      let data = await res.json();
-      data.map((item, index) => {
-        item.index = index + 1;
-      });
-      console.log(data);
-      setStudentData(data);
+    console.log('student o table', students);
+    students.map((item, index) => {
+      item.index = index + 1;
     });
-
-    console.log(studentData);
-  }, []);
+    setStudentData(students);
+  });
 
   studentData.map(
     (item) => (item.NgaySinh = new Date(item.NgaySinh).toLocaleDateString())
@@ -32,5 +27,3 @@ export default function StudentmanageTable() {
 
   return <Table tableInstance={tableInstance} />;
 }
-
-

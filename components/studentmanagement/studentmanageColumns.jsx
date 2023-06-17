@@ -6,13 +6,13 @@ import Input from '../Input';
 import StudentControllerModal from './Modals/StudentControllerModal';
 
 export const studentmanageColumns = [
-  { Header: 'MSHS', accessor: 'idHS' },
+  { Header: 'MSHS', accessor: 'index' },
+  { Header: 'Lớp', accessor: 'TenLop' },
   { Header: 'Họ và Tên', accessor: 'HoTen' },
   { Header: 'Giới Tính', accessor: 'GioiTinh' },
   { Header: 'Ngày Sinh', accessor: 'NgaySinh' },
   { Header: 'Địa Chỉ', accessor: 'DiaChi' },
   { Header: 'Email', accessor: 'Email' },
-  { Header: 'Lớp', accessor: 'TenLop' },
   // {
   //   Header: 'Update',
   //   Cell: ({ row }) => (
@@ -41,6 +41,7 @@ export const studentmanageColumns = [
             NgaySinh={row.original.NgaySinh}
             DiaChi={row.original.DiaChi}
             Email={row.original.Email}
+            idLop={row.original.idLop}
           />
         )}
       </Popup>

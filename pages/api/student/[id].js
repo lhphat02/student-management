@@ -2,12 +2,12 @@ import db from '../db';
 
 export default function handler(req, res) {
   const { method } = req;
-  const { id } = req.query;
+  const { idHS } = req.query;
   switch (method) {
     case 'DELETE':
       try {
         // Delete the student from the database
-        db.query('DELETE FROM hocsinh WHERE idHS = ?', [id]);
+        db.query('DELETE FROM hocsinh WHERE idHS = ?', [idHS]);
         res.status(200).json({ message: 'Student deleted successfully' });
       } catch (error) {
         console.error(error);
@@ -16,11 +16,12 @@ export default function handler(req, res) {
       break;
     case 'PUT':
       try {
-        const { HoTen, GioiTinh, NgaySinh, DiaChi, Email } = req.body;
+        const { HoTen, GioiTinh, NgaySinh, DiaChi, Email, idLop } = req.body;
 
         const query =
           'UPDATE hocsinh SET HoTen = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?, Email = ? WHERE idHS = ?';
-        const values = [HoTen, GioiTinh, NgaySinh, DiaChi, Email, id];
+        const values = [HoTen, GioiTinh, NgaySinh, DiaChi, Email, idHS];
+
         db.query(query, values, (error, results) => {
           res
             .status(200)
@@ -37,11 +38,11 @@ export default function handler(req, res) {
   }
 
   // if (req.method === 'PUT') {
-  //   const { idHS, HoTen, GioiTinh, NgaySinh, DiaChi, Email } = req.body;
+  //   const { idHSHS, HoTen, GioiTinh, NgaySinh, DiaChi, Email } = req.body;
 
   //   const query =
-  //     'UPDATE hocsinh SET HoTen = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?, Email = ? WHERE idHS = ?';
-  //   const values = [HoTen, GioiTinh, NgaySinh, DiaChi, Email, id];
+  //     'UPDATE hocsinh SET HoTen = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?, Email = ? WHERE idHSHS = ?';
+  //   const values = [HoTen, GioiTinh, NgaySinh, DiaChi, Email, idHS];
 
   //   db.query(query, values, (error, results) => {
   //     if (error) {

@@ -150,6 +150,8 @@ const Class = () => {
   // console.log('selectedSemester', selectedSemester);
   // console.log('selectedClassGroup', selectedClassGroup);
 
+  console.log('classes o FE:', typeof classes, classes);
+
   return (
     <>
       <Topbar NamePage="Danh sách lớp học" />

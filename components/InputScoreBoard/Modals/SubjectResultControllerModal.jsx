@@ -5,7 +5,7 @@ import axios from 'axios';
 import Input from '@/components/Input';
 import MyModal from '@/components/Modal';
 
-const StudentControllerModal = ({
+const SubjectResultControllerModal = ({
   close,
   idHS,
   HoTen,
@@ -207,104 +207,12 @@ const StudentControllerModal = ({
               setNewStudentData({ ...newStudentData, Email: e.target.value })
             }
           />
-          <div className="flex flex-col w-full">
-            <div className="flex flex-row justify-between my-5">
-              <select
-                className="px-2 py-1 border border-black rounded-md"
-                value={selectedYear}
-                onChange={(e) => {
-                  setSelectedYear(e.target.value);
-                  const selectedOptionData = years.find(
-                    (option) => option.idNam === parseInt(e.target.value)
-                  );
-                  setSelectedYearName(selectedOptionData.Namhoc);
-                }}
-              >
-                <option value="">Chọn năm học</option>
-                {years.map((year) => (
-                  <option key={year.idNam} value={year.idNam}>
-                    {year.Namhoc}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                className="px-2 py-1 border border-black rounded-md"
-                value={selectedSemester}
-                onChange={(e) => {
-                  setSelectedSemester(e.target.value);
-                  const selectedOptionData = semesters.find(
-                    (option) => option.idHocKy === parseInt(e.target.value)
-                  );
-                  setSelectedSemesterName(selectedOptionData.HocKy);
-                }}
-              >
-                <option value="">Chọn học kỳ</option>
-                {semesters.map((semester) => (
-                  <option key={semester.idHocKy} value={semester.idHocKy}>
-                    {semester.HocKy}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                className="px-2 py-1 border border-black rounded-md"
-                value={selectedClassGroup}
-                onChange={(e) => {
-                  setSelectedClassGroup(e.target.value);
-                  const selectedOptionData = classGroups.find(
-                    (option) => option.idKhoiLop === parseInt(e.target.value)
-                  );
-                  setSelectedClassGroupName(selectedOptionData.TenKhoiLop);
-                }}
-              >
-                <option value="">Chọn khối lớp</option>
-                {classGroups.map((classGroup) => (
-                  <option
-                    key={classGroup.idKhoiLop}
-                    value={classGroup.idKhoiLop}
-                  >
-                    {classGroup.TenKhoiLop}
-                  </option>
-                ))}
-              </select>
-              <select
-                className="px-2 py-1 mx-5 border border-black rounded-md"
-                value={selectedClass}
-                onChange={(e) => {
-                  setSelectedClass(e.target.value);
-                  setNewStudentData({
-                    ...newStudentData,
-                    idLop: parseInt(e.target.value),
-                  });
-                  const selectedOptionData = classes.find(
-                    (option) => option.idLop === parseInt(e.target.value)
-                  );
-                  setNewStudentData({
-                    ...newStudentData,
-                    idLop: selectedOptionData.idLop,
-                  });
-                  setSelectedClassName(selectedOptionData.TenLop);
-                }}
-              >
-                <option value="">Chọn lớp học</option>
-                {classes.map((classItem) => (
-                  <option key={classItem.idLop} value={classItem.idLop}>
-                    {classItem.TenLop}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
         </>
       }
       footer={
         <div className="flex justify-center w-full gap-10">
           <Button pill={false} onClick={() => handleEdit()}>
-            Update
-          </Button>
-          <Button pill={false} color="red" onClick={() => handleDelete()}>
-            Delete Student
+            Submit
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
             Cancle
@@ -326,4 +234,4 @@ const StudentControllerModal = ({
   );
 };
 
-export default StudentControllerModal;
+export default SubjectResultControllerModal;

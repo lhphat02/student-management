@@ -40,22 +40,6 @@ const Sidebar = ({ children }) => {
             </Link>
           </Tooltip>
 
-          <Tooltip content="Teacher" placement="right">
-            <Link href="/teachermanage">
-              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-                <div className="flex flex-row">
-                  <Image
-                    src={assets.teacher}
-                    alt="teacher"
-                    width={25}
-                    height={25}
-                  />
-                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Teacher</p> */}
-                </div>
-              </div>
-            </Link>
-          </Tooltip>
-
           <Tooltip content="Student" placement="right" className="z-50 ">
             <Link href="/student-manager">
               <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
@@ -72,22 +56,6 @@ const Sidebar = ({ children }) => {
             </Link>
           </Tooltip>
 
-          <Tooltip content="Subject" placement="right">
-            <Link href="/subject">
-              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
-                <div className="flex flex-row">
-                  <Image
-                    src={assets.bookshelf}
-                    alt="subject"
-                    width={25}
-                    height={25}
-                  />
-                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Subject</p> */}
-                </div>
-              </div>
-            </Link>
-          </Tooltip>
-
           <Tooltip content="Class" placement="right">
             <Link href="/class">
               <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
@@ -99,6 +67,22 @@ const Sidebar = ({ children }) => {
                     height={25}
                   />
                   {/* <p className='mt-1 ml-3 text-md font-poppins'>Class</p> */}
+                </div>
+              </div>
+            </Link>
+          </Tooltip>
+
+          <Tooltip content="Subject" placement="right">
+            <Link href="/subject">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.bookshelf}
+                    alt="subject"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Subject</p> */}
                 </div>
               </div>
             </Link>
