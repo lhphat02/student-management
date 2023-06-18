@@ -1,11 +1,11 @@
-import db from './db';
+import db from "./db";
 
 export default async function handler(req, res) {
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     const { idLop, idMH } = req.query;
 
     if (!idLop || !idMH) {
-      res.status(400).json({ message: 'Missing required parameters' });
+      res.status(400).json({ message: "Missing required parameters" });
       return;
     }
 
@@ -36,9 +36,9 @@ export default async function handler(req, res) {
       res.status(200).json(students);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Error retrieving results' });
+      res.status(500).json({ message: "Error retrieving results" });
     }
   } else {
-    res.status(405).json({ message: 'Method Not Allowed' });
+    res.status(405).json({ message: "Method Not Allowed" });
   }
 }

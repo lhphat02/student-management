@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTable } from 'react-table';
-import Table from '../Table';
+import Table from '../Table';student-management/components/subjects/subjectsTable.jsx
 import Popup from 'reactjs-popup';
 import { useMemo, useEffect } from 'react';
 import { subjectsColumns } from './subjectsColumns';

@@ -1,10 +1,10 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import router, { useRouter } from 'next/router';
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import router, { useRouter } from "next/router";
 
-import assets from '../assets';
-import { Tooltip } from 'flowbite-react';
+import assets from "../assets";
+import { Tooltip } from "flowbite-react";
 
 const Sidebar = ({ children }) => {
   return (
@@ -127,6 +127,22 @@ const Sidebar = ({ children }) => {
                   <Image
                     src={assets.scales}
                     alt="rule"
+                    width={25}
+                    height={25}
+                  />
+                  {/* <p className='mt-1 ml-3 text-md font-poppins'>Rule</p> */}
+                </div>
+              </div>
+            </Link>
+          </Tooltip>
+
+          <Tooltip content="Parameter" placement="right">
+            <Link href="/parameter_page">
+              <div className="inline-block p-3 my-1 rounded-lg cursor-pointer hover:bg-gray-200">
+                <div className="flex flex-row">
+                  <Image
+                    src={assets.equalizer}
+                    alt="parameter"
                     width={25}
                     height={25}
                   />
