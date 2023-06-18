@@ -39,19 +39,6 @@ const Subjects = () => {
     }
   };
 
-  useEffect(() => {
-    fetch('api/getSubjectResult').then(async (res) => {
-      let data = await res.json();
-      // data.map((item, index) => {
-      //   item.index = index + 1;
-      // });
-      console.log('danh sach diem: ', data);
-      setSubjectResultData(data);
-    });
-
-    console.log(subjectResultData);
-  }, []);
-
   return (
     <div>
       <Topbar NamePage="Subjects" />

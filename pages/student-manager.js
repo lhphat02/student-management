@@ -365,11 +365,11 @@ const Class = () => {
         {/* List of classes */}
         <p className="text-3xl font-bold font-poppins">
           Danh sách học sinh{' '}
-          <span className="text-4xl text-blue-700">{selectedClassName}</span>,{' '}
-          Học kỳ{' '}
-          <span className="text-4xl text-blue-700">{selectedSemesterName}</span>
-          , Năm học{' '}
-          <span className="text-4xl text-blue-700">{selectedYearName}</span>
+          {selectedClass && (
+            <span className="text-4xl text-blue-700">
+              lớp {selectedClassName}
+            </span>
+          )}
         </p>
         <div className="flex justify-between">
           {/* Filter of Year, Semester and ClassGroup */}

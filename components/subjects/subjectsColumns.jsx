@@ -4,7 +4,7 @@ import assets from '@/assets';
 import Image from 'next/image';
 
 export const subjectsColumns = [
-  { Header: 'ID', accessor: 'idMH' },
+  { Header: 'ID', accessor: 'index' },
   { Header: 'Tên Môn Học', accessor: 'TenMH' },
   { Header: 'Mô Tả', accessor: 'MoTa' },
   { Header: 'Hệ Số', accessor: 'HeSo' },

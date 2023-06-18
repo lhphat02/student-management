@@ -226,7 +226,13 @@ const SubjectResultControllerModal = ({
       }
       footer={
         <div className="flex justify-center w-full gap-10">
-          <Button pill={false} onClick={() => addScore()}>
+          <Button
+            pill={false}
+            onClick={() => {
+              addScore();
+              close();
+            }}
+          >
             Confirm
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>

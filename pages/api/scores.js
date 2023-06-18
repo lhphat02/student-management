@@ -69,26 +69,6 @@ export default async (req, res) => {
       console.log('Data existed, skip step. \n');
     }
 
-    // const checkIfBothScoreExist = await db.promise().query(
-    //   `SELECT *
-    //     FROM ct_hocmon
-    //     WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH} AND (idLHKT = 1 OR idLHKT = 2)`
-    // );
-
-    // if (checkIfBothScoreExist[0].length === 2) {
-    //   console.log('Both score existed, update ketquahocmon... \n');
-    //   const gpa = await db.promise().query(
-    //     `UPDATE ketquahocmon
-    //       SET DiemTBMon = (SELECT AVG(Diem) FROM ct_hocmon WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH})
-    //       WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH}`
-    //   );
-
-    //   console.log('Update ketquahocmon: DONE \n');
-    //   console.log('GPA: ', gpa[0], '\n');
-    // } else {
-    //   console.log('Both score not existed, end task. \n');
-    // }
-
     const checkIfBothScoreExist = await db.promise().query(
       `SELECT *
        FROM ct_hocmon
@@ -118,7 +98,7 @@ export default async (req, res) => {
 
       await db.promise().query(gpaUpdateQuery);
 
-      console.log('Update ketquahocmon: DONE \n');
+      console.log('Update ketquahocmon: DONE. End task. \n');
       console.log('GPA:', calculatedAvgScore, '\n');
     } else {
       console.log('Both scores do not exist, end task. \n');

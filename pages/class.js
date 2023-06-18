@@ -255,7 +255,9 @@ const Class = () => {
                 setSelectedYearName(selectedOptionData.Namhoc);
               }}
             >
-              <option value="">Chọn năm học</option>
+              <option value="" disabled selected hidden>
+                Chọn năm học
+              </option>
               {years.map((year) => (
                 <option key={year.idNam} value={year.idNam}>
                   {year.Namhoc}
@@ -293,7 +295,9 @@ const Class = () => {
                   setSelectedSemesterName(selectedOptionData.HocKy);
                 }}
               >
-                <option value="">Chọn học kỳ</option>
+                <option value="" disabled selected hidden>
+                  Chọn học kỳ
+                </option>
                 {semesters.map((semester) => (
                   <option key={semester.idHocKy} value={semester.idHocKy}>
                     {semester.HocKy}
@@ -318,7 +322,9 @@ const Class = () => {
                   setSelectedClassGroupName(selectedOptionData.TenKhoiLop);
                 }}
               >
-                <option value="">Chọn khối lớp</option>
+                <option value="" disabled selected hidden>
+                  Chọn khối lớp
+                </option>
                 {classGroups.map((classGroup) => (
                   <option
                     key={classGroup.idKhoiLop}

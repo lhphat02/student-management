@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Tooltip } from 'flowbite-react';
-import { HiSearch, HiOutlinePencilAlt } from 'react-icons/hi';
+import { HiSearch, HiOutlinePencilAlt, HiRefresh } from 'react-icons/hi';
 import axios from 'axios';
 
 import Input from '@/components/Input';
@@ -149,31 +149,25 @@ const Class = () => {
     fetchSubjects();
   }, []);
 
+  // Fetch the available subjects within the selected class
+  const fetchSubjectResult = async () => {
+    setResult([]);
+
+    try {
+      const response = await axios.get(
+        `/api/getSubjectResult?idLop=${selectedClass}&idHocKy=${selectedSemester}&idMH=${selectedSubject}`
+      );
+      setResult(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    // Fetch the available subjects within the selected class
-    const fetchSubjectResult = async () => {
-      setResult([]);
-
-      try {
-        const response = await axios.get(
-          `/api/getSubjectResult?idLop=${selectedClass}&idHocKy=${selectedSemester}&idMH=${selectedSubject}`
-        );
-        setResult(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     if (selectedClass && selectedSemester && selectedSubject) {
       fetchSubjectResult();
     }
   }, [selectedClass, selectedSemester, selectedSubject]);
-
-  console.log('selectedSubject', selectedSubject);
-  console.log('selectedSemester: ', selectedSemester);
-  console.log('selectedClass: ', selectedClass);
-
-  console.log('result: ', result);
 
   return (
     <>
@@ -378,7 +372,9 @@ const Class = () => {
                     setSelectedYearName(selectedOptionData.Namhoc);
                   }}
                 >
-                  <option value="">Chọn năm học</option>
+                  <option value="" disabled selected hidden>
+                    Chọn năm học
+                  </option>
                   {years.map((year) => (
                     <option key={year.idNam} value={year.idNam}>
                       {year.Namhoc}
@@ -402,7 +398,9 @@ const Class = () => {
                       setSelectedSemesterName(selectedOptionData.HocKy);
                     }}
                   >
-                    <option value="">Chọn học kỳ</option>
+                    <option value="" disabled selected hidden>
+                      Chọn học kỳ
+                    </option>
                     {semesters.map((semester) => (
                       <option key={semester.idHocKy} value={semester.idHocKy}>
                         {semester.HocKy}
@@ -428,7 +426,9 @@ const Class = () => {
                       setSelectedClassGroupName(selectedOptionData.TenKhoiLop);
                     }}
                   >
-                    <option value="">Chọn khối lớp</option>
+                    <option value="" disabled selected hidden>
+                      Chọn khối lớp
+                    </option>
                     {classGroups.map((classGroup) => (
                       <option
                         key={classGroup.idKhoiLop}
@@ -451,7 +451,8 @@ const Class = () => {
           <div className="flex flex-col gap-10">
             {/* Search Score UI */}
             <p className="text-3xl font-bold font-poppins">
-              Nhập bảng điểm môn học
+              Bảng điểm môn học{' '}
+              <span className="text-blue-700">{selectedSubjectName}</span>
             </p>
             <div className="flex justify-between">
               <div className="flex items-center w-4/5 gap-5">
@@ -460,6 +461,16 @@ const Class = () => {
                   <p> Bộ lọc</p>
                 </Button>
               </div>
+              {showTable ? (
+                <Button
+                  onClick={() => {
+                    fetchSubjectResult();
+                  }}
+                >
+                  <HiRefresh className="w-4 h-4 mr-3" />
+                  <p>Làm mới</p>
+                </Button>
+              ) : null}
             </div>
 
             {/* List of filtered classes */}

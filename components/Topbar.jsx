@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import router from "next/router";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import router from 'next/router';
 
-import Button from "./Button";
-import assets from "../assets";
+import Button from './Button';
+import assets from '../assets';
 
 const Topbar = ({ NamePage }) => {
   return (
@@ -14,7 +14,7 @@ const Topbar = ({ NamePage }) => {
           <div className="flex flex-row justify-center cursor-pointer item-center">
             <Image src={assets.vocational} width={35} height={35} alt="logo" />
             <p className="mt-2 ml-1 text-2xl font-extrabold text-center font-rubik text-cyan-500">
-              UITuyen
+              UIT DashBoard
             </p>
             <p className="mt-3 ml-3 text-xl font-medium font-poppins">
               / {NamePage}
