@@ -231,7 +231,7 @@ const Class = () => {
           header={<p className="text-2xl font-bold">Bộ lọc</p>}
           body={
             <div className="flex flex-col w-full">
-              <div className="flex flex-row justify-between px-10 mb-5">
+              <div className="flex flex-row justify-center gap-20 px-10 mb-5">
                 <div>
                   <p className="py-5 text-lg font-semibold">Năm học</p>
                   <select
@@ -279,57 +279,9 @@ const Class = () => {
                     ))}
                   </select>
                 </div>
-
-                <div>
-                  <p className="py-5 text-lg font-semibold">Khối lớp</p>
-                  <select
-                    className="px-2 py-1 border-2 border-gray-300 rounded-md"
-                    value={selectedClassGroup}
-                    onChange={(e) => {
-                      setSelectedClassGroup(e.target.value);
-                      const selectedOptionData = classGroups.find(
-                        (option) =>
-                          option.idKhoiLop === parseInt(e.target.value)
-                      );
-                      setSelectedClassGroupName(selectedOptionData.TenKhoiLop);
-                    }}
-                  >
-                    <option value="" disabled selected hidden>
-                      Chọn khối lớp
-                    </option>
-                    {classGroups.map((classGroup) => (
-                      <option
-                        key={classGroup.idKhoiLop}
-                        value={classGroup.idKhoiLop}
-                      >
-                        {classGroup.TenKhoiLop}
-                      </option>
-                    ))}
-                  </select>
-                </div>
               </div>
 
               <div className="flex items-center justify-center w-full p-3 border-t-2">
-                <p className="py-5 text-lg font-semibold">Lớp học :</p>
-
-                <select
-                  className="px-2 py-1 mx-5 border-2 border-gray-300 rounded-md"
-                  value={selectedClass}
-                  onChange={(e) => {
-                    setSelectedClass(e.target.value);
-                    setIdLop(e.target.value);
-                  }}
-                >
-                  <option value="" disabled selected hidden>
-                    Chọn lớp học
-                  </option>
-                  {classes.map((classItem) => (
-                    <option key={classItem.idLop} value={classItem.idLop}>
-                      {classItem.TenLop}
-                    </option>
-                  ))}
-                </select>
-
                 <p className="py-5 mr-5 text-lg font-semibold">Môn Học: </p>
                 <select
                   className="px-2 py-1 border-2 border-gray-300 rounded-md"
@@ -514,7 +466,7 @@ const Class = () => {
                     />
                   </div>
                   <p className="w-full mt-10 text-4xl font-bold text-blue-700">
-                    Xin hãy chọn lớp và môn học
+                    Xin hãy học kỳ và môn học
                   </p>
                 </div>
               </>
