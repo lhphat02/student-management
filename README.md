@@ -1,6 +1,6 @@
 
 # SE107 - Quan Ly Hoc Sinh
-A website for managing student's information
+A website for managing school data
 
 
 
