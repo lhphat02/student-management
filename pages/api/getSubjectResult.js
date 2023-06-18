@@ -26,12 +26,12 @@ export default async function handler(req, res) {
       const students = studentsResult[0];
 
       // Calculate the GPA for each student
-      students.forEach((student) => {
-        const DiemHS1 = student.DiemHS1;
-        const DiemHS2 = student.DiemHS2;
-        const gpa = (DiemHS1 + DiemHS2 * 2) / 3;
-        student.DiemTBMon = gpa.toFixed(2); // Round to 2 decimal places
-      });
+      // students.forEach((student) => {
+      //   const DiemHS1 = student.DiemHS1;
+      //   const DiemHS2 = student.DiemHS2;
+      //   const gpa = (DiemHS1 + DiemHS2 * 2) / 3;
+      //   student.DiemTBMon = gpa.toFixed(2); // Round to 2 decimal places
+      // });
 
       res.status(200).json(students);
     } catch (error) {

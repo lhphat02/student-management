@@ -66,7 +66,62 @@ export default async (req, res) => {
       );
       console.log('Insert into ketquahocmon: DONE \n');
     } else {
-      console.log('Data existed, end task. \n');
+      console.log('Data existed, skip step. \n');
+    }
+
+    // const checkIfBothScoreExist = await db.promise().query(
+    //   `SELECT *
+    //     FROM ct_hocmon
+    //     WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH} AND (idLHKT = 1 OR idLHKT = 2)`
+    // );
+
+    // if (checkIfBothScoreExist[0].length === 2) {
+    //   console.log('Both score existed, update ketquahocmon... \n');
+    //   const gpa = await db.promise().query(
+    //     `UPDATE ketquahocmon
+    //       SET DiemTBMon = (SELECT AVG(Diem) FROM ct_hocmon WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH})
+    //       WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH}`
+    //   );
+
+    //   console.log('Update ketquahocmon: DONE \n');
+    //   console.log('GPA: ', gpa[0], '\n');
+    // } else {
+    //   console.log('Both score not existed, end task. \n');
+    // }
+
+    const checkIfBothScoreExist = await db.promise().query(
+      `SELECT *
+       FROM ct_hocmon
+       WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH} AND (idLHKT = 1 OR idLHKT = 2)`
+    );
+
+    if (checkIfBothScoreExist[0].length === 2) {
+      console.log('Both scores exist, update ketquahocmon... \n');
+
+      const avgQuery = `
+        SELECT (score1 + 2 * score2) / 3 AS avgScore
+        FROM (
+          SELECT
+            (SELECT Diem FROM ct_hocmon WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH} AND idLHKT = 1) AS score1,
+            (SELECT Diem FROM ct_hocmon WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH} AND idLHKT = 2) AS score2
+        ) AS scores;
+      `;
+
+      const [avgScore] = await db.promise().query(avgQuery);
+      const calculatedAvgScore = avgScore[0].avgScore.toFixed(2);
+
+      const gpaUpdateQuery = `
+        UPDATE ketquahocmon
+        SET DiemTBMon = ${calculatedAvgScore}
+        WHERE idQTHoc = ${idQTHocValue} AND idMH = ${idMH};
+      `;
+
+      await db.promise().query(gpaUpdateQuery);
+
+      console.log('Update ketquahocmon: DONE \n');
+      console.log('GPA:', calculatedAvgScore, '\n');
+    } else {
+      console.log('Both scores do not exist, end task. \n');
     }
 
     res.status(200).json(response);

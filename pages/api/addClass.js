@@ -19,9 +19,42 @@ export default async function addClass(req, res) {
     });
 
     // Insert the user into the "classes" table
-    await connection.execute(
+    const response = await connection.execute(
       'INSERT INTO lop (TenLop, SiSo, idKhoiLop, idHocKy) VALUES (?, ?, ?, ?)',
       [TenLop, SiSo, idKhoiLop, idHocKy]
+    );
+
+    const classID = response[0].insertId;
+
+    console.log('classID: ', classID);
+
+    // Insert classID into "baocaohocky" table
+    await connection.execute(
+      'INSERT INTO baocaohocky (idLop, idHocKy) VALUES (?, ?)',
+      [classID, idHocKy]
+    );
+
+    console.log('Insert classID into "baocaohocky" table: DONE');
+
+    // Insert into "ct_baocaomonhoc" table all the classID and idBCMH that match the idHocKy of the classID got above of Lop table and idBCMH of baocaomonhoc table
+    const response2 = await connection.execute(
+      'SELECT idBCMH FROM baocaomonhoc WHERE idHocKy = ?',
+      [idHocKy]
+    );
+
+    const idBCMHs = response2[0].map((idBCMH) => idBCMH.idBCMH);
+
+    console.log('idBCMHs: ', idBCMHs);
+
+    for (let i = 0; i < idBCMHs.length; i++) {
+      await connection.execute(
+        'INSERT INTO ct_baocaomonhoc (idLop, idBCMH) VALUES (?, ?)',
+        [classID, idBCMHs[i]]
+      );
+    }
+
+    console.log(
+      'Insert into "ct_baocaomonhoc" table for all classIDs of matching semesterIDs in "baocaomonhoc" table of all subjectIDs: DONE'
     );
 
     // Close the database connection

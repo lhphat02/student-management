@@ -7,6 +7,8 @@ import Input from '@/components/Input';
 import MyModal from '@/components/Modal';
 import Topbar from '@/components/Topbar';
 import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
+import assets from '@/assets';
+import Image from 'next/image';
 
 const Class = () => {
   const [years, setYears] = useState([]);
@@ -90,7 +92,7 @@ const Class = () => {
   }, [selectedYear]);
 
   useEffect(() => {
-    // Fetch the available classes within the selected class group
+    // Fetch the available classes within the selected class group, for the selected semester and year
     const fetchClasses = async () => {
       setClasses([]);
 
@@ -108,18 +110,19 @@ const Class = () => {
     }
   }, [selectedYear, selectedSemester, selectedClassGroup]);
 
+  const fetchStudents = async () => {
+    setStudents([]);
+
+    try {
+      const response = await axios.get(`/api/getStudent?idLop=${idLop}`);
+      setStudents(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     // Fetch the available classes within the selected class group
-    const fetchStudents = async () => {
-      setStudents([]);
-
-      try {
-        const response = await axios.get(`/api/getStudent?idLop=${idLop}`);
-        setStudents(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     if (idLop) {
       fetchStudents();
     }
@@ -140,8 +143,11 @@ const Class = () => {
         idLop: idLop,
       });
 
+      fetchStudents();
+      setToggleAddStudentModal(false);
+
       console.log('Success:', response.data);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error('Error:', error);
     }
@@ -240,7 +246,9 @@ const Class = () => {
                         setSelectedYearName(selectedOptionData.Namhoc);
                       }}
                     >
-                      <option value="">Chọn năm học</option>
+                      <option value="" disabled selected hidden>
+                        Chọn năm học
+                      </option>
                       {years.map((year) => (
                         <option key={year.idNam} value={year.idNam}>
                           {year.Namhoc}
@@ -263,7 +271,9 @@ const Class = () => {
                         setSelectedSemesterName(selectedOptionData.HocKy);
                       }}
                     >
-                      <option value="">Chọn học kỳ</option>
+                      <option value="" disabled selected hidden>
+                        Chọn học kỳ
+                      </option>
                       {semesters.map((semester) => (
                         <option key={semester.idHocKy} value={semester.idHocKy}>
                           {semester.HocKy}
@@ -288,7 +298,9 @@ const Class = () => {
                         );
                       }}
                     >
-                      <option value="">Chọn khối lớp</option>
+                      <option value="" disabled selected hidden>
+                        Chọn khối lớp
+                      </option>
                       {classGroups.map((classGroup) => (
                         <option
                           key={classGroup.idKhoiLop}
@@ -320,7 +332,9 @@ const Class = () => {
                       setSelectedClassName(selectedOptionData.TenLop);
                     }}
                   >
-                    <option value="">Chọn lớp học</option>
+                    <option value="" disabled selected hidden>
+                      Chọn lớp học
+                    </option>
                     {classes.map((classItem) => (
                       <option key={classItem.idLop} value={classItem.idLop}>
                         {classItem.TenLop}
@@ -349,7 +363,14 @@ const Class = () => {
         ) : null}
 
         {/* List of classes */}
-        <p className="text-3xl font-bold font-poppins">Danh sách học sinh</p>
+        <p className="text-3xl font-bold font-poppins">
+          Danh sách học sinh{' '}
+          <span className="text-4xl text-blue-700">{selectedClassName}</span>,{' '}
+          Học kỳ{' '}
+          <span className="text-4xl text-blue-700">{selectedSemesterName}</span>
+          , Năm học{' '}
+          <span className="text-4xl text-blue-700">{selectedYearName}</span>
+        </p>
         <div className="flex justify-between">
           {/* Filter of Year, Semester and ClassGroup */}
           <div className="flex items-center w-4/5 gap-5">
@@ -360,15 +381,35 @@ const Class = () => {
           </div>
 
           {/* Add new class button */}
-          <Button onClick={() => setToggleAddStudentModal(true)}>
-            <HiPlus className="mr-2" />
-            <p>Thêm học sinh mới</p>
-          </Button>
+          {showTable && (
+            <Button onClick={() => setToggleAddStudentModal(true)}>
+              <HiPlus className="mr-2" />
+              <p>Thêm học sinh mới</p>
+            </Button>
+          )}
         </div>
 
         {/* List of filtered classes */}
 
-        {showTable ? <StudentmanageTable students={students} /> : null}
+        {showTable ? (
+          <StudentmanageTable students={students} />
+        ) : (
+          <>
+            <div className="flex flex-col items-center justify-center w-full text-center">
+              <div className="flex items-center justify-center w-full">
+                <Image
+                  src={assets.finding}
+                  alt="Finding"
+                  width={300}
+                  height={300}
+                />
+              </div>
+              <p className="w-full mt-10 text-4xl font-bold text-blue-700">
+                Xin hãy chọn lớp học
+              </p>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -8,6 +8,7 @@ import Input from '@/components/Input';
 import MyModal from '@/components/Modal';
 import Topbar from '@/components/Topbar';
 import SubjectsTable from '@/components/subjects/subjectsTable';
+import { HiPlus } from 'react-icons/hi';
 
 const Subjects = () => {
   const [subjectData, setSubjectData] = useState({
@@ -54,17 +55,12 @@ const Subjects = () => {
   return (
     <div>
       <Topbar NamePage="Subjects" />
-      <p className="p-5 mt-5 text-3xl font-bold font-poppins">
-        Danh sách môn học{' '}
-      </p>
-      <div className="flex justify-center w-full ">
-        <Image
-          className="hover:cursor-pointer"
-          src={assets.edit}
-          width={50}
-          height={50}
-          onClick={() => setToggleModal(true)}
-        />
+      <div className="flex items-center justify-between w-full px-20 mt-20">
+        <p className="text-3xl font-bold font-poppins">Danh sách môn học </p>
+        <Button className="" onClick={() => setToggleModal(true)}>
+          <HiPlus className="mr-2" />
+          <p>Thêm môn học mới</p>
+        </Button>
       </div>
       {toggleModal ? (
         <MyModal
@@ -114,7 +110,7 @@ const Subjects = () => {
           closeBtn={false}
         />
       ) : null}
-      <div className="flex items-center justify-center px-20 mt-10">
+      <div className="flex items-center justify-center px-20 my-10">
         <SubjectsTable />
       </div>
     </div>

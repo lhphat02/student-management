@@ -41,6 +41,31 @@ export default async function addYear(req, res) {
       .query('INSERT INTO hocky (HocKy, idNam) VALUES (?, ?)', ['2', yearId]);
     const semester2Id = semester2Result[0].insertId;
 
+    // Insert into "baocaomonhoc" table for all subjectIds of the new 2 smemesters
+    const subjectIds = await db.promise().query('SELECT idMH FROM monhoc');
+    const subjectIdsArray = subjectIds[0].map((subject) => subject.idMH);
+
+    console.log('subjectIdsArray: ', subjectIdsArray);
+
+    for (let i = 0; i < subjectIdsArray.length; i++) {
+      await db
+        .promise()
+        .query('INSERT INTO baocaomonhoc (idMH, idHocKy) VALUES (?, ?)', [
+          subjectIdsArray[i],
+          semester1Id,
+        ]);
+
+      console.log('Insert into "baocaomonhoc" table for semester 1: DONE');
+      await db
+        .promise()
+        .query('INSERT INTO baocaomonhoc (idMH, idHocKy) VALUES (?, ?)', [
+          subjectIdsArray[i],
+          semester2Id,
+        ]);
+
+      console.log('Insert into "baocaomonhoc" table for semester 2: DONE');
+    }
+
     res.status(201).json({ yearId, semester1Id, semester2Id });
     console.log('New study year added successfully');
   } catch (error) {
