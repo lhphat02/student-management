@@ -1,11 +1,11 @@
-import db from "./db";
+import db from './db';
 
 export default async function handler(req, res) {
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     const { idLop, idMH } = req.query;
 
     if (!idLop || !idMH) {
-      res.status(400).json({ message: "Missing required parameters" });
+      res.status(400).json({ message: 'Missing required parameters' });
       return;
     }
 
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       const studentsResult = await db.promise().query(
         `SELECT hl.idHS, h.HoTen, l.TenLop, kqhm.DiemTBMon, ct1.Diem AS DiemHS1, ct2.Diem AS DiemHS2, l.idLop, kqhm.idMH
         FROM hocsinh_lop hl
-        JOIN hocsinh h ON hl.idHS = h.idHS
+        LEFT JOIN hocsinh h ON hl.idHS = h.idHS
         JOIN lop l ON hl.idLop = l.idLop
         LEFT JOIN ketquahocmon kqhm ON hl.idQTHoc = kqhm.idQTHoc
         LEFT JOIN ct_hocmon ct1 ON kqhm.idQTHoc = ct1.idQTHoc AND kqhm.idMH = ct1.idMH AND ct1.idLHKT = 1
@@ -36,9 +36,9 @@ export default async function handler(req, res) {
       res.status(200).json(students);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Error retrieving results" });
+      res.status(500).json({ message: 'Error retrieving results' });
     }
   } else {
-    res.status(405).json({ message: "Method Not Allowed" });
+    res.status(405).json({ message: 'Method Not Allowed' });
   }
 }

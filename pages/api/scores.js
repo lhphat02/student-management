@@ -100,6 +100,23 @@ export default async (req, res) => {
 
       console.log('Update ketquahocmon: DONE. End task. \n');
       console.log('GPA:', calculatedAvgScore, '\n');
+
+      // Calculate DiemTBHK and update hocsinh_lop table
+      console.log('Calculating DiemTBHK... \n');
+
+      const calculateGPAQuery = `
+         UPDATE hocsinh_lop hl
+         SET DiemTBHK = (
+           SELECT AVG(DiemTBMon)
+           FROM ketquahocmon k
+           WHERE k.idQTHoc = hl.idQTHoc
+         )
+         WHERE hl.idQTHoc = ${idQTHocValue};
+       `;
+
+      await db.promise().query(calculateGPAQuery);
+
+      console.log('Calculation of DiemTBHK: DONE. \n');
     } else {
       console.log('Both scores do not exist, end task. \n');
     }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'flowbite-react';
-import { HiSearch, HiPlus } from 'react-icons/hi';
+import { HiSearch, HiPlus, HiArrowCircleUp } from 'react-icons/hi';
 import axios from 'axios';
 
 import Input from '@/components/Input';
@@ -28,6 +28,7 @@ const Class = () => {
   const [selectedClassName, setSelectedClassName] = useState('');
 
   const [idLop, setIdLop] = useState('');
+  const [newIdLop, setNewIdLop] = useState('');
 
   const [studentData, setStudentData] = useState({
     HoTen: '',
@@ -42,6 +43,7 @@ const Class = () => {
 
   const [toggleFilterModal, setToggleFilterModal] = useState(false);
   const [toggleAddStudentModal, setToggleAddStudentModal] = useState(false);
+  const [toggleMigrate, setToggleMigrate] = useState(false);
 
   const [showTable, setShowTable] = useState(false);
   let curr_year = new Date().getFullYear();
@@ -153,9 +155,27 @@ const Class = () => {
     }
   };
 
-  console.log('students o FE', typeof students, students);
+  const migrateStudent = async () => {
+    if (!idLop || !newIdLop) return;
+
+    try {
+      const response = await axios.post('/api/migrateStudent', {
+        currentIdLop: idLop,
+        newIdLop: newIdLop,
+      });
+
+      fetchStudents();
+      setToggleMigrate(false);
+
+      console.log('Success:', response.data);
+      // window.location.reload();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   console.log('idLop', idLop);
-  console.log('studentData', studentData);
+  console.log('newIdLop', newIdLop);
 
   return (
     <>
@@ -222,6 +242,39 @@ const Class = () => {
               </div>
             }
             handleClose={() => setToggleAddStudentModal(false)}
+            closeBtn={false}
+          />
+        ) : null}
+
+        {toggleMigrate ? (
+          <MyModal
+            className="absolute "
+            header={<p className="text-2xl font-bold">Đắc Đạo Thành Tiên</p>}
+            body={
+              <>
+                <Input
+                  inputType="input"
+                  placeholder="ID Lớp mới"
+                  handleClick={(e) => setNewIdLop(e.target.value)}
+                />
+              </>
+            }
+            footer={
+              <div className="flex justify-center w-full gap-10">
+                <Button pill={false} onClick={() => migrateStudent()}>
+                  Phi Thăng
+                </Button>
+                <Button
+                  pill={false}
+                  color="gray"
+                  outline
+                  onClick={() => setToggleMigrate(false)}
+                >
+                  Hủy
+                </Button>
+              </div>
+            }
+            handleClose={() => setToggleMigrate(false)}
             closeBtn={false}
           />
         ) : null}
@@ -373,7 +426,7 @@ const Class = () => {
         </p>
         <div className="flex justify-between">
           {/* Filter of Year, Semester and ClassGroup */}
-          <div className="flex items-center w-4/5 gap-5">
+          <div className="flex items-center">
             <Button onClick={() => setToggleFilterModal(true)}>
               <HiSearch className="w-4 h-4 mr-3" />
               <p> Chọn lớp học</p>
@@ -382,10 +435,17 @@ const Class = () => {
 
           {/* Add new class button */}
           {showTable && (
-            <Button onClick={() => setToggleAddStudentModal(true)}>
-              <HiPlus className="mr-2" />
-              <p>Thêm học sinh mới</p>
-            </Button>
+            <div className="flex gap-10">
+              <Button onClick={() => setToggleMigrate(true)}>
+                <HiArrowCircleUp className="w-5 h-5 mr-2" />
+                <p>Phi Thăng</p>
+              </Button>
+
+              <Button onClick={() => setToggleAddStudentModal(true)}>
+                <HiPlus className="mr-2" />
+                <p>Thêm học sinh mới</p>
+              </Button>
+            </div>
           )}
         </div>
 
