@@ -154,7 +154,7 @@ const Class = () => {
 
   return (
     <>
-      <Topbar NamePage="Danh sách lớp học" />
+      <Topbar NamePage="Bảng điều khiển năm học" />
       <div className="flex flex-col gap-10 px-20 pb-40 mt-10">
         {/* Modal for adding new class */}
         {toggleModal ? (
@@ -186,7 +186,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => addNewClass()}>
-                  Submit
+                  Chấp nhận
                 </Button>
                 <Button
                   pill={false}
@@ -194,7 +194,7 @@ const Class = () => {
                   outline
                   onClick={() => setToggleModal(false)}
                 >
-                  Cancle
+                  Hủy
                 </Button>
               </div>
             }
@@ -220,7 +220,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => addNewYear()}>
-                  Submit
+                  Chấp nhận
                 </Button>
                 <Button
                   pill={false}
@@ -228,7 +228,7 @@ const Class = () => {
                   outline
                   onClick={() => setToggleYearModal(false)}
                 >
-                  Cancle
+                  Hủy
                 </Button>
               </div>
             }
@@ -238,7 +238,7 @@ const Class = () => {
         ) : null}
 
         {/* List of classes */}
-        <p className="text-3xl font-bold font-poppins">Danh sách lớp</p>
+        <p className="text-3xl font-bold font-poppins">Bảng điều khiển</p>
         <div className="flex justify-between">
           {/* Filter of Year, Semester and ClassGroup */}
           <div className="flex items-center w-4/5 gap-5">

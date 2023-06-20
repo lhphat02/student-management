@@ -1,7 +1,7 @@
-import Topbar from "@/components/Topbar";
-import ParameterTable from "@/components/parameter/parameterTable";
-import React, { useEffect, useState } from "react";
-import Popup from "reactjs-popup";
+import Topbar from '@/components/Topbar';
+import ParameterTable from '@/components/parameter/parameterTable';
+import React, { useEffect, useState } from 'react';
+import Popup from 'reactjs-popup';
 
 const Report = () => {
   //   const [baocaomonhoc, setBaoCaoMonHoc] = useState([]);
@@ -29,13 +29,15 @@ const Report = () => {
 
   return (
     <div>
-      <Topbar NamePage="Parameter" />
-      <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Parameter</p>
-      <div className="flex justify-center items-center mt-10 px-20">
+      <Topbar NamePage="Quy Định" />
+      <p className="px-20 mt-10 text-3xl font-bold font-poppins">
+        Điều chỉnh quy định
+      </p>
+      <div className="flex items-center justify-center px-20 mt-10">
         <ParameterTable />
       </div>
-      {/* <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Báo cáo học kỳ</p>
-         <div className="flex justify-center items-center mt-10 px-20">
+      {/* <p className="p-5 mt-5 text-3xl font-bold font-poppins">Báo cáo học kỳ</p>
+         <div className="flex items-center justify-center px-20 mt-10">
         <SemesterReportTable />
       </div> */}
     </div>
@@ -48,8 +50,8 @@ export default Report;
 
 // return (
 //   <div>
-//     <p className=" p-5 mt-5 text-3xl font-poppins font-bold">Báo cáo học kỳ</p>
-//     <div className="flex justify-center items-center mt-10 px-20">
+//     <p className="p-5 mt-5 text-3xl font-bold font-poppins">Báo cáo học kỳ</p>
+//     <div className="flex items-center justify-center px-20 mt-10">
 //       <SemesterReportTable />
 //     </div>
 //   </div>

@@ -41,7 +41,7 @@ const Subjects = () => {
 
   return (
     <div>
-      <Topbar NamePage="Subjects" />
+      <Topbar NamePage="Danh sách môn học" />
       <div className="flex items-center justify-between w-full px-20 mt-20">
         <p className="text-3xl font-bold font-poppins">Danh sách môn học </p>
         <Button className="" onClick={() => setToggleModal(true)}>
@@ -81,7 +81,7 @@ const Subjects = () => {
           footer={
             <div className="flex justify-center w-full gap-10">
               <Button pill={false} onClick={() => addNewSubject()}>
-                Submit
+                Chấp nhận
               </Button>
               <Button
                 pill={false}
@@ -89,7 +89,7 @@ const Subjects = () => {
                 outline
                 onClick={() => setToggleModal(false)}
               >
-                Cancle
+                Hủy
               </Button>
             </div>
           }

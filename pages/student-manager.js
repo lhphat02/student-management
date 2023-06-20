@@ -179,7 +179,7 @@ const Class = () => {
 
   return (
     <>
-      <Topbar NamePage="Danh sách học sinh" />
+      <Topbar NamePage="Danh sách lớp" />
       <div className="flex flex-col gap-10 px-20 pb-40 mt-10">
         {/* Modal for adding new class */}
         {toggleAddStudentModal ? (
@@ -229,7 +229,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => addNewStudent()}>
-                  Submit
+                  Chấp nhận
                 </Button>
                 <Button
                   pill={false}
@@ -237,7 +237,7 @@ const Class = () => {
                   outline
                   onClick={() => setToggleAddStudentModal(false)}
                 >
-                  Cancle
+                  Hủy
                 </Button>
               </div>
             }
@@ -249,7 +249,7 @@ const Class = () => {
         {toggleMigrate ? (
           <MyModal
             className="absolute "
-            header={<p className="text-2xl font-bold">Đắc Đạo Thành Tiên</p>}
+            header={<p className="text-2xl font-bold">Chuyển lớp</p>}
             body={
               <>
                 <Input
@@ -262,7 +262,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => migrateStudent()}>
-                  Phi Thăng
+                  Chấp nhận
                 </Button>
                 <Button
                   pill={false}
@@ -406,7 +406,7 @@ const Class = () => {
                     setShowTable(true);
                   }}
                 >
-                  Confirm
+                  Chấp nhận
                 </Button>
               </div>
             }
@@ -417,7 +417,7 @@ const Class = () => {
 
         {/* List of classes */}
         <p className="text-3xl font-bold font-poppins">
-          Danh sách học sinh{' '}
+          Danh sách lớp{' '}
           {selectedClass && (
             <span className="text-4xl text-blue-700">
               lớp {selectedClassName}
@@ -438,7 +438,7 @@ const Class = () => {
             <div className="flex gap-10">
               <Button onClick={() => setToggleMigrate(true)}>
                 <HiArrowCircleUp className="w-5 h-5 mr-2" />
-                <p>Phi Thăng</p>
+                <p>Chuyển lớp</p>
               </Button>
 
               <Button onClick={() => setToggleAddStudentModal(true)}>

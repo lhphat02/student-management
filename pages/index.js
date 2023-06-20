@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="min-h-screen ">
       <div>
-        <Topbar NamePage="Dashboard" />
+        <Topbar NamePage="Trang chủ" />
 
         {/* <MyCarousel /> */}
 
@@ -37,7 +37,7 @@ export default function Home() {
                 </div>
                 <div class="px-2">
                   <p class="text-sm py-4 text-gray-600 dark:text-gray-200 ">
-                    Mô tả cái gì đó
+                    Tra cứu danh sách thông tin các học sinh của các lớp
                   </p>
                 </div>
               </a>
@@ -58,7 +58,7 @@ export default function Home() {
                 </div>
                 <div class="px-2">
                   <p class="text-sm py-4 text-gray-600 dark:text-gray-200 ">
-                    Mô tả cái gì đó
+                    Tra cứu thông tin danh sách lớp, tạo năm học mới
                   </p>
                 </div>
               </a>
@@ -81,7 +81,8 @@ export default function Home() {
                 </div>
                 <div class="px-2">
                   <p class="text-sm py-4 text-gray-600 dark:text-gray-200 ">
-                    Mô tả cái gì đó
+                    Các báo cáo tổng kết cuối kỳ, báo cáo tổng kết môn học học
+                    kỳ
                   </p>
                 </div>
               </a>
@@ -90,19 +91,19 @@ export default function Home() {
               aria-label="card 4"
               class="lg:w-1/3 lg:mr-7 lg:mb-0 mb-7 bg-white dark:bg-gray-800  p-6 shadow rounded"
             >
-              <a href="/report">
+              <a href="/grade">
                 <div class="flex items-center border-b border-gray-200 dark:border-gray-700  pb-6">
                   <div class="flex items-start justify-between w-full">
                     <div class="pl-3 w-full">
                       <p class="text-xl font-medium text-gray-800 dark:text-white text-center">
-                        Tổng kết cuối kỳ
+                        Bảng điểm môn học
                       </p>
                     </div>
                   </div>
                 </div>
                 <div class="px-2">
                   <p class="text-sm py-4 text-gray-600 dark:text-gray-200 ">
-                    Mô tả cái gì đó
+                    Tra cứu và nhập bảng điểm môn học học sinh
                   </p>
                 </div>
               </a>

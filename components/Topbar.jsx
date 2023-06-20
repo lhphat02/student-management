@@ -23,13 +23,13 @@ const Topbar = ({ NamePage }) => {
         </Link>
       </div>
 
-      <Link href="/profile">
+      <Link href="/">
         <div className="flex flex-row justify-center p-1 cursor-pointer item-center hover:bg-slate-200 rounded-xl">
-          <Image src={assets.user} alt="user" />
+          <Image src={assets.profile} alt="user" width={40} height={20} />
 
           <div className="ml-4">
             <p className="mt-1 text-lg font-medium font-poppins">
-              Welcome, Teacher
+              Chào buổi sáng
             </p>
             {/* <p className='font-mono font-medium'>Teacher</p> */}
           </div>

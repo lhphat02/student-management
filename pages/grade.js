@@ -311,7 +311,7 @@ const Class = () => {
                   setShowTable(true);
                 }}
               >
-                Confirm
+                Chấp nhận
               </Button>
             </div>
           }

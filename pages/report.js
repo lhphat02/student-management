@@ -223,7 +223,7 @@ const Class = () => {
 
   return (
     <>
-      <Topbar NamePage="Danh sách bảng điểm học sinh" />
+      <Topbar NamePage="Báo cáo tổng kết" />
 
       {toggleFilterModal ? (
         <MyModal
@@ -315,7 +315,7 @@ const Class = () => {
                   setShowTable(true);
                 }}
               >
-                Confirm
+                Chấp nhận
               </Button>
             </div>
           }
