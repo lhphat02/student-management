@@ -133,7 +133,10 @@ const Class = () => {
   const addNewStudent = async () => {
     const { HoTen, GioiTinh, NgaySinh, DiaChi, Email } = studentData;
 
-    if (!HoTen || !GioiTinh || !NgaySinh || !DiaChi || !Email || !idLop) return;
+    if (!HoTen || !GioiTinh || !NgaySinh || !DiaChi || !Email || !idLop) {
+      alert('Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
 
     try {
       const response = await axios.post('/api/addStudent', {
@@ -149,9 +152,17 @@ const Class = () => {
       setToggleAddStudentModal(false);
 
       console.log('Success:', response.data);
-      // window.location.reload();
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.response.data);
+      if (error.response.data === 'Invalid student age.') {
+        alert('Tuổi học sinh phải từ 15 đến 20 tuổi');
+      } else if (
+        error.response.data === 'Cannot add this student to this class'
+      ) {
+        alert('Lớp đã đạt số lượng học sinh tối đa');
+      } else if (error.response.data === 'Student already exists') {
+        alert('Học sinh đã tồn tại');
+      }
     }
   };
 

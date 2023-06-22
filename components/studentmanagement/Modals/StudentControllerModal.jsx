@@ -150,8 +150,10 @@ const StudentControllerModal = ({
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/deleteStudent?idHS=${idHS}&idLop=${idLop}`);
-      console.log('Student deleted successfully');
+      alert('Xóa học sinh thành công');
+      window.location.reload();
     } catch (error) {
+      alert('Học sinh không thể xóa');
       console.error(error);
     }
   };

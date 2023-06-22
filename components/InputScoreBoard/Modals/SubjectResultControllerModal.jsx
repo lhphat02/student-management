@@ -140,11 +140,28 @@ const SubjectResultControllerModal = ({
   }, []);
 
   const addScore = async () => {
+    if (!selectedSubject) {
+      alert('Vui lòng chọn môn học');
+      return;
+    }
+
+    if (!newScoreData.LHKT) {
+      alert('Vui lòng chọn loại hình kiểm tra');
+      return;
+    }
+
+    if (!newScoreData.Diem) {
+      alert('Vui lòng nhập điểm');
+      return;
+    }
+
     try {
       const response = await axios.post('/api/scores', newScoreData);
       console.log(response.data);
+      close();
     } catch (error) {
       console.error(error);
+      close();
     }
   };
 
@@ -230,13 +247,12 @@ const SubjectResultControllerModal = ({
             pill={false}
             onClick={() => {
               addScore();
-              close();
             }}
           >
             Confirm
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
-            Cancle
+            Cancel
           </Button>
         </div>
       }

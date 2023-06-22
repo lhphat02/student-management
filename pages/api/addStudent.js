@@ -32,7 +32,7 @@ export default async function handler(req, res) {
       res.status(201).json({ message: 'Student added successfully' });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: 'Error adding student' });
+      res.status(500).send(error.sqlMessage || 'Error adding student');
     }
   } else {
     res.status(405).json({ message: 'Method Not Allowed' });

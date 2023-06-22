@@ -63,7 +63,7 @@ export default async function addClass(req, res) {
     res.status(200).json({ message: 'Class added successfully' });
     console.log('Class added successfully');
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred' });
+    res.status(500).send(error.message);
     console.log(error);
   }
 }

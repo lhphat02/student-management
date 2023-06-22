@@ -1,11 +1,23 @@
 import { React, useRef } from 'react';
 import { HiX } from 'react-icons/hi';
 
-const MyModal = ({ header, body, footer, handleClose, closeBtn, height }) => {
+const MyModal = ({
+  header,
+  body,
+  footer,
+  handleClose,
+  closeBtn,
+  height,
+  clickOutSide,
+}) => {
   const modalRef = useRef(null);
 
   const handleClickOutside = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
+    if (
+      modalRef.current &&
+      !modalRef.current.contains(event.target) &&
+      !clickOutSide
+    ) {
       handleClose();
     }
   };

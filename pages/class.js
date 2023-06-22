@@ -104,7 +104,10 @@ const Class = () => {
   const addNewYear = async () => {
     const { Namhoc } = yearData;
 
-    if (!Namhoc) return;
+    if (!Namhoc) {
+      alert('Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
 
     try {
       const response = await axios.post('/api/addYear', {
@@ -121,7 +124,7 @@ const Class = () => {
     const { TenLop, SiSo, idKhoiLop, idHocKy } = classData;
 
     if (!TenLop || !idKhoiLop || !idHocKy) {
-      alert('Missing required information! Please try again.');
+      alert('Vui lòng nhập đầy đủ thông tin');
       return;
     }
 
@@ -135,7 +138,13 @@ const Class = () => {
       console.log(response.data);
       window.location.reload();
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.response.data);
+      if (
+        error.response.data ===
+        'This class is already available now. Please try again.'
+      ) {
+        alert('Lớp học đã tồn tại');
+      }
     }
   };
 

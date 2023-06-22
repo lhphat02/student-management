@@ -24,7 +24,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
         newClassData // Pass the new class data to the API
       );
 
-      console.log('Class updated successfully');
+      alert('Cập nhật thành công');
       window.location.reload();
       // Handle the response as per your requirement
     } catch (error) {
@@ -34,12 +34,13 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/class/${idLop}`);
-      console.log('Class deleted successfully');
+      await axios.delete(`/api/deleteClass?idLop=${idLop}`);
+      alert('Xóa lớp thành công');
       window.location.reload();
       // Handle any further actions after deleting the subject
     } catch (error) {
       console.error(error);
+      alert('Không thể xóa lớp này');
       // Handle error cases
     }
   };
