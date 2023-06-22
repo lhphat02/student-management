@@ -52,7 +52,7 @@ const Subjects = () => {
       {toggleModal ? (
         <MyModal
           className="absolute "
-          header={<p className="text-2xl font-bold">Add New Subject</p>}
+          header={<p className="text-2xl font-bold">Thêm môn học mới</p>}
           body={
             <div className="flex flex-col gap-5">
               <Input

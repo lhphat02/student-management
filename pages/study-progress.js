@@ -171,7 +171,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => addNewClass()}>
-                  Submit
+                  Chấp nhận
                 </Button>
                 <Button
                   pill={false}
@@ -179,7 +179,7 @@ const Class = () => {
                   outline
                   onClick={() => setToggleModal(false)}
                 >
-                  Cancle
+                  Hủy
                 </Button>
               </div>
             }

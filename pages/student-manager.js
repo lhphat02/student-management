@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'flowbite-react';
-import { HiSearch, HiPlus, HiArrowCircleUp } from 'react-icons/hi';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button } from "flowbite-react";
+import { HiSearch, HiPlus, HiArrowCircleUp } from "react-icons/hi";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
-import Topbar from '@/components/Topbar';
-import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
-import assets from '@/assets';
-import Image from 'next/image';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
+import Topbar from "@/components/Topbar";
+import StudentmanageTable from "@/components/studentmanagement/studentmanageTable";
+import assets from "@/assets";
+import Image from "next/image";
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
-  const [idLop, setIdLop] = useState('');
-  const [newIdLop, setNewIdLop] = useState('');
+  const [idLop, setIdLop] = useState("");
+  const [newIdLop, setNewIdLop] = useState("");
 
   const [studentData, setStudentData] = useState({
-    HoTen: '',
-    GioiTinh: '',
-    NgaySinh: '',
-    DiaChi: '',
-    Email: '',
+    HoTen: "",
+    GioiTinh: "",
+    NgaySinh: "",
+    DiaChi: "",
+    Email: "",
     idLop: idLop,
   });
 
@@ -52,7 +52,7 @@ const Class = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -136,7 +136,7 @@ const Class = () => {
     if (!HoTen || !GioiTinh || !NgaySinh || !DiaChi || !Email || !idLop) return;
 
     try {
-      const response = await axios.post('/api/addStudent', {
+      const response = await axios.post("/api/addStudent", {
         HoTen: HoTen,
         GioiTinh: GioiTinh,
         NgaySinh: NgaySinh,
@@ -148,10 +148,10 @@ const Class = () => {
       fetchStudents();
       setToggleAddStudentModal(false);
 
-      console.log('Success:', response.data);
+      console.log("Success:", response.data);
       // window.location.reload();
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -159,7 +159,7 @@ const Class = () => {
     if (!idLop || !newIdLop) return;
 
     try {
-      const response = await axios.post('/api/migrateStudent', {
+      const response = await axios.post("/api/migrateStudent", {
         currentIdLop: idLop,
         newIdLop: newIdLop,
       });
@@ -167,15 +167,15 @@ const Class = () => {
       fetchStudents();
       setToggleMigrate(false);
 
-      console.log('Success:', response.data);
+      console.log("Success:", response.data);
       // window.location.reload();
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
-  console.log('idLop', idLop);
-  console.log('newIdLop', newIdLop);
+  console.log("idLop", idLop);
+  console.log("newIdLop", newIdLop);
 
   return (
     <>
@@ -185,7 +185,7 @@ const Class = () => {
         {toggleAddStudentModal ? (
           <MyModal
             className="absolute "
-            header={<p className="text-2xl font-bold">Add New Student</p>}
+            header={<p className="text-2xl font-bold">Thêm học sinh mới</p>}
             body={
               <>
                 <Input
@@ -417,7 +417,7 @@ const Class = () => {
 
         {/* List of classes */}
         <p className="text-3xl font-bold font-poppins">
-          Danh sách lớp{' '}
+          Danh sách lớp{" "}
           {selectedClass && (
             <span className="text-4xl text-blue-700">
               lớp {selectedClassName}

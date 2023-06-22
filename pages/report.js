@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Tooltip } from 'flowbite-react';
+import React, { useEffect, useState } from "react";
+import { Button, Tooltip } from "flowbite-react";
 import {
   HiSearch,
   HiOutlinePencilAlt,
@@ -7,40 +7,40 @@ import {
   HiDocumentReport,
   HiOutlineDocumentReport,
   HiFolder,
-} from 'react-icons/hi';
-import axios from 'axios';
+} from "react-icons/hi";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
-import Topbar from '@/components/Topbar';
-import ClassTable from '@/components/class/classTable';
-import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
-import InputScoreBoardTable from '@/components/InputScoreBoard/year-dashboard/InputScoreBoardTable';
-import Image from 'next/image';
-import assets from '@/assets';
-import SemesterReportTable from '@/components/report/semesterreportTable';
-import SubjectsReportTable from '@/components/report/SubjectReportTable';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
+import Topbar from "@/components/Topbar";
+import ClassTable from "@/components/class/classTable";
+import StudentmanageTable from "@/components/studentmanagement/studentmanageTable";
+import InputScoreBoardTable from "@/components/InputScoreBoard/year-dashboard/InputScoreBoardTable";
+import Image from "next/image";
+import assets from "@/assets";
+import SemesterReportTable from "@/components/report/semesterreportTable";
+import SubjectsReportTable from "@/components/report/SubjectReportTable";
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
   const [subjects, setSubjects] = useState([]);
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedSubjectName, setSelectedSubjectName] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSubjectName, setSelectedSubjectName] = useState("");
 
   const [result, setResult] = useState([]);
 
@@ -50,10 +50,10 @@ const Class = () => {
   const [toggleFilterModal, setToggleFilterModal] = useState(false);
 
   const [classData, setClassData] = useState({
-    TenLop: '',
+    TenLop: "",
     SiSo: null,
-    idKhoiLop: '',
-    idHocKy: '',
+    idKhoiLop: "",
+    idHocKy: "",
   });
 
   const [students, setStudents] = useState([]);
@@ -61,7 +61,7 @@ const Class = () => {
   const [subjectsReportData, setSubjectsReportData] = useState([]);
   const [showTable, setShowTable] = useState(false);
 
-  const [idLop, setIdLop] = useState('');
+  const [idLop, setIdLop] = useState("");
 
   let curr_year = new Date().getFullYear();
 
@@ -69,7 +69,7 @@ const Class = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -219,7 +219,7 @@ const Class = () => {
     }
   }, [selectedSemester, selectedSubject]);
 
-  console.log('subjectsReportData at FE: ', subjectsReportData);
+  console.log("subjectsReportData at FE: ", subjectsReportData);
 
   return (
     <>
@@ -327,7 +327,7 @@ const Class = () => {
       <div className="pb-5 mx-20 my-5 border-b-2">
         <Button.Group>
           <Button
-            color={`${toggleSemesterReport ? 'info' : 'gray'}`}
+            color={`${toggleSemesterReport ? "info" : "gray"}`}
             onClick={() => {
               if (toggleSemesterReport === false) {
                 setToggleSemesterReport(!toggleSemesterReport);
@@ -339,7 +339,7 @@ const Class = () => {
             <p>Báo cáo học kỳ</p>
           </Button>
           <Button
-            color={`${toggleSubjectReport ? 'info' : 'gray'}`}
+            color={`${toggleSubjectReport ? "info" : "gray"}`}
             onClick={() => {
               if (toggleSubjectReport === false) {
                 setToggleSemesterReport(!toggleSemesterReport);
@@ -361,7 +361,7 @@ const Class = () => {
               Báo cáo học kỳ
               {selectedYearName && selectedSemesterName && (
                 <span className="text-3xl font-semibold text-blue-700">
-                  {' '}
+                  {" "}
                   {selectedSemesterName} - {selectedYearName}
                 </span>
               )}
@@ -430,13 +430,13 @@ const Class = () => {
           <div className="flex flex-col gap-10">
             {/* Search Score UI */}
             <div className="text-3xl font-bold font-poppins">
-              Báo cáo môn học{' '}
+              Báo cáo môn học{" "}
               <span className="text-blue-700">{selectedSubjectName}</span>
               {selectedSemester && (
                 <div className="flex w-full mt-10">
                   <p>Học Kỳ</p>
                   <span className="ml-3 text-3xl font-semibold text-blue-700">
-                    {' '}
+                    {" "}
                     {selectedSemesterName} - {selectedYearName}
                   </span>
                 </div>
@@ -466,7 +466,7 @@ const Class = () => {
                     />
                   </div>
                   <p className="w-full mt-10 text-4xl font-bold text-blue-700">
-                    Xin hãy học kỳ và môn học
+                    Xin hãy chọn học kỳ và môn học
                   </p>
                 </div>
               </>
