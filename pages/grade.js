@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Tooltip } from 'flowbite-react';
-import { HiSearch, HiOutlinePencilAlt, HiRefresh } from 'react-icons/hi';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button, Tooltip } from "flowbite-react";
+import { HiSearch, HiOutlinePencilAlt, HiRefresh } from "react-icons/hi";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
-import Topbar from '@/components/Topbar';
-import ClassTable from '@/components/class/classTable';
-import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
-import InputScoreBoardTable from '@/components/InputScoreBoard/year-dashboard/InputScoreBoardTable';
-import Image from 'next/image';
-import assets from '@/assets';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
+import Topbar from "@/components/Topbar";
+import ClassTable from "@/components/class/classTable";
+import StudentmanageTable from "@/components/studentmanagement/studentmanageTable";
+import InputScoreBoardTable from "@/components/InputScoreBoard/year-dashboard/InputScoreBoardTable";
+import Image from "next/image";
+import assets from "@/assets";
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
   const [subjects, setSubjects] = useState([]);
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedSubjectName, setSelectedSubjectName] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSubjectName, setSelectedSubjectName] = useState("");
 
   const [result, setResult] = useState([]);
 
@@ -40,16 +40,16 @@ const Class = () => {
   const [toggleFilterModal, setToggleFilterModal] = useState(false);
 
   const [classData, setClassData] = useState({
-    TenLop: '',
+    TenLop: "",
     SiSo: null,
-    idKhoiLop: '',
-    idHocKy: '',
+    idKhoiLop: "",
+    idHocKy: "",
   });
 
   const [students, setStudents] = useState([]);
   const [showTable, setShowTable] = useState(false);
 
-  const [idLop, setIdLop] = useState('');
+  const [idLop, setIdLop] = useState("");
 
   let curr_year = new Date().getFullYear();
 
@@ -57,7 +57,7 @@ const Class = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -171,17 +171,19 @@ const Class = () => {
 
   return (
     <>
-      <Topbar NamePage="Danh sách bảng điểm học sinh" />
+      <Topbar NamePage="Danh Sách Bảng Điểm Học Sinh" />
 
       {toggleFilterModal ? (
         <MyModal
           className="absolute "
-          header={<p className="text-2xl font-bold">Bộ lọc</p>}
+          header={<p className="text-2xl font-bold">Bộ Lọc</p>}
           body={
             <div className="flex flex-col w-full">
               <div className="flex flex-row justify-between px-10 mb-5">
                 <div>
-                  <p className="py-5 text-lg font-semibold">Năm học</p>
+                  <p className="py-5 text-lg font-semibold">
+                    Năm Học <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <select
                     className="px-2 py-1 border-2 border-gray-300 rounded-md"
                     value={selectedYear}
@@ -194,7 +196,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn năm học
+                      Chọn Năm Học
                     </option>
                     {years.map((year) => (
                       <option key={year.idNam} value={year.idNam}>
@@ -205,7 +207,9 @@ const Class = () => {
                 </div>
 
                 <div>
-                  <p className="py-5 text-lg font-semibold">Học kỳ</p>
+                  <p className="py-5 text-lg font-semibold">
+                    Học Kỳ <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <select
                     className="px-2 py-1 border-2 border-gray-300 rounded-md"
                     value={selectedSemester}
@@ -218,7 +222,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn học kỳ
+                      Chọn Học Kỳ
                     </option>
                     {semesters.map((semester) => (
                       <option key={semester.idHocKy} value={semester.idHocKy}>
@@ -229,7 +233,9 @@ const Class = () => {
                 </div>
 
                 <div>
-                  <p className="py-5 text-lg font-semibold">Khối lớp</p>
+                  <p className="py-5 text-lg font-semibold">
+                    Khối Lớp <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <select
                     className="px-2 py-1 border-2 border-gray-300 rounded-md"
                     value={selectedClassGroup}
@@ -243,7 +249,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn khối lớp
+                      Chọn Khối Lớp
                     </option>
                     {classGroups.map((classGroup) => (
                       <option
@@ -258,7 +264,9 @@ const Class = () => {
               </div>
 
               <div className="flex items-center justify-center w-full p-3 border-t-2">
-                <p className="py-5 text-lg font-semibold">Lớp học :</p>
+                <p className="py-5 text-lg font-semibold">
+                  Lớp Học <span className="text-red-500 text-xl">*</span>:
+                </p>
 
                 <select
                   className="px-2 py-1 mx-5 border-2 border-gray-300 rounded-md"
@@ -269,7 +277,7 @@ const Class = () => {
                   }}
                 >
                   <option value="" disabled selected hidden>
-                    Chọn lớp học
+                    Chọn Lớp Học
                   </option>
                   {classes.map((classItem) => (
                     <option key={classItem.idLop} value={classItem.idLop}>
@@ -278,7 +286,9 @@ const Class = () => {
                   ))}
                 </select>
 
-                <p className="py-5 mr-5 text-lg font-semibold">Môn Học: </p>
+                <p className="py-5 mr-5 text-lg font-semibold">
+                  Môn Học <span className="text-red-500 text-xl">*</span>:{" "}
+                </p>
                 <select
                   className="px-2 py-1 border-2 border-gray-300 rounded-md"
                   value={selectedSubject}
@@ -291,7 +301,7 @@ const Class = () => {
                   }}
                 >
                   <option value="" disabled selected hidden>
-                    Chọn môn học
+                    Chọn Môn Học
                   </option>
                   {subjects.map((subject) => (
                     <option key={subject.idMH} value={subject.idMH}>
@@ -311,7 +321,7 @@ const Class = () => {
                   setShowTable(true);
                 }}
               >
-                Chấp nhận
+                Chấp Nhận
               </Button>
             </div>
           }
@@ -354,12 +364,12 @@ const Class = () => {
           <div className="flex flex-col gap-10">
             {/* Search Score UI */}
             <p className="text-3xl font-bold font-poppins">
-              Tra cứu bảng điểm môn học học sinh
+              Tra Cứu Bảng Điểm Môn Học Học Sinh
             </p>
             <div className="flex justify-between">
               {/* Filter of Year, Semester and ClassGroup */}
               <div className="flex items-center w-4/5 gap-5">
-                <p className="text-lg font-semibold">Bộ lọc:</p>
+                <p className="text-lg font-semibold">Bộ Lọc:</p>
 
                 <select
                   className="px-2 py-1 border-2 border-gray-300 rounded-md"
@@ -373,7 +383,7 @@ const Class = () => {
                   }}
                 >
                   <option value="" disabled selected hidden>
-                    Chọn năm học
+                    Chọn Năm Học
                   </option>
                   {years.map((year) => (
                     <option key={year.idNam} value={year.idNam}>
@@ -399,7 +409,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn học kỳ
+                      Chọn Học Kỳ
                     </option>
                     {semesters.map((semester) => (
                       <option key={semester.idHocKy} value={semester.idHocKy}>
@@ -427,7 +437,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn khối lớp
+                      Chọn Khối Lớp
                     </option>
                     {classGroups.map((classGroup) => (
                       <option
@@ -451,14 +461,14 @@ const Class = () => {
           <div className="flex flex-col gap-10">
             {/* Search Score UI */}
             <p className="text-3xl font-bold font-poppins">
-              Bảng điểm môn học{' '}
+              Bảng Điểm Môn Học{" "}
               <span className="text-blue-700">{selectedSubjectName}</span>
             </p>
             <div className="flex justify-between">
               <div className="flex items-center w-4/5 gap-5">
                 <Button onClick={() => setToggleFilterModal(true)}>
                   <HiSearch className="w-4 h-4 mr-3" />
-                  <p> Bộ lọc</p>
+                  <p> Bộ Lọc</p>
                 </Button>
               </div>
               {showTable ? (
@@ -468,7 +478,7 @@ const Class = () => {
                   }}
                 >
                   <HiRefresh className="w-4 h-4 mr-3" />
-                  <p>Làm mới</p>
+                  <p>Làm Mới</p>
                 </Button>
               ) : null}
             </div>
@@ -488,7 +498,7 @@ const Class = () => {
                     />
                   </div>
                   <p className="w-full mt-10 text-4xl font-bold text-blue-700">
-                    Xin hãy chọn lớp và môn học
+                    Xin Hãy Chọn Lớp Và Môn Học
                   </p>
                 </div>
               </>

@@ -5,8 +5,8 @@ import assets from "../../assets";
 import Image from "next/image";
 
 export const parameterColumn = [
-  { Header: "Parameter Name", accessor: "TenThamSo" },
-  { Header: "Value", accessor: "GiaTri" },
+  { Header: "Tên quy định", accessor: "ChuThich" },
+  { Header: "Giá trị", accessor: "GiaTri" },
   {
     Header: "Update",
     Cell: ({ row }) => (

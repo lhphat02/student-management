@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'flowbite-react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button } from "flowbite-react";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
 
 const StudentControllerModal = ({
   close,
@@ -16,20 +16,20 @@ const StudentControllerModal = ({
   idLop,
 }) => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
   const [curStudentData, setCurStudentData] = useState({
     HoTen: HoTen,
@@ -53,7 +53,7 @@ const StudentControllerModal = ({
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -139,60 +139,60 @@ const StudentControllerModal = ({
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/deleteStudent?idHS=${idHS}&idLop=${idLop}`);
-      alert('Xóa học sinh thành công');
+      alert("Xóa học sinh thành công");
       window.location.reload();
     } catch (error) {
-      alert('Học sinh không thể xóa');
+      alert("Học sinh không thể xóa");
       console.error(error);
     }
   };
 
-  console.log('curStudentData: ', curStudentData);
-  console.log('newStudentData: ', newStudentData);
-  console.log('idLop:', idLop);
-  console.log('idHS:', idHS);
+  console.log("curStudentData: ", curStudentData);
+  console.log("newStudentData: ", newStudentData);
+  console.log("idLop:", idLop);
+  console.log("idHS:", idHS);
 
   return (
     <MyModal
       className="absolute "
       header={
         <p className="text-2xl font-bold">
-          Update <span className="text-blue-600 ">{HoTen}</span> 's Information
+          Cập Nhật Thông Tin Của <span className="text-blue-600 ">{HoTen}</span>
         </p>
       }
       body={
         <>
           <Input
             inputType="input"
-            placeholder="Full Name"
+            placeholder="Họ Và Tên"
             handleClick={(e) =>
               setNewStudentData({ ...newStudentData, HoTen: e.target.value })
             }
           />
           <Input
             inputType="select"
-            placeholder="Gender"
+            placeholder="Giới Tính"
             handleClick={(e) =>
               setNewStudentData({ ...newStudentData, GioiTinh: e.target.value })
             }
           />
           <Input
             inputType="date"
-            placeholder="Birthday"
+            placeholder="Ngày Sinh"
             handleClick={(e) =>
               setNewStudentData({ ...newStudentData, NgaySinh: e.target.value })
             }
           />
           <Input
             inputType="input"
-            placeholder="Address"
+            placeholder="Địa Chỉ"
             handleClick={(e) =>
               setNewStudentData({ ...newStudentData, DiaChi: e.target.value })
             }
           />
           <Input
             inputType="input"
-            title="Name"
+            // title="Name"
             placeholder="Email"
             handleClick={(e) =>
               setNewStudentData({ ...newStudentData, Email: e.target.value })
@@ -211,7 +211,7 @@ const StudentControllerModal = ({
                   setSelectedYearName(selectedOptionData.Namhoc);
                 }}
               >
-                <option value="">Chọn năm học</option>
+                <option value="">Chọn Năm Học</option>
                 {years.map((year) => (
                   <option key={year.idNam} value={year.idNam}>
                     {year.Namhoc}
@@ -230,7 +230,7 @@ const StudentControllerModal = ({
                   setSelectedSemesterName(selectedOptionData.HocKy);
                 }}
               >
-                <option value="">Chọn học kỳ</option>
+                <option value="">Chọn Học Kỳ</option>
                 {semesters.map((semester) => (
                   <option key={semester.idHocKy} value={semester.idHocKy}>
                     {semester.HocKy}
@@ -249,7 +249,7 @@ const StudentControllerModal = ({
                   setSelectedClassGroupName(selectedOptionData.TenKhoiLop);
                 }}
               >
-                <option value="">Chọn khối lớp</option>
+                <option value="">Chọn Khối Lớp</option>
                 {classGroups.map((classGroup) => (
                   <option
                     key={classGroup.idKhoiLop}
@@ -278,7 +278,7 @@ const StudentControllerModal = ({
                   setSelectedClassName(selectedOptionData.TenLop);
                 }}
               >
-                <option value="">Chọn lớp học</option>
+                <option value="">Chọn Lớp Học</option>
                 {classes.map((classItem) => (
                   <option key={classItem.idLop} value={classItem.idLop}>
                     {classItem.TenLop}
@@ -292,24 +292,24 @@ const StudentControllerModal = ({
       footer={
         <div className="flex justify-center w-full gap-10">
           <Button pill={false} onClick={() => handleEdit()}>
-            Update
+            Cập Nhật
           </Button>
           <Button pill={false} color="red" onClick={() => handleDelete()}>
-            Delete Student
+            Xóa Học Sinh
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
-            Cancle
+            Hủy
           </Button>
         </div>
       }
       handleClose={() => {
         close();
         setNewStudentData({
-          HoTen: '',
-          GioiTinh: '',
-          NgaySinh: '',
-          DiaChi: '',
-          Email: '',
+          HoTen: "",
+          GioiTinh: "",
+          NgaySinh: "",
+          DiaChi: "",
+          Email: "",
         });
       }}
       closeBtn={false}

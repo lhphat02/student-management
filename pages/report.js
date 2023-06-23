@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Tooltip } from 'flowbite-react';
+import React, { useEffect, useState } from "react";
+import { Button, Tooltip } from "flowbite-react";
 import {
   HiSearch,
   HiOutlinePencilAlt,
@@ -7,40 +7,40 @@ import {
   HiDocumentReport,
   HiOutlineDocumentReport,
   HiFolder,
-} from 'react-icons/hi';
-import axios from 'axios';
+} from "react-icons/hi";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
-import Topbar from '@/components/Topbar';
-import ClassTable from '@/components/class/classTable';
-import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
-import InputScoreBoardTable from '@/components/InputScoreBoard/year-dashboard/InputScoreBoardTable';
-import Image from 'next/image';
-import assets from '@/assets';
-import SemesterReportTable from '@/components/report/semesterreportTable';
-import SubjectsReportTable from '@/components/report/SubjectReportTable';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
+import Topbar from "@/components/Topbar";
+import ClassTable from "@/components/class/classTable";
+import StudentmanageTable from "@/components/studentmanagement/studentmanageTable";
+import InputScoreBoardTable from "@/components/InputScoreBoard/year-dashboard/InputScoreBoardTable";
+import Image from "next/image";
+import assets from "@/assets";
+import SemesterReportTable from "@/components/report/semesterreportTable";
+import SubjectsReportTable from "@/components/report/SubjectReportTable";
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
   const [subjects, setSubjects] = useState([]);
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedSubjectName, setSelectedSubjectName] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSubjectName, setSelectedSubjectName] = useState("");
 
   const [result, setResult] = useState([]);
 
@@ -50,10 +50,10 @@ const Class = () => {
   const [toggleFilterModal, setToggleFilterModal] = useState(false);
 
   const [classData, setClassData] = useState({
-    TenLop: '',
+    TenLop: "",
     SiSo: null,
-    idKhoiLop: '',
-    idHocKy: '',
+    idKhoiLop: "",
+    idHocKy: "",
   });
 
   const [students, setStudents] = useState([]);
@@ -61,7 +61,7 @@ const Class = () => {
   const [subjectsReportData, setSubjectsReportData] = useState([]);
   const [showTable, setShowTable] = useState(false);
 
-  const [idLop, setIdLop] = useState('');
+  const [idLop, setIdLop] = useState("");
 
   let curr_year = new Date().getFullYear();
 
@@ -69,7 +69,7 @@ const Class = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -219,21 +219,23 @@ const Class = () => {
     }
   }, [selectedSemester, selectedSubject]);
 
-  console.log('subjectsReportData at FE: ', subjectsReportData);
+  console.log("subjectsReportData at FE: ", subjectsReportData);
 
   return (
     <>
-      <Topbar NamePage="Báo cáo tổng kết" />
+      <Topbar NamePage="Báo Cáo Tổng Kết" />
 
       {toggleFilterModal ? (
         <MyModal
           className="absolute "
-          header={<p className="text-2xl font-bold">Bộ lọc</p>}
+          header={<p className="text-2xl font-bold">Bộ Lọc</p>}
           body={
             <div className="flex flex-col w-full">
               <div className="flex flex-row justify-center gap-20 px-10 mb-5">
                 <div>
-                  <p className="py-5 text-lg font-semibold">Năm học</p>
+                  <p className="py-5 text-lg font-semibold">
+                    Năm Học <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <select
                     className="px-2 py-1 border-2 border-gray-300 rounded-md"
                     value={selectedYear}
@@ -246,7 +248,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn năm học
+                      Chọn Năm Học
                     </option>
                     {years.map((year) => (
                       <option key={year.idNam} value={year.idNam}>
@@ -257,7 +259,9 @@ const Class = () => {
                 </div>
 
                 <div>
-                  <p className="py-5 text-lg font-semibold">Học kỳ</p>
+                  <p className="py-5 text-lg font-semibold">
+                    Học Kỳ <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <select
                     className="px-2 py-1 border-2 border-gray-300 rounded-md"
                     value={selectedSemester}
@@ -270,7 +274,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn học kỳ
+                      Chọn Học Kỳ
                     </option>
                     {semesters.map((semester) => (
                       <option key={semester.idHocKy} value={semester.idHocKy}>
@@ -282,7 +286,9 @@ const Class = () => {
               </div>
 
               <div className="flex items-center justify-center w-full p-3 border-t-2">
-                <p className="py-5 mr-5 text-lg font-semibold">Môn Học: </p>
+                <p className="py-5 mr-5 text-lg font-semibold">
+                  Môn Học <span className="text-red-500 text-xl">*</span>:{" "}
+                </p>
                 <select
                   className="px-2 py-1 border-2 border-gray-300 rounded-md"
                   value={selectedSubject}
@@ -295,7 +301,7 @@ const Class = () => {
                   }}
                 >
                   <option value="" disabled selected hidden>
-                    Chọn môn học
+                    Chọn Môn Học
                   </option>
                   {subjects.map((subject) => (
                     <option key={subject.idMH} value={subject.idMH}>
@@ -315,7 +321,7 @@ const Class = () => {
                   setShowTable(true);
                 }}
               >
-                Chấp nhận
+                Chấp Nhận
               </Button>
             </div>
           }
@@ -327,7 +333,7 @@ const Class = () => {
       <div className="pb-5 mx-20 my-5 border-b-2">
         <Button.Group>
           <Button
-            color={`${toggleSemesterReport ? 'info' : 'gray'}`}
+            color={`${toggleSemesterReport ? "info" : "gray"}`}
             onClick={() => {
               if (toggleSemesterReport === false) {
                 setToggleSemesterReport(!toggleSemesterReport);
@@ -336,10 +342,10 @@ const Class = () => {
             }}
           >
             <HiDocumentReport className="w-4 h-4 mr-3" />
-            <p>Báo cáo học kỳ</p>
+            <p>Báo cáo Học Kỳ</p>
           </Button>
           <Button
-            color={`${toggleSubjectReport ? 'info' : 'gray'}`}
+            color={`${toggleSubjectReport ? "info" : "gray"}`}
             onClick={() => {
               if (toggleSubjectReport === false) {
                 setToggleSemesterReport(!toggleSemesterReport);
@@ -348,7 +354,7 @@ const Class = () => {
             }}
           >
             <HiFolder className="w-4 h-4 mr-3" />
-            <p>Báo cáo môn học</p>
+            <p>Báo Cáo Môn Học</p>
           </Button>
         </Button.Group>
       </div>
@@ -358,10 +364,10 @@ const Class = () => {
           <div className="flex flex-col gap-10">
             {/* Search Score UI */}
             <p className="text-3xl font-bold font-poppins">
-              Báo cáo học kỳ
+              Báo Cáo Học Kỳ
               {selectedYearName && selectedSemesterName && (
                 <span className="text-3xl font-semibold text-blue-700">
-                  {' '}
+                  {" "}
                   {selectedSemesterName} - {selectedYearName}
                 </span>
               )}
@@ -369,7 +375,7 @@ const Class = () => {
             <div className="flex justify-between">
               {/* Filter of Year, Semester and ClassGroup */}
               <div className="flex items-center w-4/5 gap-5">
-                <p className="text-lg font-semibold">Bộ lọc:</p>
+                <p className="text-lg font-semibold">Bộ Lọc:</p>
 
                 <select
                   className="px-2 py-1 border-2 border-gray-300 rounded-md"
@@ -383,7 +389,7 @@ const Class = () => {
                   }}
                 >
                   <option value="" disabled selected hidden>
-                    Chọn năm học
+                    Chọn Năm Học
                   </option>
                   {years.map((year) => (
                     <option key={year.idNam} value={year.idNam}>
@@ -409,7 +415,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn học kỳ
+                      Chọn Học Kỳ
                     </option>
                     {semesters.map((semester) => (
                       <option key={semester.idHocKy} value={semester.idHocKy}>
@@ -430,13 +436,13 @@ const Class = () => {
           <div className="flex flex-col gap-10">
             {/* Search Score UI */}
             <div className="text-3xl font-bold font-poppins">
-              Báo cáo môn học{' '}
+              Báo Cáo Môn Học{" "}
               <span className="text-blue-700">{selectedSubjectName}</span>
               {selectedSemester && (
                 <div className="flex w-full mt-10">
                   <p>Học Kỳ</p>
                   <span className="ml-3 text-3xl font-semibold text-blue-700">
-                    {' '}
+                    {" "}
                     {selectedSemesterName} - {selectedYearName}
                   </span>
                 </div>
@@ -446,7 +452,7 @@ const Class = () => {
               <div className="flex items-center w-4/5 gap-5">
                 <Button onClick={() => setToggleFilterModal(true)}>
                   <HiSearch className="w-4 h-4 mr-3" />
-                  <p> Bộ lọc</p>
+                  <p> Bộ Lọc</p>
                 </Button>
               </div>
             </div>
@@ -466,7 +472,7 @@ const Class = () => {
                     />
                   </div>
                   <p className="w-full mt-10 text-4xl font-bold text-blue-700">
-                    Xin hãy học kỳ và môn học
+                    Xin Hãy Chọn Học Kỳ Và Môn Học
                   </p>
                 </div>
               </>
