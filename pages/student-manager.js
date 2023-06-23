@@ -138,6 +138,16 @@ const Class = () => {
       return;
     }
 
+    const validateEmail = (email) => {
+      const re = /\S+@\S+\.\S+/;
+      return re.test(email);
+    };
+
+    if (!validateEmail(Email)) {
+      alert('Email không hợp lệ');
+      return;
+    }
+
     try {
       const response = await axios.post('/api/addStudent', {
         HoTen: HoTen,
@@ -168,7 +178,15 @@ const Class = () => {
   };
 
   const migrateStudent = async () => {
-    if (!idLop || !newIdLop) return;
+    if (!idLop || !newIdLop) {
+      alert('Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
+
+    if (idLop === newIdLop) {
+      alert('Vui lòng nhập id lớp mới khác lớp cũ');
+      return;
+    }
 
     try {
       const response = await axios.post('/api/migrateStudent', {
@@ -201,44 +219,68 @@ const Class = () => {
             className="absolute "
             header={<p className="text-2xl font-bold">Thêm Học Sinh Mới</p>}
             body={
-              <>
-                <Input
-                  inputType="input"
-                  placeholder="Họ Và Tên"
-                  handleClick={(e) =>
-                    setStudentData({ ...studentData, HoTen: e.target.value })
-                  }
-                />
-                <Input
-                  inputType="select"
-                  placeholder="Giới Tính"
-                  handleClick={(e) =>
-                    setStudentData({ ...studentData, GioiTinh: e.target.value })
-                  }
-                />
-                <Input
-                  inputType="date"
-                  placeholder="Ngày Sinh"
-                  handleClick={(e) =>
-                    setStudentData({ ...studentData, NgaySinh: e.target.value })
-                  }
-                />
-                <Input
-                  inputType="input"
-                  placeholder="Địa Chỉ"
-                  handleClick={(e) =>
-                    setStudentData({ ...studentData, DiaChi: e.target.value })
-                  }
-                />
-                <Input
-                  inputType="input"
-                  title="Name"
-                  placeholder="Email"
-                  handleClick={(e) =>
-                    setStudentData({ ...studentData, Email: e.target.value })
-                  }
-                />
-              </>
+              <div className="px-5">
+                <div>
+                  <p>Họ Tên Học Sinh</p>
+                  <Input
+                    inputType="input"
+                    placeholder="Họ Và Tên"
+                    handleClick={(e) =>
+                      setStudentData({ ...studentData, HoTen: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="flex flex-row gap-10">
+                  <div className="flex flex-col w-full">
+                    <p>Giới Tính</p>
+                    <Input
+                      inputType="select"
+                      placeholder="Giới Tính"
+                      handleClick={(e) =>
+                        setStudentData({
+                          ...studentData,
+                          GioiTinh: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <div className="flex flex-col w-full">
+                    <p>Ngày Sinh</p>
+                    <Input
+                      inputType="date"
+                      placeholder="Ngày Sinh"
+                      handleClick={(e) =>
+                        setStudentData({
+                          ...studentData,
+                          NgaySinh: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p>Địa Chỉ</p>
+                  <Input
+                    inputType="input"
+                    placeholder="Địa Chỉ"
+                    handleClick={(e) =>
+                      setStudentData({ ...studentData, DiaChi: e.target.value })
+                    }
+                  />
+                </div>
+                <div>
+                  <p>Email</p>
+                  <Input
+                    inputType="input"
+                    title="Name"
+                    placeholder="Email"
+                    handleClick={(e) =>
+                      setStudentData({ ...studentData, Email: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
             }
             footer={
               <div className="flex justify-center w-full gap-10">
@@ -267,7 +309,7 @@ const Class = () => {
             body={
               <>
                 <p className="text-lg font-semibold">
-                  ID Lớp Mới <span className="text-red-500 text-xl">*</span>:{' '}
+                  ID Lớp Mới <span className="text-xl text-red-500">*</span>:{' '}
                 </p>
                 <Input
                   inputType="number"
@@ -305,7 +347,7 @@ const Class = () => {
                 <div className="flex flex-row justify-between px-10 mb-5">
                   <div>
                     <p className="py-5 text-lg font-semibold">
-                      Năm Học <span className="text-red-500 text-xl">*</span>
+                      Năm Học <span className="text-xl text-red-500">*</span>
                     </p>
                     <select
                       className="px-2 py-1 border-2 border-gray-300 rounded-md"
@@ -331,7 +373,7 @@ const Class = () => {
 
                   <div>
                     <p className="py-5 text-lg font-semibold">
-                      Học Kỳ <span className="text-red-500 text-xl">*</span>
+                      Học Kỳ <span className="text-xl text-red-500">*</span>
                     </p>
                     <select
                       className="px-2 py-1 border-2 border-gray-300 rounded-md"
@@ -358,7 +400,7 @@ const Class = () => {
 
                   <div>
                     <p className="py-5 text-lg font-semibold">
-                      Khối Lớp <span className="text-red-500 text-xl">*</span>
+                      Khối Lớp <span className="text-xl text-red-500">*</span>
                     </p>
                     <select
                       className="px-2 py-1 border-2 border-gray-300 rounded-md"
@@ -391,7 +433,7 @@ const Class = () => {
 
                 <div className="flex items-center justify-center w-full p-3 border-t-2">
                   <p className="py-5 text-lg font-semibold">
-                    Lớp Học <span className="text-red-500 text-xl">*</span>:
+                    Lớp Học <span className="text-xl text-red-500">*</span>:
                   </p>
 
                   <select

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "flowbite-react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { Button } from 'flowbite-react';
+import axios from 'axios';
 
-import Input from "@/components/Input";
-import MyModal from "@/components/Modal";
+import Input from '@/components/Input';
+import MyModal from '@/components/Modal';
 
 const SubjectResultControllerModal = ({
   close,
@@ -16,42 +16,42 @@ const SubjectResultControllerModal = ({
   DiemTBMon,
 }) => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState("");
-  const [selectedYearName, setSelectedYearName] = useState("");
+  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedYearName, setSelectedYearName] = useState('');
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState("");
-  const [selectedSemesterName, setSelectedSemesterName] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState('');
+  const [selectedSemesterName, setSelectedSemesterName] = useState('');
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState("");
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
+  const [selectedClassGroup, setSelectedClassGroup] = useState('');
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState("");
-  const [selectedClassName, setSelectedClassName] = useState("");
+  const [selectedClass, setSelectedClass] = useState('');
+  const [selectedClassName, setSelectedClassName] = useState('');
 
   const [examTypes, setExamTypes] = useState([]);
-  const [selectedExamType, setSelectedExamType] = useState("");
-  const [selectedExamTypeName, setSelectedExamTypeName] = useState("");
+  const [selectedExamType, setSelectedExamType] = useState('');
+  const [selectedExamTypeName, setSelectedExamTypeName] = useState('');
 
   const [subjects, setSubjects] = useState([]);
-  const [selectedSubject, setSelectedSubject] = useState("");
-  const [selectedSubjectName, setSelectedSubjectName] = useState("");
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubjectName, setSelectedSubjectName] = useState('');
 
   const [newScoreData, setNewScoreData] = useState({
     idHS: idHS,
     idLop: idLop,
-    Diem: "",
-    LHKT: "",
-    idMH: "",
+    Diem: '',
+    LHKT: '',
+    idMH: '',
   });
 
   useEffect(() => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get("/api/years");
+        const response = await axios.get('/api/years');
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -141,22 +141,22 @@ const SubjectResultControllerModal = ({
 
   const addScore = async () => {
     if (!selectedSubject) {
-      alert("Vui lòng chọn môn học");
+      alert('Vui lòng chọn môn học');
       return;
     }
 
     if (!newScoreData.LHKT) {
-      alert("Vui lòng chọn loại hình kiểm tra");
+      alert('Vui lòng chọn loại hình kiểm tra');
       return;
     }
 
     if (!newScoreData.Diem) {
-      alert("Vui lòng nhập điểm");
+      alert('Vui lòng nhập điểm');
       return;
     }
 
     try {
-      const response = await axios.post("/api/scores", newScoreData);
+      const response = await axios.post('/api/scores', newScoreData);
       console.log(response.data);
       close();
     } catch (error) {
@@ -165,7 +165,7 @@ const SubjectResultControllerModal = ({
     }
   };
 
-  console.log("newScoreData: ", newScoreData);
+  console.log('newScoreData: ', newScoreData);
 
   return (
     <MyModal
@@ -263,11 +263,11 @@ const SubjectResultControllerModal = ({
       handleClose={() => {
         close();
         setNewScoreData({
-          idHS: "",
-          idMH: "",
-          idLop: "",
-          Diem: "",
-          LHKT: "",
+          idHS: '',
+          idMH: '',
+          idLop: '',
+          Diem: '',
+          LHKT: '',
         });
       }}
       closeBtn={false}

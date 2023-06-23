@@ -29,6 +29,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       // Handle the response as per your requirement
     } catch (error) {
       console.error(error);
+      alert('Cập nhật thất bại');
     }
   };
 

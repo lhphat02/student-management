@@ -1,52 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { Button, Tooltip } from "flowbite-react";
-import { HiPlus } from "react-icons/hi";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { Button, Tooltip } from 'flowbite-react';
+import { HiPlus } from 'react-icons/hi';
+import axios from 'axios';
 
-import Input from "@/components/Input";
-import MyModal from "@/components/Modal";
-import Topbar from "@/components/Topbar";
-import ClassTable from "@/components/class/classTable";
+import Input from '@/components/Input';
+import MyModal from '@/components/Modal';
+import Topbar from '@/components/Topbar';
+import ClassTable from '@/components/class/classTable';
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState("");
-  const [selectedYearName, setSelectedYearName] = useState("");
+  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedYearName, setSelectedYearName] = useState('');
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState("");
-  const [selectedSemesterName, setSelectedSemesterName] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState('');
+  const [selectedSemesterName, setSelectedSemesterName] = useState('');
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState("");
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
+  const [selectedClassGroup, setSelectedClassGroup] = useState('');
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
 
   const [classes, setClasses] = useState([]);
   const [classData, setClassData] = useState({
-    TenLop: "",
+    TenLop: '',
     SiSo: null,
-    idKhoiLop: "",
-    idHocKy: "",
+    idKhoiLop: '',
+    idHocKy: '',
   });
 
   const [yearData, setYearData] = useState({
-    Namhoc: "",
+    Namhoc: '',
   });
 
   const [toggleModal, setToggleModal] = useState(false);
   const [toggleYearModal, setToggleYearModal] = useState(false);
   let curr_year = new Date().getFullYear();
 
+  // Fetch the list of available years
+  const fetchYears = async () => {
+    try {
+      const response = await axios.get('/api/years');
+      setYears(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    // Fetch the list of available years
-    const fetchYears = async () => {
-      try {
-        const response = await axios.get("/api/years");
-        setYears(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchYears();
   }, []);
 
@@ -82,20 +83,21 @@ const Class = () => {
     }
   }, [selectedYear]);
 
+  const fetchClasses = async () => {
+    setClasses([]);
+
+    try {
+      const response = await axios.get(
+        `/api/getClass?idHocKy=${selectedSemester}&idKhoiLop=${selectedClassGroup}`
+      );
+      setClasses(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     // Fetch the available classes within the selected class group
-    const fetchClasses = async () => {
-      setClasses([]);
-
-      try {
-        const response = await axios.get(
-          `/api/getClass?idHocKy=${selectedSemester}&idKhoiLop=${selectedClassGroup}`
-        );
-        setClasses(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     if (selectedClassGroup) {
       fetchClasses();
     }
@@ -105,18 +107,25 @@ const Class = () => {
     const { Namhoc } = yearData;
 
     if (!Namhoc) {
-      alert("Vui lòng nhập đầy đủ thông tin");
+      alert('Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
+
+    if (Namhoc < curr_year || Namhoc > curr_year + 10) {
+      alert('Năm học không hợp lệ');
       return;
     }
 
     try {
-      const response = await axios.post("/api/addYear", {
+      const response = await axios.post('/api/addYear', {
         Namhoc: Namhoc,
       });
       console.log(response.data);
-      window.location.reload();
+      alert('Thêm năm học thành công');
+      fetchYears();
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
+      alert('Thêm năm học thất bại');
     }
   };
 
@@ -124,26 +133,49 @@ const Class = () => {
     const { TenLop, SiSo, idKhoiLop, idHocKy } = classData;
 
     if (!TenLop || !idKhoiLop || !idHocKy) {
-      alert("Vui lòng nhập đầy đủ thông tin");
+      alert('Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
+
+    const regex = /^[a-zA-Z0-9]+$/;
+
+    if (!regex.test(TenLop)) {
+      alert('Tên lớp không được chứa ký tự đặc biệt');
+      return;
+    }
+
+    const slicedClassName = TenLop.slice(0, 2);
+
+    if (TenLop.length !== 4) {
+      alert('Tên lớp phải có 4 ký tự');
+      return;
+    }
+
+    if (!slicedClassName.includes(selectedClassGroupName)) {
+      console.log(slicedClassName);
+      console.log(selectedClassGroupName);
+      alert('Tên lớp phải bắt đầu bằng tên khối lớp');
       return;
     }
 
     try {
-      const response = await axios.post("/api/addClass", {
+      const response = await axios.post('/api/addClass', {
         TenLop: TenLop,
         SiSo: SiSo,
         idKhoiLop: idKhoiLop,
         idHocKy: idHocKy,
       });
       console.log(response.data);
-      window.location.reload();
+      alert('Thêm lớp học thành công');
+      fetchClasses();
+      setToggleModal(false);
     } catch (error) {
-      console.error("Error:", error.response.data);
+      console.error('Error:', error.response.data);
       if (
         error.response.data ===
-        "This class is already available now. Please try again."
+        'This class is already available now. Please try again.'
       ) {
-        alert("Lớp học đã tồn tại");
+        alert('Lớp học đã tồn tại');
       }
     }
   };
@@ -159,7 +191,7 @@ const Class = () => {
   // console.log('selectedSemester', selectedSemester);
   // console.log('selectedClassGroup', selectedClassGroup);
 
-  console.log("classes o FE:", typeof classes, classes);
+  console.log('classes o FE:', typeof classes, classes);
 
   return (
     <>
@@ -184,7 +216,7 @@ const Class = () => {
                   </p>
                 </div>
                 <p className="text-lg font-semibold">
-                  Tên Lớp <span className="text-red-500 text-xl">*</span>:{" "}
+                  Tên Lớp <span className="text-red-500 text-xl">*</span>:{' '}
                 </p>
                 <Input
                   inputType="input"
@@ -223,10 +255,10 @@ const Class = () => {
             body={
               <>
                 <p className="text-lg font-semibold">
-                  Năm Học Mới <span className="text-red-500 text-xl">*</span>:{" "}
+                  Năm Học Mới <span className="text-red-500 text-xl">*</span>:{' '}
                 </p>
                 <Input
-                  inputType="input"
+                  inputType="number"
                   placeholder="Năm Học Mới"
                   handleClick={(e) =>
                     setYearData({ ...yearData, Namhoc: e.target.value })
@@ -356,7 +388,7 @@ const Class = () => {
 
           {/* Add new class button */}
           <Button onClick={() => setToggleModal(true)}>
-            Thêm Lớp Học Mới{" "}
+            Thêm Lớp Học Mới{' '}
           </Button>
         </div>
 

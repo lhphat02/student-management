@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Button } from "flowbite-react";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Button } from 'flowbite-react';
+import axios from 'axios';
 
-import Input from "@/components/Input";
-import MyModal from "@/components/Modal";
+import Input from '@/components/Input';
+import MyModal from '@/components/Modal';
 
 const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
   const [curSubjectData, setCurSubjectData] = useState({
@@ -13,9 +13,9 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
   });
 
   const [newSubjectData, setNewSubjectData] = useState({
-    TenMH: "",
-    MoTa: "",
-    HeSo: "",
+    TenMH: '',
+    MoTa: '',
+    HeSo: '',
   });
 
   const handleEdit = async () => {
@@ -27,21 +27,24 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
       );
 
       console.log(response.data);
+      alert('Cập nhật môn học thành công');
       window.location.reload();
       // Handle the response as per your requirement
     } catch (error) {
       console.error(error);
+      alert('Cập nhật môn học thất bại');
     }
   };
 
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/subject/${idMH}`);
-      console.log("Subject deleted successfully");
+      console.log('Subject deleted successfully');
+      alert('Xóa môn học thành công');
       window.location.reload();
       // Handle any further actions after deleting the subject
     } catch (error) {
-      alert("Failed to delete subject");
+      alert('Xóa môn học thất bại');
       // Handle error cases
     }
   };
@@ -60,7 +63,7 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
       body={
         <>
           <p className="text-lg font-semibold">
-            Tên Môn Học <span className="text-red-500 text-xl">*</span>:{" "}
+            Tên Môn Học <span className="text-red-500 text-xl">*</span>:{' '}
           </p>
           <Input
             inputType="input"
@@ -73,7 +76,7 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
             }
           />
           <p className="pt-3 text-lg font-semibold">
-            Mô Tả <span className="text-red-500 text-xl">*</span>:{" "}
+            Mô Tả <span className="text-red-500 text-xl">*</span>:{' '}
           </p>
           <Input
             inputType="input"
@@ -86,7 +89,7 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
             }
           />
           <p className="pt-3 text-lg font-semibold">
-            Hệ Số <span className="text-red-500 text-xl">*</span>:{" "}
+            Hệ Số <span className="text-red-500 text-xl">*</span>:{' '}
           </p>
           <Input
             inputType="number"
@@ -116,9 +119,9 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
       handleClose={() => {
         close();
         setNewSubjectData({
-          TenMH: "",
-          MoTa: "",
-          HeSo: "",
+          TenMH: '',
+          MoTa: '',
+          HeSo: '',
         });
       }}
       closeBtn={false}

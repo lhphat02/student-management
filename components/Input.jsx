@@ -42,9 +42,9 @@ const Input = ({ inputType, placeholder, handleClick }) => (
         required
         onChange={handleClick}
       >
-        <option value="">- Select Gender -</option>
-        <option value="Nam">Male</option>
-        <option value="Nữ">Female</option>
+        <option value=""> Chọn giới tính </option>
+        <option value="Nam"> Nam </option>
+        <option value="Nữ"> Nữ </option>
       </select>
     ) : (
       //   className="w-full px-4 py-3 mt-4 text-base bg-white border rounded-lg resize-none outline-0 ring-0 font-poppins "

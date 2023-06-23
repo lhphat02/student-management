@@ -1,20 +1,20 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Button } from "flowbite-react";
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Button } from 'flowbite-react';
 
-import assets from "@/assets";
-import Input from "@/components/Input";
-import MyModal from "@/components/Modal";
-import Topbar from "@/components/Topbar";
-import SubjectsTable from "@/components/subjects/subjectsTable";
-import { HiPlus } from "react-icons/hi";
+import assets from '@/assets';
+import Input from '@/components/Input';
+import MyModal from '@/components/Modal';
+import Topbar from '@/components/Topbar';
+import SubjectsTable from '@/components/subjects/subjectsTable';
+import { HiPlus } from 'react-icons/hi';
 
 const Subjects = () => {
   const [subjectData, setSubjectData] = useState({
-    TenMH: "",
-    MoTa: "",
-    HeSo: "",
+    TenMH: '',
+    MoTa: '',
+    HeSo: '',
   });
   const [toggleModal, setToggleModal] = useState(false);
   const [subjectResultData, setSubjectResultData] = useState([]);
@@ -30,15 +30,17 @@ const Subjects = () => {
     }
 
     try {
-      const response = await axios.post("/api/addSubject", {
+      const response = await axios.post('/api/addSubject', {
         TenMH: TenMH,
         MoTa: MoTa,
         HeSo: HeSo,
       });
       console.log(response.data);
+      alert('Thêm môn học thành công');
       window.location.reload();
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
+      alert('Thêm môn học thất bại');
     }
   };
 
@@ -60,7 +62,7 @@ const Subjects = () => {
             <div className="flex flex-col gap-5">
               <div>
                 <p className="text-lg font-semibold">
-                  Tên Môn Học <span className="text-red-500 text-xl">*</span>:{" "}
+                  Tên Môn Học <span className="text-red-500 text-xl">*</span>:{' '}
                 </p>
                 <Input
                   inputType="input"
