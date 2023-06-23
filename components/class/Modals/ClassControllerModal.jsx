@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Button } from 'flowbite-react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Button } from "flowbite-react";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
 
 const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
   const [curClassData, setCurClassData] = useState({
@@ -13,7 +13,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
   });
 
   const [newClassData, setNewClassData] = useState({
-    TenLop: '',
+    TenLop: "",
   });
 
   const handleEdit = async () => {
@@ -24,7 +24,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
         newClassData // Pass the new class data to the API
       );
 
-      alert('Cập nhật thành công');
+      alert("Cập nhật thành công");
       window.location.reload();
       // Handle the response as per your requirement
     } catch (error) {
@@ -35,12 +35,12 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/deleteClass?idLop=${idLop}`);
-      alert('Xóa lớp thành công');
+      alert("Xóa lớp thành công");
       window.location.reload();
       // Handle any further actions after deleting the subject
     } catch (error) {
       console.error(error);
-      alert('Không thể xóa lớp này');
+      alert("Không thể xóa lớp này");
       // Handle error cases
     }
   };
@@ -50,7 +50,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       className="absolute "
       header={
         <p className="text-2xl font-bold">
-          Update Class Name: <span className="text-blue-600 ">{TenLop}</span>
+          Cập nhật tên lóp: <span className="text-blue-600 ">{TenLop}</span>
         </p>
       }
       body={
@@ -67,20 +67,20 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       footer={
         <div className="flex justify-center w-full gap-10">
           <Button pill={false} onClick={() => handleEdit()}>
-            Update
+            Cập Nhật
           </Button>
           <Button pill={false} color="red" onClick={() => handleDelete()}>
-            Delete Class
+            Xóa lớp
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
-            Cancle
+            Hủy
           </Button>
         </div>
       }
       handleClose={() => {
         close();
         setNewClassData({
-          TenLop: '',
+          TenLop: "",
         });
       }}
       closeBtn={false}
