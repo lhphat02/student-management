@@ -1,15 +1,15 @@
-import Popup from 'reactjs-popup';
-import SubjectControllerModal from './Modals/SubjectControllerModal';
-import assets from '@/assets';
-import Image from 'next/image';
+import Popup from "reactjs-popup";
+import SubjectControllerModal from "./Modals/SubjectControllerModal";
+import assets from "@/assets";
+import Image from "next/image";
 
 export const subjectsColumns = [
-  { Header: 'ID', accessor: 'index' },
-  { Header: 'Tên Môn Học', accessor: 'TenMH' },
-  { Header: 'Mô Tả', accessor: 'MoTa' },
-  { Header: 'Hệ Số', accessor: 'HeSo' },
+  { Header: "ID", accessor: "index" },
+  { Header: "Tên Môn Học", accessor: "TenMH" },
+  { Header: "Mô Tả", accessor: "MoTa" },
+  { Header: "Hệ Số", accessor: "HeSo" },
   {
-    Header: 'Update',
+    Header: "Update",
     Cell: ({ row }) => (
       <Popup
         modal
