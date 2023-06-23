@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { Button } from 'flowbite-react';
 import axios from 'axios';
 
@@ -12,12 +12,61 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
     idHocKy: idHocKy,
   });
 
+  const [classGroups, setClassGroups] = useState([]);
+  const [classGroupsName, setClassGroupsName] = useState([]);
+
   const [newClassData, setNewClassData] = useState({
     TenLop: '',
   });
 
+  useEffect(() => {
+    // Fetch the list of available class groups
+    const fetchClassGroups = async () => {
+      try {
+        const response = await axios.get('/api/class-groups');
+        setClassGroups(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchClassGroups();
+  }, []);
+
   const handleEdit = async () => {
     try {
+      const { TenLop } = newClassData;
+
+      if (!TenLop) {
+        alert('Vui lòng nhập đầy đủ thông tin');
+        return;
+      }
+
+      const regex = /^[a-zA-Z0-9]+$/;
+
+      if (!regex.test(TenLop)) {
+        alert('Tên lớp không được chứa ký tự đặc biệt');
+        return;
+      }
+
+      const selectedOptionData = classGroups.find(
+        (option) => option.idNam === parseInt(e.target.value)
+      );
+      setClassGroupsName(selectedOptionData.Namhoc);
+
+      const slicedClassName = TenLop.slice(0, 2);
+
+      if (TenLop.length !== 4) {
+        alert('Tên lớp phải có 4 ký tự');
+        return;
+      }
+
+      if (!slicedClassName.includes(classGroupsName)) {
+        console.log(slicedClassName);
+        console.log(classGroupsName);
+        alert('Tên lớp phải bắt đầu bằng tên khối lớp');
+        return;
+      }
+
       // Make an Axios request to edit the class data
       const response = await axios.put(
         `/api/class/${idLop}`,
@@ -57,7 +106,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       body={
         <>
           <p className="text-lg font-semibold">
-            Tên Lớp Mới <span className="text-red-500 text-xl">*</span>:{' '}
+            Tên Lớp Mới <span className="text-xl text-red-500">*</span>:{' '}
           </p>
           <Input
             inputType="input"

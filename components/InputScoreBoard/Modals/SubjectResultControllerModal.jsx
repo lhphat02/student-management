@@ -155,12 +155,19 @@ const SubjectResultControllerModal = ({
       return;
     }
 
+    if (newScoreData.Diem < 0 || newScoreData.Diem > 10) {
+      alert('Điểm phải nằm trong khoảng từ 0 đến 10');
+      return;
+    }
+
     try {
       const response = await axios.post('/api/scores', newScoreData);
       console.log(response.data);
+      alert('Thêm điểm thành công');
       close();
     } catch (error) {
       console.error(error);
+      alert('Thêm điểm thất bại');
       close();
     }
   };
@@ -178,7 +185,7 @@ const SubjectResultControllerModal = ({
       body={
         <>
           <p className="py-3 text-lg font-semibold">
-            Môn Học <span className="text-red-500 text-xl">*</span>:
+            Môn Học <span className="text-xl text-red-500">*</span>:
           </p>
           <select
             className="w-full h-10 border-2 border-gray-300 rounded-md"
@@ -205,7 +212,7 @@ const SubjectResultControllerModal = ({
             ))}
           </select>
           <p className="py-3 mt-2 text-lg font-semibold">
-            Loại Hình Kiểm Tra <span className="text-red-500 text-xl">*</span>:
+            Loại Hình Kiểm Tra <span className="text-xl text-red-500">*</span>:
           </p>
           <select
             className="w-full h-10 border-2 border-gray-300 rounded-md"
@@ -231,7 +238,7 @@ const SubjectResultControllerModal = ({
             ))}
           </select>
           <p className="mt-5 text-lg font-semibold ">
-            Nhập Điểm Số <span className="text-red-500 text-xl">*</span>:
+            Nhập Điểm Số <span className="text-xl text-red-500">*</span>:
           </p>
           <Input
             inputType="number"
