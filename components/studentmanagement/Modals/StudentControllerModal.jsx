@@ -32,6 +32,7 @@ const StudentControllerModal = ({
   const [selectedClassName, setSelectedClassName] = useState('');
 
   const [curStudentData, setCurStudentData] = useState({
+    idHS: idHS,
     HoTen: HoTen,
     GioiTinh: GioiTinh,
     NgaySinh: NgaySinh,
@@ -41,6 +42,7 @@ const StudentControllerModal = ({
   });
 
   const [newStudentData, setNewStudentData] = useState({
+    idHS: idHS,
     HoTen: HoTen,
     GioiTinh: GioiTinh,
     NgaySinh: NgaySinh,
@@ -115,8 +117,12 @@ const StudentControllerModal = ({
 
   const handleEdit = async () => {
     try {
+      console.log('validating email');
+      console.log('Email: ', newStudentData.Email);
+
+      // Validate the email address
       const validateEmail = (email) => {
-        const re = /\S+@\S+\.\S+/;
+        const re = /\S+@\S+\.[A-Za-z]{2,}/;
         return re.test(email);
       };
 
@@ -139,6 +145,7 @@ const StudentControllerModal = ({
 
       console.log(response.data);
       alert('Cập nhật học sinh thành công');
+      close();
       // window.location.reload();
       // Handle the response as per your requirement
     } catch (error) {
@@ -325,7 +332,13 @@ const StudentControllerModal = ({
       }
       footer={
         <div className="flex justify-center w-full gap-10">
-          <Button pill={false} onClick={() => handleEdit()}>
+          <Button
+            pill={false}
+            onClick={async () => {
+              // await assignData();
+              handleEdit();
+            }}
+          >
             Cập Nhật
           </Button>
           <Button pill={false} color="red" onClick={() => handleDelete()}>

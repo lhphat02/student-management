@@ -139,7 +139,7 @@ const Class = () => {
     }
 
     const validateEmail = (email) => {
-      const re = /\S+@\S+\.\S+/;
+      const re = /\S+@\S+\.[A-Za-z]{2,}/;
       return re.test(email);
     };
 
@@ -299,6 +299,7 @@ const Class = () => {
             }
             handleClose={() => setToggleAddStudentModal(false)}
             closeBtn={false}
+            clickOutSide={true}
           />
         ) : null}
 

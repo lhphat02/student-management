@@ -16,13 +16,17 @@ export default function handler(req, res) {
       break;
     case 'PUT':
       try {
-        const { HoTen, GioiTinh, NgaySinh, DiaChi, Email, idLop } = req.body;
+        // Update the student data
+        const { idHS, HoTen, GioiTinh, NgaySinh, DiaChi, Email } = req.body;
+
+        console.log('idHS: ' + idHS);
 
         const query =
           'UPDATE hocsinh SET HoTen = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?, Email = ? WHERE idHS = ?';
         const values = [HoTen, GioiTinh, NgaySinh, DiaChi, Email, idHS];
-
         db.query(query, values, (error, results) => {
+          console.log('Results: ' + results);
+
           res
             .status(200)
             .json({ message: 'Student data updated successfully' });
@@ -36,23 +40,4 @@ export default function handler(req, res) {
       res.status(405).json({ message: 'Method Not Allowed' });
       break;
   }
-
-  // if (req.method === 'PUT') {
-  //   const { idHSHS, HoTen, GioiTinh, NgaySinh, DiaChi, Email } = req.body;
-
-  //   const query =
-  //     'UPDATE hocsinh SET HoTen = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?, Email = ? WHERE idHSHS = ?';
-  //   const values = [HoTen, GioiTinh, NgaySinh, DiaChi, Email, idHS];
-
-  //   db.query(query, values, (error, results) => {
-  //     if (error) {
-  //       console.error(error);
-  //       res.status(500).json({ message: 'Failed to update student data' });
-  //     } else {
-  //       res.status(200).json({ message: 'Student data updated successfully' });
-  //     }
-  //   });
-  // } else {
-  //   res.status(405).json({ message: 'Method Not Allowed' });
-  // }
 }
