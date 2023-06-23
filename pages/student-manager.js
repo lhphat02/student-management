@@ -152,6 +152,7 @@ const Class = () => {
       setToggleAddStudentModal(false);
 
       console.log('Success:', response.data);
+      alert('Thêm học sinh thành công');
     } catch (error) {
       console.error('Error:', error.response.data);
       if (error.response.data === 'Invalid student age.') {
@@ -179,9 +180,11 @@ const Class = () => {
       setToggleMigrate(false);
 
       console.log('Success:', response.data);
+      alert('Chuyển lớp thành công');
       // window.location.reload();
     } catch (error) {
       console.error('Error:', error);
+      alert('ID Lớp không tồn tại');
     }
   };
 
@@ -264,7 +267,7 @@ const Class = () => {
             body={
               <>
                 <Input
-                  inputType="input"
+                  inputType="number"
                   placeholder="ID Lớp mới"
                   handleClick={(e) => setNewIdLop(e.target.value)}
                 />

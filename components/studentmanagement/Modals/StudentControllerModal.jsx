@@ -128,24 +128,13 @@ const StudentControllerModal = ({
       });
 
       console.log(response.data);
-      window.location.reload();
+      alert('Cập nhật học sinh thành công');
+      // window.location.reload();
       // Handle the response as per your requirement
     } catch (error) {
       console.error(error);
     }
   };
-
-  // const handleDelete = async () => {
-  //   try {
-  //     await axios.delete(`/api/student/${idHS}`);
-  //     console.log('Student deleted successfully');
-  //     window.location.reload();
-  //     // Handle any further actions after deleting the student
-  //   } catch (error) {
-  //     console.error(error);
-  //     // Handle error cases
-  //   }
-  // };
 
   const handleDelete = async () => {
     try {

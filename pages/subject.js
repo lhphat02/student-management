@@ -24,7 +24,10 @@ const Subjects = () => {
   const addNewSubject = async () => {
     const { TenMH, MoTa, HeSo } = subjectData;
 
-    if (!TenMH || !MoTa || !HeSo) return;
+    if (!TenMH || !MoTa || !HeSo) {
+      alert('Vui lòng nhập đầy đủ thông tin');
+      return;
+    }
 
     try {
       const response = await axios.post('/api/addSubject', {

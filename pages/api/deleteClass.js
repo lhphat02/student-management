@@ -10,6 +10,9 @@ export default async function handler(req, res) {
     }
 
     try {
+      // Delete student from study_progress table
+      await db.promise().query('DELETE FROM lop WHERE idLop = ?', [idLop]);
+
       // Delete class from baocaohocky table (if desired)
       await db
         .promise()
@@ -19,9 +22,6 @@ export default async function handler(req, res) {
       await db
         .promise()
         .query('DELETE FROM ct_baocaomonhoc WHERE idLop = ?', [idLop]);
-
-      // Delete student from study_progress table
-      await db.promise().query('DELETE FROM lop WHERE idLop = ?', [idLop]);
 
       res.status(200).json({ message: 'Student deleted successfully' });
     } catch (error) {

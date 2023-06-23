@@ -50,7 +50,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       className="absolute "
       header={
         <p className="text-2xl font-bold">
-          Update Class Name: <span className="text-blue-600 ">{TenLop}</span>
+          Cập nhật tên lớp: <span className="text-blue-600 ">{TenLop}</span>
         </p>
       }
       body={
@@ -67,13 +67,13 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       footer={
         <div className="flex justify-center w-full gap-10">
           <Button pill={false} onClick={() => handleEdit()}>
-            Update
+            Cập nhật
           </Button>
           <Button pill={false} color="red" onClick={() => handleDelete()}>
-            Delete Class
+            Xóa Lớp
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
-            Cancle
+            Hủy
           </Button>
         </div>
       }
