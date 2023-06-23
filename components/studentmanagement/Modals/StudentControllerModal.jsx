@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'flowbite-react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button } from "flowbite-react";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
 
 const StudentControllerModal = ({
   close,
@@ -16,20 +16,20 @@ const StudentControllerModal = ({
   idLop,
 }) => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
   const [curStudentData, setCurStudentData] = useState({
     idHS: idHS,
@@ -55,7 +55,7 @@ const StudentControllerModal = ({
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -117,8 +117,8 @@ const StudentControllerModal = ({
 
   const handleEdit = async () => {
     try {
-      console.log('validating email');
-      console.log('Email: ', newStudentData.Email);
+      console.log("validating email");
+      console.log("Email: ", newStudentData.Email);
 
       // Validate the email address
       const validateEmail = (email) => {
@@ -127,7 +127,7 @@ const StudentControllerModal = ({
       };
 
       if (!validateEmail(newStudentData.Email)) {
-        alert('Email không hợp lệ');
+        alert("Email không hợp lệ");
         return;
       }
 
@@ -144,7 +144,7 @@ const StudentControllerModal = ({
       });
 
       console.log(response.data);
-      alert('Cập nhật học sinh thành công');
+      alert("Cập nhật học sinh thành công");
       close();
       // window.location.reload();
       // Handle the response as per your requirement
@@ -156,18 +156,18 @@ const StudentControllerModal = ({
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/deleteStudent?idHS=${idHS}&idLop=${idLop}`);
-      alert('Xóa học sinh thành công');
+      alert("Xóa học sinh thành công");
       window.location.reload();
     } catch (error) {
-      alert('Học sinh không thể xóa');
+      alert("Học sinh không thể xóa");
       console.error(error);
     }
   };
 
-  console.log('curStudentData: ', curStudentData);
-  console.log('newStudentData: ', newStudentData);
-  console.log('idLop:', idLop);
-  console.log('idHS:', idHS);
+  console.log("curStudentData: ", curStudentData);
+  console.log("newStudentData: ", newStudentData);
+  console.log("idLop:", idLop);
+  console.log("idHS:", idHS);
 
   return (
     <MyModal
@@ -180,7 +180,9 @@ const StudentControllerModal = ({
       body={
         <div className="px-5">
           <div>
-            <p>Họ Tên Học Sinh</p>
+            <p className="pt-3 text-lg font-semibold">
+              Họ Tên Học Sinh <span className="text-red-500 text-xl">*</span>
+            </p>
             <Input
               inputType="input"
               placeholder="Họ Và Tên"
@@ -191,7 +193,9 @@ const StudentControllerModal = ({
           </div>
           <div className="flex gap-10">
             <div className="flex flex-col w-full">
-              <p>Giới Tính</p>
+              <p className="pt-3 text-lg font-semibold">
+                Giới tính <span className="text-red-500 text-xl">*</span>
+              </p>
               <Input
                 inputType="select"
                 placeholder="Giới Tính"
@@ -204,7 +208,9 @@ const StudentControllerModal = ({
               />
             </div>
             <div className="flex flex-col w-full">
-              <p>Ngày Sinh</p>
+              <p className="pt-3 text-lg font-semibold">
+                Ngày Sinh <span className="text-red-500 text-xl">*</span>
+              </p>
               <Input
                 inputType="date"
                 placeholder="Ngày Sinh"
@@ -218,7 +224,9 @@ const StudentControllerModal = ({
             </div>
           </div>
           <div>
-            <p>Địa Chỉ</p>
+            <p className="pt-3 text-lg font-semibold">
+              Địa Chỉ <span className="text-red-500 text-xl">*</span>
+            </p>
             <Input
               inputType="input"
               placeholder="Địa Chỉ"
@@ -229,7 +237,9 @@ const StudentControllerModal = ({
           </div>
 
           <div>
-            <p>Email</p>
+            <p className="pt-3 text-lg font-semibold">
+              Email <span className="text-red-500 text-xl">*</span>
+            </p>
             <Input
               inputType="input"
               // title="Name"
@@ -352,11 +362,11 @@ const StudentControllerModal = ({
       handleClose={() => {
         close();
         setNewStudentData({
-          HoTen: '',
-          GioiTinh: '',
-          NgaySinh: '',
-          DiaChi: '',
-          Email: '',
+          HoTen: "",
+          GioiTinh: "",
+          NgaySinh: "",
+          DiaChi: "",
+          Email: "",
         });
       }}
       closeBtn={false}

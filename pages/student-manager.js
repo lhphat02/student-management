@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'flowbite-react';
-import { HiSearch, HiPlus, HiArrowCircleUp } from 'react-icons/hi';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button } from "flowbite-react";
+import { HiSearch, HiPlus, HiArrowCircleUp } from "react-icons/hi";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
-import Topbar from '@/components/Topbar';
-import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
-import assets from '@/assets';
-import Image from 'next/image';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
+import Topbar from "@/components/Topbar";
+import StudentmanageTable from "@/components/studentmanagement/studentmanageTable";
+import assets from "@/assets";
+import Image from "next/image";
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
-  const [idLop, setIdLop] = useState('');
-  const [newIdLop, setNewIdLop] = useState('');
+  const [idLop, setIdLop] = useState("");
+  const [newIdLop, setNewIdLop] = useState("");
 
   const [studentData, setStudentData] = useState({
-    HoTen: '',
-    GioiTinh: '',
-    NgaySinh: '',
-    DiaChi: '',
-    Email: '',
+    HoTen: "",
+    GioiTinh: "",
+    NgaySinh: "",
+    DiaChi: "",
+    Email: "",
     idLop: idLop,
   });
 
@@ -52,7 +52,7 @@ const Class = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -134,7 +134,7 @@ const Class = () => {
     const { HoTen, GioiTinh, NgaySinh, DiaChi, Email } = studentData;
 
     if (!HoTen || !GioiTinh || !NgaySinh || !DiaChi || !Email || !idLop) {
-      alert('Vui lòng nhập đầy đủ thông tin');
+      alert("Vui lòng nhập đầy đủ thông tin");
       return;
     }
 
@@ -144,12 +144,12 @@ const Class = () => {
     };
 
     if (!validateEmail(Email)) {
-      alert('Email không hợp lệ');
+      alert("Email không hợp lệ");
       return;
     }
 
     try {
-      const response = await axios.post('/api/addStudent', {
+      const response = await axios.post("/api/addStudent", {
         HoTen: HoTen,
         GioiTinh: GioiTinh,
         NgaySinh: NgaySinh,
@@ -161,35 +161,35 @@ const Class = () => {
       fetchStudents();
       setToggleAddStudentModal(false);
 
-      console.log('Success:', response.data);
-      alert('Thêm học sinh thành công');
+      console.log("Success:", response.data);
+      alert("Thêm học sinh thành công");
     } catch (error) {
-      console.error('Error:', error.response.data);
-      if (error.response.data === 'Invalid student age.') {
-        alert('Tuổi học sinh phải từ 15 đến 20 tuổi');
+      console.error("Error:", error.response.data);
+      if (error.response.data === "Invalid student age.") {
+        alert("Tuổi học sinh phải từ 15 đến 20 tuổi");
       } else if (
-        error.response.data === 'Cannot add this student to this class'
+        error.response.data === "Cannot add this student to this class"
       ) {
-        alert('Lớp đã đạt số lượng học sinh tối đa');
-      } else if (error.response.data === 'Student already exists') {
-        alert('Học sinh đã tồn tại');
+        alert("Lớp đã đạt số lượng học sinh tối đa");
+      } else if (error.response.data === "Student already exists") {
+        alert("Học sinh đã tồn tại");
       }
     }
   };
 
   const migrateStudent = async () => {
     if (!idLop || !newIdLop) {
-      alert('Vui lòng nhập đầy đủ thông tin');
+      alert("Vui lòng nhập đầy đủ thông tin");
       return;
     }
 
     if (idLop === newIdLop) {
-      alert('Vui lòng nhập id lớp mới khác lớp cũ');
+      alert("Vui lòng nhập id lớp mới khác lớp cũ");
       return;
     }
 
     try {
-      const response = await axios.post('/api/migrateStudent', {
+      const response = await axios.post("/api/migrateStudent", {
         currentIdLop: idLop,
         newIdLop: newIdLop,
       });
@@ -197,17 +197,17 @@ const Class = () => {
       fetchStudents();
       setToggleMigrate(false);
 
-      console.log('Success:', response.data);
-      alert('Chuyển lớp thành công');
+      console.log("Success:", response.data);
+      alert("Chuyển lớp thành công");
       // window.location.reload();
     } catch (error) {
-      console.error('Error:', error);
-      alert('ID Lớp không tồn tại');
+      console.error("Error:", error);
+      alert("ID Lớp không tồn tại");
     }
   };
 
-  console.log('idLop', idLop);
-  console.log('newIdLop', newIdLop);
+  console.log("idLop", idLop);
+  console.log("newIdLop", newIdLop);
 
   return (
     <>
@@ -221,7 +221,10 @@ const Class = () => {
             body={
               <div className="px-5">
                 <div>
-                  <p>Họ Tên Học Sinh</p>
+                  <p className="pt-3 text-lg font-semibold">
+                    Họ Tên Học Sinh{" "}
+                    <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <Input
                     inputType="input"
                     placeholder="Họ Và Tên"
@@ -232,7 +235,9 @@ const Class = () => {
                 </div>
                 <div className="flex flex-row gap-10">
                   <div className="flex flex-col w-full">
-                    <p>Giới Tính</p>
+                    <p className="pt-3 text-lg font-semibold">
+                      Giới Tính <span className="text-red-500 text-xl">*</span>
+                    </p>
                     <Input
                       inputType="select"
                       placeholder="Giới Tính"
@@ -246,7 +251,9 @@ const Class = () => {
                   </div>
 
                   <div className="flex flex-col w-full">
-                    <p>Ngày Sinh</p>
+                    <p className="pt-3 text-lg font-semibold">
+                      Ngày Sinh <span className="text-red-500 text-xl">*</span>
+                    </p>
                     <Input
                       inputType="date"
                       placeholder="Ngày Sinh"
@@ -260,7 +267,9 @@ const Class = () => {
                   </div>
                 </div>
                 <div>
-                  <p>Địa Chỉ</p>
+                  <p className="pt-3 text-lg font-semibold">
+                    Địa Chỉ <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <Input
                     inputType="input"
                     placeholder="Địa Chỉ"
@@ -270,7 +279,9 @@ const Class = () => {
                   />
                 </div>
                 <div>
-                  <p>Email</p>
+                  <p className="pt-3 text-lg font-semibold">
+                    Email <span className="text-red-500 text-xl">*</span>
+                  </p>
                   <Input
                     inputType="input"
                     title="Name"
@@ -310,7 +321,7 @@ const Class = () => {
             body={
               <>
                 <p className="text-lg font-semibold">
-                  ID Lớp Mới <span className="text-xl text-red-500">*</span>:{' '}
+                  ID Lớp Mới <span className="text-xl text-red-500">*</span>:{" "}
                 </p>
                 <Input
                   inputType="number"
@@ -485,7 +496,7 @@ const Class = () => {
 
         {/* List of classes */}
         <p className="text-3xl font-bold font-poppins">
-          Danh Sách{' '}
+          Danh Sách{" "}
           {selectedClass && (
             <span className="text-4xl text-blue-700">
               Lớp {selectedClassName}
