@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Button } from 'flowbite-react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Button } from "flowbite-react";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
 
 const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
   const [curSubjectData, setCurSubjectData] = useState({
@@ -13,9 +13,9 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
   });
 
   const [newSubjectData, setNewSubjectData] = useState({
-    TenMH: '',
-    MoTa: '',
-    HeSo: '',
+    TenMH: "",
+    MoTa: "",
+    HeSo: "",
   });
 
   const handleEdit = async () => {
@@ -37,11 +37,11 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/subject/${idMH}`);
-      console.log('Subject deleted successfully');
+      console.log("Subject deleted successfully");
       window.location.reload();
       // Handle any further actions after deleting the subject
     } catch (error) {
-      alert('Failed to delete subject');
+      alert("Failed to delete subject");
       // Handle error cases
     }
   };
@@ -54,14 +54,17 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
       className="absolute "
       header={
         <p className="text-2xl font-bold">
-          Update Subject: <span className="text-blue-600 ">{TenMH}</span>
+          Cập Nhật Môn Học: <span className="text-blue-600 ">{TenMH}</span>
         </p>
       }
       body={
         <>
+          <p className="text-lg font-semibold">
+            Tên Môn Học <span className="text-red-500 text-xl">*</span>:{" "}
+          </p>
           <Input
             inputType="input"
-            placeholder="Tên môn học"
+            placeholder="Tên Môn Học"
             handleClick={(e) =>
               setNewSubjectData({
                 ...newSubjectData,
@@ -69,9 +72,12 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
               })
             }
           />
+          <p className="pt-3 text-lg font-semibold">
+            Mô Tả <span className="text-red-500 text-xl">*</span>:{" "}
+          </p>
           <Input
             inputType="input"
-            placeholder="Mô tả"
+            placeholder="Mô Tả"
             handleClick={(e) =>
               setNewSubjectData({
                 ...newSubjectData,
@@ -79,9 +85,12 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
               })
             }
           />
+          <p className="pt-3 text-lg font-semibold">
+            Hệ Số <span className="text-red-500 text-xl">*</span>:{" "}
+          </p>
           <Input
             inputType="number"
-            placeholder="Hệ số"
+            placeholder="Hệ Số"
             handleClick={(e) =>
               setNewSubjectData({
                 ...newSubjectData,
@@ -94,22 +103,22 @@ const SubjectControllerModal = ({ close, idMH, TenMH, MoTa, HeSo }) => {
       footer={
         <div className="flex justify-center w-full gap-10">
           <Button pill={false} onClick={() => handleEdit()}>
-            Update
+            Cập Nhật
           </Button>
           <Button pill={false} color="red" onClick={() => handleDelete()}>
-            Delete Subject
+            Xóa Môn Học
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
-            Cancle
+            Hủy
           </Button>
         </div>
       }
       handleClose={() => {
         close();
         setNewSubjectData({
-          TenMH: '',
-          MoTa: '',
-          HeSo: '',
+          TenMH: "",
+          MoTa: "",
+          HeSo: "",
         });
       }}
       closeBtn={false}

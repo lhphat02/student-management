@@ -50,11 +50,14 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       className="absolute "
       header={
         <p className="text-2xl font-bold">
-          Cập nhật tên lóp: <span className="text-blue-600 ">{TenLop}</span>
+          Cập Nhật Tên Lớp: <span className="text-blue-600 ">{TenLop}</span>
         </p>
       }
       body={
         <>
+          <p className="text-lg font-semibold">
+            Tên Lớp Mới <span className="text-red-500 text-xl">*</span>:{" "}
+          </p>
           <Input
             inputType="input"
             placeholder="Tên Lớp Mới"
@@ -70,7 +73,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
             Cập Nhật
           </Button>
           <Button pill={false} color="red" onClick={() => handleDelete()}>
-            Xóa lớp
+            Xóa Lớp
           </Button>
           <Button pill={false} color="gray" outline onClick={() => close()}>
             Hủy

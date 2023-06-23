@@ -51,12 +51,15 @@ const ParameterControllerModal = ({ close, TenThamSo, GiaTri }) => {
       className="absolute "
       header={
         <p className="text-2xl font-bold">
-          Update Parameter Value:{" "}
+          Cập Nhật Giá Trị Quy Định:{" "}
           <span className="text-blue-600 ">{GiaTri}</span>
         </p>
       }
       body={
         <>
+          <p className="text-lg font-semibold">
+            Giá Trị <span className="text-red-500 text-xl">*</span> :{" "}
+          </p>
           <Input
             inputType="input"
             placeholder="Giá Trị Mới"
@@ -72,13 +75,13 @@ const ParameterControllerModal = ({ close, TenThamSo, GiaTri }) => {
       footer={
         <div className="flex justify-center w-full gap-10">
           <Button pill={false} onClick={() => handleEdit()}>
-            Update
+            Cập nhật
           </Button>
           {/* <Button pill={false} color="red" onClick={() => handleDelete()}>
             Delete Class
           </Button> */}
           <Button pill={false} color="gray" outline onClick={() => close()}>
-            Cancel
+            Hủy
           </Button>
         </div>
       }

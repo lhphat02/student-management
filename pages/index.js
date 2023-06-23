@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 // import { ThemeProvider } from 'next-themes';
 
-import Topbar from '../components/Topbar';
-import Button from '../components/Button';
-import MyCarousel from '../components/Carousel';
-import { useRouter } from 'next/router';
-import { data } from 'autoprefixer';
-import { useEffect, useState, useMemo } from 'react';
+import Topbar from "../components/Topbar";
+import Button from "../components/Button";
+import MyCarousel from "../components/Carousel";
+import { useRouter } from "next/router";
+import { data } from "autoprefixer";
+import { useEffect, useState, useMemo } from "react";
 
 export default function Home() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="min-h-screen ">
       <div>
-        <Topbar NamePage="Trang chủ" />
+        <Topbar NamePage="Trang Chủ" />
 
         {/* <MyCarousel /> */}
 
@@ -30,7 +30,7 @@ export default function Home() {
                   <div class="flex items-start justify-between w-full">
                     <div class="pl-3 w-full">
                       <p class="text-xl font-medium text-gray-800 dark:text-white text-center">
-                        Danh sách học sinh
+                        Danh Sách Học Sinh
                       </p>
                     </div>
                   </div>
@@ -51,7 +51,7 @@ export default function Home() {
                   <div class="flex items-start justify-between w-full">
                     <div class="pl-3 w-full">
                       <p class="text-xl font-medium text-gray-800 dark:text-white text-center">
-                        Danh sách lớp
+                        Danh Sách Lớp
                       </p>
                     </div>
                   </div>
@@ -74,7 +74,7 @@ export default function Home() {
                   <div class="flex items-start justify-between w-full">
                     <div class="pl-3 w-full">
                       <p class="text-xl font-medium text-gray-800 dark:text-white text-center">
-                        Tổng kết cuối kỳ
+                        Tổng Kết Cuối Kỳ
                       </p>
                     </div>
                   </div>
@@ -96,7 +96,7 @@ export default function Home() {
                   <div class="flex items-start justify-between w-full">
                     <div class="pl-3 w-full">
                       <p class="text-xl font-medium text-gray-800 dark:text-white text-center">
-                        Bảng điểm môn học
+                        Bảng Điểm Môn Học
                       </p>
                     </div>
                   </div>
@@ -149,7 +149,7 @@ export default function Home() {
                     />
                     <h2 class="text-lg text-gray-900 font-medium title-font mb-4">
                       Thông báo địa điểm mới đào tạo Sau Đại học trường Đại học
-                      Công nghệ Thông tin{' '}
+                      Công nghệ Thông tin{" "}
                     </h2>
                     <p class>
                       Kính gửi quý Anh/Chị Học viên, Trường Đại học Công nghệ
