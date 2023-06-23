@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'flowbite-react';
-import { HiSearch, HiPlus, HiArrowCircleUp } from 'react-icons/hi';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button } from "flowbite-react";
+import { HiSearch, HiPlus, HiArrowCircleUp } from "react-icons/hi";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
-import Topbar from '@/components/Topbar';
-import StudentmanageTable from '@/components/studentmanagement/studentmanageTable';
-import assets from '@/assets';
-import Image from 'next/image';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
+import Topbar from "@/components/Topbar";
+import StudentmanageTable from "@/components/studentmanagement/studentmanageTable";
+import assets from "@/assets";
+import Image from "next/image";
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedClassName, setSelectedClassName] = useState('');
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedClassName, setSelectedClassName] = useState("");
 
-  const [idLop, setIdLop] = useState('');
-  const [newIdLop, setNewIdLop] = useState('');
+  const [idLop, setIdLop] = useState("");
+  const [newIdLop, setNewIdLop] = useState("");
 
   const [studentData, setStudentData] = useState({
-    HoTen: '',
-    GioiTinh: '',
-    NgaySinh: '',
-    DiaChi: '',
-    Email: '',
+    HoTen: "",
+    GioiTinh: "",
+    NgaySinh: "",
+    DiaChi: "",
+    Email: "",
     idLop: idLop,
   });
 
@@ -52,7 +52,7 @@ const Class = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -134,12 +134,12 @@ const Class = () => {
     const { HoTen, GioiTinh, NgaySinh, DiaChi, Email } = studentData;
 
     if (!HoTen || !GioiTinh || !NgaySinh || !DiaChi || !Email || !idLop) {
-      alert('Vui lòng nhập đầy đủ thông tin');
+      alert("Vui lòng nhập đầy đủ thông tin");
       return;
     }
 
     try {
-      const response = await axios.post('/api/addStudent', {
+      const response = await axios.post("/api/addStudent", {
         HoTen: HoTen,
         GioiTinh: GioiTinh,
         NgaySinh: NgaySinh,
@@ -151,17 +151,17 @@ const Class = () => {
       fetchStudents();
       setToggleAddStudentModal(false);
 
-      console.log('Success:', response.data);
+      console.log("Success:", response.data);
     } catch (error) {
-      console.error('Error:', error.response.data);
-      if (error.response.data === 'Invalid student age.') {
-        alert('Tuổi học sinh phải từ 15 đến 20 tuổi');
+      console.error("Error:", error.response.data);
+      if (error.response.data === "Invalid student age.") {
+        alert("Tuổi học sinh phải từ 15 đến 20 tuổi");
       } else if (
-        error.response.data === 'Cannot add this student to this class'
+        error.response.data === "Cannot add this student to this class"
       ) {
-        alert('Lớp đã đạt số lượng học sinh tối đa');
-      } else if (error.response.data === 'Student already exists') {
-        alert('Học sinh đã tồn tại');
+        alert("Lớp đã đạt số lượng học sinh tối đa");
+      } else if (error.response.data === "Student already exists") {
+        alert("Học sinh đã tồn tại");
       }
     }
   };
@@ -170,7 +170,7 @@ const Class = () => {
     if (!idLop || !newIdLop) return;
 
     try {
-      const response = await axios.post('/api/migrateStudent', {
+      const response = await axios.post("/api/migrateStudent", {
         currentIdLop: idLop,
         newIdLop: newIdLop,
       });
@@ -178,51 +178,51 @@ const Class = () => {
       fetchStudents();
       setToggleMigrate(false);
 
-      console.log('Success:', response.data);
+      console.log("Success:", response.data);
       // window.location.reload();
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
-  console.log('idLop', idLop);
-  console.log('newIdLop', newIdLop);
+  console.log("idLop", idLop);
+  console.log("newIdLop", newIdLop);
 
   return (
     <>
-      <Topbar NamePage="Danh sách lớp" />
+      <Topbar NamePage="Danh Sách Lớp" />
       <div className="flex flex-col gap-10 px-20 pb-40 mt-10">
         {/* Modal for adding new class */}
         {toggleAddStudentModal ? (
           <MyModal
             className="absolute "
-            header={<p className="text-2xl font-bold">Add New Student</p>}
+            header={<p className="text-2xl font-bold">Thêm Học Sinh Mới</p>}
             body={
               <>
                 <Input
                   inputType="input"
-                  placeholder="Full Name"
+                  placeholder="Họ Và Tên"
                   handleClick={(e) =>
                     setStudentData({ ...studentData, HoTen: e.target.value })
                   }
                 />
                 <Input
                   inputType="select"
-                  placeholder="Gender"
+                  placeholder="Giới Tính"
                   handleClick={(e) =>
                     setStudentData({ ...studentData, GioiTinh: e.target.value })
                   }
                 />
                 <Input
                   inputType="date"
-                  placeholder="Birthday"
+                  placeholder="Ngày Sinh"
                   handleClick={(e) =>
                     setStudentData({ ...studentData, NgaySinh: e.target.value })
                   }
                 />
                 <Input
                   inputType="input"
-                  placeholder="Address"
+                  placeholder="Địa Chỉ"
                   handleClick={(e) =>
                     setStudentData({ ...studentData, DiaChi: e.target.value })
                   }
@@ -240,7 +240,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => addNewStudent()}>
-                  Chấp nhận
+                  Chấp Nhận
                 </Button>
                 <Button
                   pill={false}
@@ -260,12 +260,15 @@ const Class = () => {
         {toggleMigrate ? (
           <MyModal
             className="absolute "
-            header={<p className="text-2xl font-bold">Chuyển lớp</p>}
+            header={<p className="text-2xl font-bold">Chuyển Lớp</p>}
             body={
               <>
+                <p className="text-lg font-semibold">
+                  ID Lớp Mới <span className="text-red-500 text-xl">*</span>:{" "}
+                </p>
                 <Input
                   inputType="input"
-                  placeholder="ID Lớp mới"
+                  placeholder="ID Lớp Mới"
                   handleClick={(e) => setNewIdLop(e.target.value)}
                 />
               </>
@@ -273,7 +276,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => migrateStudent()}>
-                  Chấp nhận
+                  Chấp Nhận
                 </Button>
                 <Button
                   pill={false}
@@ -293,12 +296,14 @@ const Class = () => {
         {toggleFilterModal ? (
           <MyModal
             className="absolute "
-            header={<p className="text-2xl font-bold">Bộ lọc</p>}
+            header={<p className="text-2xl font-bold">Bộ Lọc</p>}
             body={
               <div className="flex flex-col w-full">
                 <div className="flex flex-row justify-between px-10 mb-5">
                   <div>
-                    <p className="py-5 text-lg font-semibold">Năm học</p>
+                    <p className="py-5 text-lg font-semibold">
+                      Năm Học <span className="text-red-500 text-xl">*</span>
+                    </p>
                     <select
                       className="px-2 py-1 border-2 border-gray-300 rounded-md"
                       value={selectedYear}
@@ -311,7 +316,7 @@ const Class = () => {
                       }}
                     >
                       <option value="" disabled selected hidden>
-                        Chọn năm học
+                        Chọn Năm Học
                       </option>
                       {years.map((year) => (
                         <option key={year.idNam} value={year.idNam}>
@@ -322,7 +327,9 @@ const Class = () => {
                   </div>
 
                   <div>
-                    <p className="py-5 text-lg font-semibold">Học kỳ</p>
+                    <p className="py-5 text-lg font-semibold">
+                      Học Kỳ <span className="text-red-500 text-xl">*</span>
+                    </p>
                     <select
                       className="px-2 py-1 border-2 border-gray-300 rounded-md"
                       value={selectedSemester}
@@ -336,7 +343,7 @@ const Class = () => {
                       }}
                     >
                       <option value="" disabled selected hidden>
-                        Chọn học kỳ
+                        Chọn Học Kỳ
                       </option>
                       {semesters.map((semester) => (
                         <option key={semester.idHocKy} value={semester.idHocKy}>
@@ -347,7 +354,9 @@ const Class = () => {
                   </div>
 
                   <div>
-                    <p className="py-5 text-lg font-semibold">Khối lớp</p>
+                    <p className="py-5 text-lg font-semibold">
+                      Khối Lớp <span className="text-red-500 text-xl">*</span>
+                    </p>
                     <select
                       className="px-2 py-1 border-2 border-gray-300 rounded-md"
                       value={selectedClassGroup}
@@ -363,7 +372,7 @@ const Class = () => {
                       }}
                     >
                       <option value="" disabled selected hidden>
-                        Chọn khối lớp
+                        Chọn Khối Lớp
                       </option>
                       {classGroups.map((classGroup) => (
                         <option
@@ -378,7 +387,9 @@ const Class = () => {
                 </div>
 
                 <div className="flex items-center justify-center w-full p-3 border-t-2">
-                  <p className="py-5 text-lg font-semibold">Lớp học :</p>
+                  <p className="py-5 text-lg font-semibold">
+                    Lớp Học <span className="text-red-500 text-xl">*</span>:
+                  </p>
 
                   <select
                     className="px-2 py-1 mx-5 border-2 border-gray-300 rounded-md"
@@ -397,7 +408,7 @@ const Class = () => {
                     }}
                   >
                     <option value="" disabled selected hidden>
-                      Chọn lớp học
+                      Chọn Lớp Học
                     </option>
                     {classes.map((classItem) => (
                       <option key={classItem.idLop} value={classItem.idLop}>
@@ -417,7 +428,7 @@ const Class = () => {
                     setShowTable(true);
                   }}
                 >
-                  Chấp nhận
+                  Chấp Nhận
                 </Button>
               </div>
             }
@@ -428,10 +439,10 @@ const Class = () => {
 
         {/* List of classes */}
         <p className="text-3xl font-bold font-poppins">
-          Danh sách lớp{' '}
+          Danh Sách{" "}
           {selectedClass && (
             <span className="text-4xl text-blue-700">
-              lớp {selectedClassName}
+              Lớp {selectedClassName}
             </span>
           )}
         </p>
@@ -440,7 +451,7 @@ const Class = () => {
           <div className="flex items-center">
             <Button onClick={() => setToggleFilterModal(true)}>
               <HiSearch className="w-4 h-4 mr-3" />
-              <p> Chọn lớp học</p>
+              <p> Chọn Lớp Học</p>
             </Button>
           </div>
 
@@ -449,12 +460,12 @@ const Class = () => {
             <div className="flex gap-10">
               <Button onClick={() => setToggleMigrate(true)}>
                 <HiArrowCircleUp className="w-5 h-5 mr-2" />
-                <p>Chuyển lớp</p>
+                <p>Chuyển Lớp</p>
               </Button>
 
               <Button onClick={() => setToggleAddStudentModal(true)}>
                 <HiPlus className="mr-2" />
-                <p>Thêm học sinh mới</p>
+                <p>Thêm Học Sinh Mới</p>
               </Button>
             </div>
           )}
@@ -476,7 +487,7 @@ const Class = () => {
                 />
               </div>
               <p className="w-full mt-10 text-4xl font-bold text-blue-700">
-                Xin hãy chọn lớp học
+                Xin Hãy Chọn Lớp Học
               </p>
             </div>
           </>

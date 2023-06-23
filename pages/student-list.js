@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-import Topbar from '@/components/Topbar';
-import StudentResultTable from '@/components/studentResult/StudentResultTable';
+import Topbar from "@/components/Topbar";
+import StudentResultTable from "@/components/studentResult/StudentResultTable";
 
 const StudentList = () => {
   const [years, setYears] = useState([]);
   const [semesters, setSemesters] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [studentResult, setStudentResult] = useState([]);
   const [showTable, setShowTable] = useState(false);
@@ -22,7 +22,7 @@ const StudentList = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -35,7 +35,7 @@ const StudentList = () => {
     const fetchSemesters = async () => {
       try {
         const response = await axios.get(
-          '/api/semesters?idNam=' + selectedYear
+          "/api/semesters?idNam=" + selectedYear
         );
         setSemesters(response.data);
       } catch (error) {
@@ -51,7 +51,7 @@ const StudentList = () => {
     const fetchStudentResult = async () => {
       try {
         const response = await axios.get(
-          '/api/getStudentResult?idHocKy=' + selectedSemester
+          "/api/getStudentResult?idHocKy=" + selectedSemester
         );
         setStudentResult(response.data);
         setShowTable(true);
@@ -64,21 +64,21 @@ const StudentList = () => {
     }
   }, [selectedSemester]);
 
-  console.log('Năm học: ', selectedYearName, ', ID: ', selectedYear);
-  console.log('Học kỳ: ', selectedSemesterName, ', ID: ', selectedSemester);
+  console.log("Năm học: ", selectedYearName, ", ID: ", selectedYear);
+  console.log("Học kỳ: ", selectedSemesterName, ", ID: ", selectedSemester);
 
-  console.log('Danh sách hs: ', studentResult);
+  console.log("Danh sách hs: ", studentResult);
 
   return (
     <>
-      <Topbar NamePage="Danh sách học sinh" />
+      <Topbar NamePage="Danh Sách Học Sinh" />
       <div className="flex flex-col gap-10 px-20 pb-40 mt-10">
         {/* List of classes */}
-        <p className="text-3xl font-bold font-poppins">Danh sách học sinh</p>
+        <p className="text-3xl font-bold font-poppins">Danh Sách Học Sinh</p>
         <div className="flex flex-col">
           {/* Filter of Year, Semester and ClassGroup */}
           <div className="flex items-center w-full mb-10">
-            <p className="mr-10 text-lg font-semibold">Bộ lọc:</p>
+            <p className="mr-10 text-lg font-semibold">Bộ Lọc:</p>
 
             <select
               className="px-2 py-1 mr-3 border-2 border-gray-300 rounded-md"
@@ -92,7 +92,7 @@ const StudentList = () => {
               }}
             >
               <option value="" disabled selected hidden>
-                Chọn năm học
+                Chọn Năm Học
               </option>
               {years.map((year) => (
                 <option key={year.idNam} value={year.idNam}>
@@ -114,7 +114,7 @@ const StudentList = () => {
                 }}
               >
                 <option value="" disabled selected hidden>
-                  Chọn học kỳ
+                  Chọn Học Kỳ
                 </option>
                 {semesters.map((semester) => (
                   <option key={semester.idHocKy} value={semester.idHocKy}>
@@ -138,10 +138,10 @@ const StudentList = () => {
                       Lớp
                     </th>
                     <th className="px-4 py-2 text-center bg-gray-200 border">
-                      Họ Tên
+                      Họ Và Tên
                     </th>
                     <th className="px-4 py-2 text-center bg-gray-200 border">
-                      Điểm TB HK
+                      Điểm TB Học Kỳ
                     </th>
                   </tr>
                 </thead>
@@ -167,7 +167,7 @@ const StudentList = () => {
             </div>
           ) : (
             <div className="flex items-center justify-center w-full h-96 ">
-              <p className="text-3xl font-bold">Vui lòng chọn học kỳ</p>
+              <p className="text-3xl font-bold">Vui Lòng Chọn Học Kỳ</p>
             </div>
           )}
         </div>

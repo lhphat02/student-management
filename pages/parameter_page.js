@@ -1,7 +1,7 @@
-import Topbar from '@/components/Topbar';
-import ParameterTable from '@/components/parameter/parameterTable';
-import React, { useEffect, useState } from 'react';
-import Popup from 'reactjs-popup';
+import Topbar from "@/components/Topbar";
+import ParameterTable from "@/components/parameter/parameterTable";
+import React, { useEffect, useState } from "react";
+import Popup from "reactjs-popup";
 
 const Report = () => {
   //   const [baocaomonhoc, setBaoCaoMonHoc] = useState([]);
@@ -31,7 +31,7 @@ const Report = () => {
     <div>
       <Topbar NamePage="Quy Định" />
       <p className="px-20 mt-10 text-3xl font-bold font-poppins">
-        Điều chỉnh quy định
+        Điều Chỉnh Quy Định
       </p>
       <div className="flex items-center justify-center px-20 mt-10">
         <ParameterTable />

@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Tooltip } from 'flowbite-react';
-import { HiPlus } from 'react-icons/hi';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Button, Tooltip } from "flowbite-react";
+import { HiPlus } from "react-icons/hi";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
-import Topbar from '@/components/Topbar';
-import ClassTable from '@/components/class/classTable';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
+import Topbar from "@/components/Topbar";
+import ClassTable from "@/components/class/classTable";
 
 const Class = () => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedYearName, setSelectedYearName] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedYearName, setSelectedYearName] = useState("");
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState('');
-  const [selectedSemesterName, setSelectedSemesterName] = useState('');
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [selectedSemesterName, setSelectedSemesterName] = useState("");
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState('');
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
+  const [selectedClassGroup, setSelectedClassGroup] = useState("");
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
 
   const [classes, setClasses] = useState([]);
   const [classData, setClassData] = useState({
-    TenLop: '',
+    TenLop: "",
     SiSo: null,
-    idKhoiLop: '',
-    idHocKy: '',
+    idKhoiLop: "",
+    idHocKy: "",
   });
 
   const [yearData, setYearData] = useState({
-    Namhoc: '',
+    Namhoc: "",
   });
 
   const [toggleModal, setToggleModal] = useState(false);
@@ -41,7 +41,7 @@ const Class = () => {
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get('/api/years');
+        const response = await axios.get("/api/years");
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -105,18 +105,18 @@ const Class = () => {
     const { Namhoc } = yearData;
 
     if (!Namhoc) {
-      alert('Vui lòng nhập đầy đủ thông tin');
+      alert("Vui lòng nhập đầy đủ thông tin");
       return;
     }
 
     try {
-      const response = await axios.post('/api/addYear', {
+      const response = await axios.post("/api/addYear", {
         Namhoc: Namhoc,
       });
       console.log(response.data);
       window.location.reload();
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -124,12 +124,12 @@ const Class = () => {
     const { TenLop, SiSo, idKhoiLop, idHocKy } = classData;
 
     if (!TenLop || !idKhoiLop || !idHocKy) {
-      alert('Vui lòng nhập đầy đủ thông tin');
+      alert("Vui lòng nhập đầy đủ thông tin");
       return;
     }
 
     try {
-      const response = await axios.post('/api/addClass', {
+      const response = await axios.post("/api/addClass", {
         TenLop: TenLop,
         SiSo: SiSo,
         idKhoiLop: idKhoiLop,
@@ -138,12 +138,12 @@ const Class = () => {
       console.log(response.data);
       window.location.reload();
     } catch (error) {
-      console.error('Error:', error.response.data);
+      console.error("Error:", error.response.data);
       if (
         error.response.data ===
-        'This class is already available now. Please try again.'
+        "This class is already available now. Please try again."
       ) {
-        alert('Lớp học đã tồn tại');
+        alert("Lớp học đã tồn tại");
       }
     }
   };
@@ -159,17 +159,17 @@ const Class = () => {
   // console.log('selectedSemester', selectedSemester);
   // console.log('selectedClassGroup', selectedClassGroup);
 
-  console.log('classes o FE:', typeof classes, classes);
+  console.log("classes o FE:", typeof classes, classes);
 
   return (
     <>
-      <Topbar NamePage="Bảng điều khiển năm học" />
+      <Topbar NamePage="Bảng Điều Khiển Năm Học" />
       <div className="flex flex-col gap-10 px-20 pb-40 mt-10">
         {/* Modal for adding new class */}
         {toggleModal ? (
           <MyModal
             className="absolute "
-            header={<p className="text-2xl font-bold">Thêm lớp học mới</p>}
+            header={<p className="text-2xl font-bold">Thêm Lớp Học Mới</p>}
             body={
               <>
                 <div className="flex justify-between w-full px-3 my-5">
@@ -183,6 +183,9 @@ const Class = () => {
                     Khối Lớp: {selectedClassGroupName}
                   </p>
                 </div>
+                <p className="text-lg font-semibold">
+                  Tên Lớp <span className="text-red-500 text-xl">*</span>:{" "}
+                </p>
                 <Input
                   inputType="input"
                   placeholder="Tên Lớp"
@@ -195,7 +198,7 @@ const Class = () => {
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => addNewClass()}>
-                  Chấp nhận
+                  Chấp Nhận
                 </Button>
                 <Button
                   pill={false}
@@ -216,20 +219,25 @@ const Class = () => {
         {toggleYearModal ? (
           <MyModal
             className="absolute "
-            header={<p className="text-2xl font-bold">Thêm năm học mới</p>}
+            header={<p className="text-2xl font-bold">Thêm Năm Học Mới</p>}
             body={
-              <Input
-                inputType="input"
-                placeholder="Năm học mới"
-                handleClick={(e) =>
-                  setYearData({ ...yearData, Namhoc: e.target.value })
-                }
-              />
+              <>
+                <p className="text-lg font-semibold">
+                  Năm Học Mới <span className="text-red-500 text-xl">*</span>:{" "}
+                </p>
+                <Input
+                  inputType="input"
+                  placeholder="Năm Học Mới"
+                  handleClick={(e) =>
+                    setYearData({ ...yearData, Namhoc: e.target.value })
+                  }
+                />
+              </>
             }
             footer={
               <div className="flex justify-center w-full gap-10">
                 <Button pill={false} onClick={() => addNewYear()}>
-                  Chấp nhận
+                  Chấp Nhận
                 </Button>
                 <Button
                   pill={false}
@@ -247,11 +255,11 @@ const Class = () => {
         ) : null}
 
         {/* List of classes */}
-        <p className="text-3xl font-bold font-poppins">Bảng điều khiển</p>
+        <p className="text-3xl font-bold font-poppins">Bảng Điều Khiển</p>
         <div className="flex justify-between">
           {/* Filter of Year, Semester and ClassGroup */}
           <div className="flex items-center w-4/5 gap-5">
-            <p className="text-lg font-semibold">Bộ lọc:</p>
+            <p className="text-lg font-semibold">Bộ Lọc:</p>
 
             <select
               className="px-2 py-1 border-2 border-gray-300 rounded-md"
@@ -265,7 +273,7 @@ const Class = () => {
               }}
             >
               <option value="" disabled selected hidden>
-                Chọn năm học
+                Chọn Năm Học
               </option>
               {years.map((year) => (
                 <option key={year.idNam} value={year.idNam}>
@@ -305,7 +313,7 @@ const Class = () => {
                 }}
               >
                 <option value="" disabled selected hidden>
-                  Chọn học kỳ
+                  Chọn Học Kỳ
                 </option>
                 {semesters.map((semester) => (
                   <option key={semester.idHocKy} value={semester.idHocKy}>
@@ -332,7 +340,7 @@ const Class = () => {
                 }}
               >
                 <option value="" disabled selected hidden>
-                  Chọn khối lớp
+                  Chọn Khối Lớp
                 </option>
                 {classGroups.map((classGroup) => (
                   <option
@@ -348,7 +356,7 @@ const Class = () => {
 
           {/* Add new class button */}
           <Button onClick={() => setToggleModal(true)}>
-            Thêm lớp học mới{' '}
+            Thêm Lớp Học Mới{" "}
           </Button>
         </div>
 
