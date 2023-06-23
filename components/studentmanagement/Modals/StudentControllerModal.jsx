@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "flowbite-react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { Button } from 'flowbite-react';
+import axios from 'axios';
 
-import Input from "@/components/Input";
-import MyModal from "@/components/Modal";
+import Input from '@/components/Input';
+import MyModal from '@/components/Modal';
 
 const StudentControllerModal = ({
   close,
@@ -16,20 +16,20 @@ const StudentControllerModal = ({
   idLop,
 }) => {
   const [years, setYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState("");
-  const [selectedYearName, setSelectedYearName] = useState("");
+  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedYearName, setSelectedYearName] = useState('');
 
   const [semesters, setSemesters] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState("");
-  const [selectedSemesterName, setSelectedSemesterName] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState('');
+  const [selectedSemesterName, setSelectedSemesterName] = useState('');
 
   const [classGroups, setClassGroups] = useState([]);
-  const [selectedClassGroup, setSelectedClassGroup] = useState("");
-  const [selectedClassGroupName, setSelectedClassGroupName] = useState("");
+  const [selectedClassGroup, setSelectedClassGroup] = useState('');
+  const [selectedClassGroupName, setSelectedClassGroupName] = useState('');
 
   const [classes, setClasses] = useState([]);
-  const [selectedClass, setSelectedClass] = useState("");
-  const [selectedClassName, setSelectedClassName] = useState("");
+  const [selectedClass, setSelectedClass] = useState('');
+  const [selectedClassName, setSelectedClassName] = useState('');
 
   const [curStudentData, setCurStudentData] = useState({
     HoTen: HoTen,
@@ -53,7 +53,7 @@ const StudentControllerModal = ({
     // Fetch the list of available years
     const fetchYears = async () => {
       try {
-        const response = await axios.get("/api/years");
+        const response = await axios.get('/api/years');
         setYears(response.data);
       } catch (error) {
         console.error(error);
@@ -115,6 +115,16 @@ const StudentControllerModal = ({
 
   const handleEdit = async () => {
     try {
+      const validateEmail = (email) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+      };
+
+      if (!validateEmail(newStudentData.Email)) {
+        alert('Email không hợp lệ');
+        return;
+      }
+
       // Make an Axios request to edit the user data
       const response = await axios.put(
         `/api/student/${idHS}`,
@@ -139,18 +149,18 @@ const StudentControllerModal = ({
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/deleteStudent?idHS=${idHS}&idLop=${idLop}`);
-      alert("Xóa học sinh thành công");
+      alert('Xóa học sinh thành công');
       window.location.reload();
     } catch (error) {
-      alert("Học sinh không thể xóa");
+      alert('Học sinh không thể xóa');
       console.error(error);
     }
   };
 
-  console.log("curStudentData: ", curStudentData);
-  console.log("newStudentData: ", newStudentData);
-  console.log("idLop:", idLop);
-  console.log("idHS:", idHS);
+  console.log('curStudentData: ', curStudentData);
+  console.log('newStudentData: ', newStudentData);
+  console.log('idLop:', idLop);
+  console.log('idHS:', idHS);
 
   return (
     <MyModal
@@ -161,43 +171,67 @@ const StudentControllerModal = ({
         </p>
       }
       body={
-        <>
-          <Input
-            inputType="input"
-            placeholder="Họ Và Tên"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, HoTen: e.target.value })
-            }
-          />
-          <Input
-            inputType="select"
-            placeholder="Giới Tính"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, GioiTinh: e.target.value })
-            }
-          />
-          <Input
-            inputType="date"
-            placeholder="Ngày Sinh"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, NgaySinh: e.target.value })
-            }
-          />
-          <Input
-            inputType="input"
-            placeholder="Địa Chỉ"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, DiaChi: e.target.value })
-            }
-          />
-          <Input
-            inputType="input"
-            // title="Name"
-            placeholder="Email"
-            handleClick={(e) =>
-              setNewStudentData({ ...newStudentData, Email: e.target.value })
-            }
-          />
+        <div className="px-5">
+          <div>
+            <p>Họ Tên Học Sinh</p>
+            <Input
+              inputType="input"
+              placeholder="Họ Và Tên"
+              handleClick={(e) =>
+                setNewStudentData({ ...newStudentData, HoTen: e.target.value })
+              }
+            />
+          </div>
+          <div className="flex gap-10">
+            <div className="flex flex-col w-full">
+              <p>Giới Tính</p>
+              <Input
+                inputType="select"
+                placeholder="Giới Tính"
+                handleClick={(e) =>
+                  setNewStudentData({
+                    ...newStudentData,
+                    GioiTinh: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="flex flex-col w-full">
+              <p>Ngày Sinh</p>
+              <Input
+                inputType="date"
+                placeholder="Ngày Sinh"
+                handleClick={(e) =>
+                  setNewStudentData({
+                    ...newStudentData,
+                    NgaySinh: e.target.value,
+                  })
+                }
+              />
+            </div>
+          </div>
+          <div>
+            <p>Địa Chỉ</p>
+            <Input
+              inputType="input"
+              placeholder="Địa Chỉ"
+              handleClick={(e) =>
+                setNewStudentData({ ...newStudentData, DiaChi: e.target.value })
+              }
+            />
+          </div>
+
+          <div>
+            <p>Email</p>
+            <Input
+              inputType="input"
+              // title="Name"
+              placeholder="Email"
+              handleClick={(e) =>
+                setNewStudentData({ ...newStudentData, Email: e.target.value })
+              }
+            />
+          </div>
           <div className="flex flex-col w-full">
             <div className="flex flex-row justify-between my-5">
               <select
@@ -287,7 +321,7 @@ const StudentControllerModal = ({
               </select>
             </div>
           </div>
-        </>
+        </div>
       }
       footer={
         <div className="flex justify-center w-full gap-10">
@@ -305,11 +339,11 @@ const StudentControllerModal = ({
       handleClose={() => {
         close();
         setNewStudentData({
-          HoTen: "",
-          GioiTinh: "",
-          NgaySinh: "",
-          DiaChi: "",
-          Email: "",
+          HoTen: '',
+          GioiTinh: '',
+          NgaySinh: '',
+          DiaChi: '',
+          Email: '',
         });
       }}
       closeBtn={false}
