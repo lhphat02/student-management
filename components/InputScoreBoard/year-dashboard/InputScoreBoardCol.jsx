@@ -5,7 +5,8 @@ import SubjectResultControllerModal from '../Modals/SubjectResultControllerModal
 import assets from '@/assets';
 
 export const InputScoreBoardCol = [
-  { Header: 'ID', accessor: 'index' },
+  { Header: 'STT', accessor: 'index' },
+  { Header: 'MSHS', accessor: 'idHS' },
   { Header: 'LỚP', accessor: 'TenLop' },
   { Header: 'HỌC SINH', accessor: 'HoTen' },
   { Header: 'ĐIỂM HỆ SỐ 1', accessor: 'DiemHS1' },
