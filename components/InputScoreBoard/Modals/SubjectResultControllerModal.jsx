@@ -158,16 +158,16 @@ const SubjectResultControllerModal = ({
     if (newScoreData.Diem < 0 || newScoreData.Diem > 10) {
       alert('Điểm phải nằm trong khoảng từ 0 đến 10');
       return;
+    } else {
+      alert('Nhập điểm thành công');
     }
 
     try {
       const response = await axios.post('/api/scores', newScoreData);
       console.log(response.data);
-      alert('Thêm điểm thành công');
       close();
     } catch (error) {
       console.error(error);
-      alert('Thêm điểm thất bại');
       close();
     }
   };
