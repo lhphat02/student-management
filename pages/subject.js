@@ -29,6 +29,11 @@ const Subjects = () => {
       return;
     }
 
+    if (HeSo < 1 || HeSo > 3) {
+      alert('Hệ số phải nằm trong khoảng từ 1 đến 3');
+      return;
+    }
+
     try {
       const response = await axios.post('/api/addSubject', {
         TenMH: TenMH,
