@@ -125,7 +125,7 @@ const Class = () => {
       fetchYears();
     } catch (error) {
       console.error('Error:', error);
-      alert('Thêm năm học thất bại');
+      alert('Năm học đã tồn tại');
     }
   };
 
@@ -216,7 +216,7 @@ const Class = () => {
                   </p>
                 </div>
                 <p className="text-lg font-semibold">
-                  Tên Lớp <span className="text-red-500 text-xl">*</span>:{' '}
+                  Tên Lớp <span className="text-xl text-red-500">*</span>:{' '}
                 </p>
                 <Input
                   inputType="input"
@@ -255,7 +255,7 @@ const Class = () => {
             body={
               <>
                 <p className="text-lg font-semibold">
-                  Năm Học Mới <span className="text-red-500 text-xl">*</span>:{' '}
+                  Năm Học Mới <span className="text-xl text-red-500">*</span>:{' '}
                 </p>
                 <Input
                   inputType="number"
