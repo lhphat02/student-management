@@ -1,9 +1,9 @@
-import React, { use, useState, useEffect } from 'react';
-import { Button } from 'flowbite-react';
-import axios from 'axios';
+import React, { use, useState, useEffect } from "react";
+import { Button } from "flowbite-react";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
 
 const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
   const [curClassData, setCurClassData] = useState({
@@ -16,14 +16,14 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
   const [classGroupsName, setClassGroupsName] = useState([]);
 
   const [newClassData, setNewClassData] = useState({
-    TenLop: '',
+    TenLop: "",
   });
 
   useEffect(() => {
     // Fetch the list of available class groups
     const fetchClassGroups = async () => {
       try {
-        const response = await axios.get('/api/class-groups');
+        const response = await axios.get("/api/class-groups");
         setClassGroups(response.data);
       } catch (error) {
         console.error(error);
@@ -37,14 +37,14 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       const { TenLop } = newClassData;
 
       if (!TenLop) {
-        alert('Vui lòng nhập đầy đủ thông tin');
+        alert("Vui lòng nhập đầy đủ thông tin");
         return;
       }
 
       const regex = /^[a-zA-Z0-9]+$/;
 
       if (!regex.test(TenLop)) {
-        alert('Tên lớp không được chứa ký tự đặc biệt');
+        alert("Tên lớp không được chứa ký tự đặc biệt");
         return;
       }
 
@@ -56,14 +56,14 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       const slicedClassName = TenLop.slice(0, 2);
 
       if (TenLop.length !== 4) {
-        alert('Tên lớp phải có 4 ký tự');
+        alert("Tên lớp phải có 4 ký tự");
         return;
       }
 
       if (!slicedClassName.includes(classGroupsName)) {
         console.log(slicedClassName);
         console.log(classGroupsName);
-        alert('Tên lớp phải bắt đầu bằng tên khối lớp');
+        alert("Tên lớp phải bắt đầu bằng tên khối lớp");
         return;
       }
 
@@ -73,24 +73,24 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
         newClassData // Pass the new class data to the API
       );
 
-      alert('Cập nhật thành công');
+      alert("Cập nhật thành công");
       window.location.reload();
       // Handle the response as per your requirement
     } catch (error) {
       console.error(error);
-      alert('Cập nhật thất bại');
+      alert("Cập nhật thất bại");
     }
   };
 
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/deleteClass?idLop=${idLop}`);
-      alert('Xóa lớp thành công');
+      alert("Xóa lớp thành công");
       window.location.reload();
       // Handle any further actions after deleting the subject
     } catch (error) {
       console.error(error);
-      alert('Không thể xóa lớp này');
+      alert("Không thể xóa lớp này");
       // Handle error cases
     }
   };
@@ -106,7 +106,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       body={
         <>
           <p className="text-lg font-semibold">
-            Tên Lớp Mới <span className="text-xl text-red-500">*</span>:{' '}
+            Tên Lớp Mới <span className="text-xl text-red-500">*</span>:{" "}
           </p>
           <Input
             inputType="input"
@@ -133,7 +133,7 @@ const ClassControllerModal = ({ close, idLop, TenLop, idKhoiLop, idHocKy }) => {
       handleClose={() => {
         close();
         setNewClassData({
-          TenLop: '',
+          TenLop: "",
         });
       }}
       closeBtn={false}

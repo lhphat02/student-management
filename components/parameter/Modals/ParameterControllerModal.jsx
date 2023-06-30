@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Button } from 'flowbite-react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Button } from "flowbite-react";
+import axios from "axios";
 
-import Input from '@/components/Input';
-import MyModal from '@/components/Modal';
+import Input from "@/components/Input";
+import MyModal from "@/components/Modal";
 
-const ParameterControllerModal = ({ close, TenThamSo, GiaTri }) => {
+const ParameterControllerModal = ({ close, TenThamSo, GiaTri, TenQuyDinh }) => {
   const [newParameterValue, setNewParameterValue] = useState({
     GiaTri: 0,
   });
@@ -20,13 +20,13 @@ const ParameterControllerModal = ({ close, TenThamSo, GiaTri }) => {
         ten: TenThamSo,
       });
 
-      console.log('Parameter updated successfully');
-      alert('Cập nhật giá trị quy định thành công');
+      console.log("Parameter updated successfully");
+      alert("Cập nhật giá trị quy định thành công");
       window.location.reload();
       // Handle the response as per your requirement
     } catch (error) {
       console.error(error);
-      alert('Cập nhật giá trị quy định thất bại');
+      alert("Cập nhật giá trị quy định thất bại");
     }
   };
 
@@ -47,14 +47,14 @@ const ParameterControllerModal = ({ close, TenThamSo, GiaTri }) => {
       className="absolute "
       header={
         <p className="text-2xl font-bold">
-          Cập Nhật Giá Trị Quy Định:{' '}
-          <span className="text-blue-600 ">{GiaTri}</span>
+          Cập Nhật Giá Trị Quy Định:{" "}
+          <span className="text-blue-600 ">{TenQuyDinh}</span>
         </p>
       }
       body={
         <>
           <p className="text-lg font-semibold">
-            Giá Trị <span className="text-red-500 text-xl">*</span> :{' '}
+            Giá Trị <span className="text-red-500 text-xl">*</span> :{" "}
           </p>
           <Input
             inputType="input"
@@ -84,7 +84,7 @@ const ParameterControllerModal = ({ close, TenThamSo, GiaTri }) => {
       handleClose={() => {
         close();
         setNewParameterValue({
-          GiaTri: '',
+          GiaTri: "",
         });
       }}
       closeBtn={false}

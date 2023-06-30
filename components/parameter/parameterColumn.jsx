@@ -23,6 +23,7 @@ export const parameterColumn = [
             close={close}
             TenThamSo={row.original.TenThamSo}
             GiaTri={row.original.GiaTri}
+            TenQuyDinh={row.original.ChuThich}
           />
         )}
       </Popup>
