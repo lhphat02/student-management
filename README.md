@@ -9,8 +9,6 @@ A website for managing school data
 - Phat Luu
 - Quan Nguyen
 - Huy Ngo
-- Anh Hoang
-- Phu Huong
 
 ## 🛸 Tech Stack
 
